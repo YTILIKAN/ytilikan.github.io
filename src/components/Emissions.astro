@@ -22,7 +22,7 @@ const videos = [
 
     <div class="em-grid reveal">
       {videos.map((v) => (
-        <a class="em" href={`https://www.youtube.com/watch?v=${v.id}`} target="_blank" rel="noopener">
+        <a class="em card-hover" href={`https://www.youtube.com/watch?v=${v.id}`} target="_blank" rel="noopener noreferrer">
           <div class="em__thumb">
             <img class="em__img" src={`https://img.youtube.com/vi/${v.id}/hqdefault.jpg`} alt={v.title} loading="lazy" width="480" height="360" />
             <div class="em__play" aria-hidden="true">
@@ -39,9 +39,9 @@ const videos = [
     </div>
 
     <div class="em-cta reveal">
-      <a href={CHANNEL} target="_blank" rel="noopener" class="btn-yt">
-        <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.3 3.6-6.3 3.6Z"/></svg>
-        Voir la chaîne YouTube · {videos.length} vidéos
+      <a href={CHANNEL} target="_blank" rel="noopener noreferrer" class="btn btn--indigo">
+        <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.3 3.6-6.3 3.6Z"/></svg>
+        Voir la chaîne · {videos.length} vidéos
       </a>
     </div>
   </div>
@@ -55,9 +55,7 @@ const videos = [
     border: 1px solid var(--sable-d);
     background: #fff;
     display: block;
-    transition: transform .22s, box-shadow .22s;
   }
-  .em:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(22,19,17,.10); }
   .em__thumb {
     aspect-ratio: 16/9;
     position: relative;
@@ -85,15 +83,6 @@ const videos = [
   .em__title { font-family: var(--display); font-weight: 700; font-size: .84rem; margin-top: 5px; line-height: 1.2; letter-spacing: -.01em; color: var(--encre); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
   .em-cta { margin-top: var(--sp-lg); }
-  .btn-yt {
-    display: inline-flex; align-items: center; gap: 10px;
-    font-family: var(--display); font-weight: 700;
-    font-size: .9rem; padding: 12px 22px; border-radius: var(--r-full);
-    background: var(--indigo); color: var(--ivoire);
-    transition: background .2s, transform .2s;
-  }
-  .btn-yt:hover { background: var(--indigo-d); transform: translateY(-2px); }
-  .btn-yt svg { color: var(--ocre); flex: none; }
 
   @media (max-width: 1000px) { .em-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 540px) { .em-grid { grid-template-columns: 1fr; } }

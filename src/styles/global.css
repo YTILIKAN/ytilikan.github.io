@@ -4,7 +4,6 @@
    ============================================================= */
 
 :root {
-  /* Palette officielle v1.0 — spec DESIGN.md */
   --encre:   #161311;
   --indigo:  #242E58;
   --indigo-d:#1A2143;
@@ -15,26 +14,23 @@
   --sable:   #EAE0CC;
   --sable-d: #D8C8A6;
 
-  /* Fonts — spec DESIGN.md */
   --display: 'Bricolage Grotesque', sans-serif;
   --body:    'Hanken Grotesk', sans-serif;
   --mono:    'Space Mono', monospace;
 
-  /* Spacing (4px baseline) — spec DESIGN.md */
   --sp-xs: 8px;
   --sp-sm: 14px;
   --sp-md: 24px;
   --sp-lg: 48px;
   --sp-xl: 96px;
 
-  /* Radius — spec DESIGN.md */
   --r-sm: 4px;
   --r-md: 14px;
   --r-lg: 20px;
   --r-full: 9999px;
 
-  /* Layout */
   --maxw: 1120px;
+  --nav-h: 68px;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -42,7 +38,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px;
+  scroll-padding-top: calc(var(--nav-h) + 12px);
 }
 
 body {
@@ -87,7 +83,33 @@ button:focus-visible {
 
 .mark { display: block; fill: currentColor; }
 
-/* Type helpers */
+/* —— Buttons (design system) —— */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: .72rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: 13px 26px;
+  border-radius: var(--r-full);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: transform .2s, background .2s, border-color .2s, color .2s, box-shadow .2s;
+  white-space: nowrap;
+}
+.btn--gold { background: var(--ocre); color: var(--encre); }
+.btn--gold:hover { background: var(--ocre-d); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(228,166,43,.28); }
+.btn--ghost { border-color: rgba(255,255,255,.35); color: var(--ivoire); background: rgba(255,255,255,.06); }
+.btn--ghost:hover { border-color: var(--ocre); color: var(--ocre); background: rgba(255,255,255,.1); }
+.btn--indigo { background: var(--indigo); color: var(--ivoire); }
+.btn--indigo:hover { background: var(--indigo-d); transform: translateY(-2px); }
+.btn--indigo svg { color: var(--ocre); flex: none; }
+
+/* —— Type helpers —— */
 .eyebrow {
   font-family: var(--mono);
   font-size: .72rem;
@@ -110,18 +132,31 @@ h2.sec-title {
   font-size: 1.15rem;
   max-width: 60ch;
   color: #3a332d;
+  line-height: 1.65;
 }
 
-/* Section rhythm — spec DESIGN.md */
+.section-head--center { text-align: center; }
+.section-head--center .lead { margin-inline: auto; }
+
+/* —— Section rhythm —— */
 .section { padding: var(--sp-xl) 0; }
 .section + .section { border-top: 1px solid var(--sable-d); }
 .section-head { margin-bottom: var(--sp-lg); }
+
+/* —— Cards (shared hover) —— */
+.card-hover {
+  transition: transform .22s, box-shadow .22s;
+}
+.card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(22,19,17,.08);
+}
 
 @media (max-width: 860px) {
   .section { padding: var(--sp-lg) 0; }
 }
 
-/* Reveal on scroll */
+/* —— Reveal on scroll —— */
 .reveal {
   opacity: 0;
   transform: translateY(28px);
@@ -132,4 +167,8 @@ h2.sec-title {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
+  .btn--gold:hover,
+  .btn--ghost:hover,
+  .btn--indigo:hover,
+  .card-hover:hover { transform: none; box-shadow: none; }
 }

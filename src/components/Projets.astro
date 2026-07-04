@@ -48,7 +48,7 @@ const projetlist = [
 
     <div class="pj-grid reveal">
       {projetlist.map((p) => (
-        <article class="pj">
+        <article class="pj card-hover">
           <div class="pj__top">
             <span class="pj__tag">{p.tag}</span>
             <span class="pj__status">{p.status}</span>
@@ -74,15 +74,13 @@ const projetlist = [
 <style>
   .pj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-sm); }
   .pj {
-    background: var(--ivoire);
+    background: #fff;
     border: 1px solid var(--sable-d);
     border-radius: var(--r-md);
     padding: var(--sp-md);
     display: flex;
     flex-direction: column;
-    transition: transform .22s, box-shadow .22s;
   }
-  .pj:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(22,19,17,.06); }
   .pj__top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
   .pj__tag {
     font-family: var(--mono); font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; color: var(--kola);

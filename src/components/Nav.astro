@@ -1,22 +1,25 @@
 ---
 const links = [
-  { href: '#essence', label: 'Essence' },
-  { href: '#programmes', label: 'Programmes' },
-  { href: '#emissions', label: 'Émissions' },
-  { href: '#projets', label: 'Projets' },
-  { href: '#equipe', label: 'Équipe' },
+  { href: '#essence', label: 'Essence', id: 'essence' },
+  { href: '#programmes', label: 'Programmes', id: 'programmes' },
+  { href: '#emissions', label: 'Émissions', id: 'emissions' },
+  { href: '#projets', label: 'Projets', id: 'projets' },
+  { href: '#equipe', label: 'Équipe', id: 'equipe' },
 ];
 ---
 
-<header class="nav" id="nav">
+<header class="nav nav--hero" id="nav">
   <div class="wrap nav__inner">
     <a href="#top" class="nav__brand" aria-label="Y'TILIKAN — accueil">
-      <img src="/logo.jpeg" alt="Y'TILIKAN" class="nav__logo" width="34" height="34" />
+      <img src="/logo-white.jpg" alt="" class="nav__logo nav__logo--light" width="34" height="34" />
+      <img src="/logo.jpeg" alt="" class="nav__logo nav__logo--dark" width="34" height="34" />
       <span class="nav__word">Y<span class="apos">'</span>TILIKAN</span>
     </a>
 
     <nav class="nav__links" aria-label="Navigation principale">
-      {links.map((l) => <a href={l.href}>{l.label}</a>)}
+      {links.map((l) => (
+        <a href={l.href} data-section={l.id}>{l.label}</a>
+      ))}
     </nav>
 
     <a href="#contact" class="nav__cta">Rejoindre</a>
@@ -26,8 +29,10 @@ const links = [
     </button>
   </div>
 
-  <div class="nav__mobile" id="mobile-menu">
-    {links.map((l) => <a href={l.href} class="nav__mobile-link">{l.label}</a>)}
+  <div class="nav__mobile" id="mobile-menu" hidden>
+    {links.map((l) => (
+      <a href={l.href} class="nav__mobile-link" data-section={l.id}>{l.label}</a>
+    ))}
     <a href="#contact" class="nav__mobile-link nav__mobile-cta">Rejoindre</a>
   </div>
 </header>
@@ -37,68 +42,103 @@ const links = [
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 50;
-    background: color-mix(in srgb, var(--ivoire) 82%, transparent);
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid transparent;
-    transition: border-color .3s, background .3s;
-  }
-  .nav.scrolled {
-    border-bottom-color: var(--sable-d);
     background: color-mix(in srgb, var(--ivoire) 94%, transparent);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid transparent;
+    transition: background .35s, border-color .35s, backdrop-filter .35s;
   }
+
+  /* Transparent sur le hero */
+  .nav.nav--hero {
+    background: linear-gradient(to bottom, rgba(26,33,67,.72) 0%, rgba(26,33,67,0) 100%);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom-color: transparent;
+  }
+  .nav.nav--hero.scrolled {
+    background: color-mix(in srgb, var(--indigo-d) 88%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom-color: rgba(255,255,255,.08);
+  }
+
   .nav__inner {
-    height: 68px;
+    height: var(--nav-h);
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
+
   .nav__brand { display: flex; align-items: center; gap: 11px; }
   .nav__logo { width: 34px; height: 34px; border-radius: 6px; object-fit: contain; }
+  .nav__logo--dark { display: block; }
+  .nav__logo--light { display: none; }
+  .nav--hero .nav__logo--dark { display: none; }
+  .nav--hero .nav__logo--light { display: block; }
+
   .nav__word {
     font-family: var(--display);
     font-weight: 800;
     letter-spacing: .02em;
     font-size: 1.15rem;
     color: var(--encre);
+    transition: color .35s;
   }
+  .nav--hero .nav__word { color: var(--ivoire); }
   .apos { color: var(--ocre); }
 
   .nav__links {
     display: flex;
-    gap: 32px;
+    gap: 28px;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
   }
   .nav__links a {
-    font-size: .9rem;
+    font-size: .88rem;
     font-weight: 500;
     color: #4a433b;
     transition: color .2s;
     position: relative;
+    padding: 4px 0;
   }
+  .nav--hero .nav__links a { color: rgba(245,239,225,.82); }
+  .nav--hero .nav__links a:hover,
+  .nav--hero .nav__links a.is-active { color: var(--ivoire); }
   .nav__links a:hover { color: var(--encre); }
+  .nav__links a.is-active { color: var(--encre); font-weight: 600; }
+  .nav--hero .nav__links a.is-active { color: var(--ocre); }
+
   .nav__links a::after {
     content: "";
     position: absolute;
-    left: 0; bottom: -6px;
+    left: 0; bottom: -2px;
     width: 0; height: 2px;
     background: var(--ocre);
     transition: width .25s;
   }
-  .nav__links a:hover::after { width: 100%; }
+  .nav__links a:hover::after,
+  .nav__links a.is-active::after { width: 100%; }
 
   .nav__cta {
-    font-family: var(--display);
-    font-size: .85rem;
+    font-family: var(--mono);
+    font-size: .68rem;
     font-weight: 700;
-    padding: 9px 20px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: 10px 20px;
     border-radius: var(--r-full);
     background: var(--indigo);
     color: var(--ivoire);
-    transition: background .22s, transform .22s;
+    transition: background .22s, transform .22s, color .22s;
   }
   .nav__cta:hover { background: var(--indigo-d); transform: translateY(-1px); }
+  .nav--hero .nav__cta {
+    background: var(--ocre);
+    color: var(--encre);
+  }
+  .nav--hero .nav__cta:hover { background: var(--ocre-d); }
 
   .nav__burger {
     display: none;
@@ -109,7 +149,12 @@ const links = [
     cursor: pointer;
     padding: 8px;
   }
-  .nav__burger span { width: 22px; height: 2px; background: var(--encre); }
+  .nav__burger span {
+    width: 22px; height: 2px;
+    background: var(--encre);
+    transition: background .35s;
+  }
+  .nav--hero .nav__burger span { background: var(--ivoire); }
 
   .nav__mobile {
     display: none;
@@ -119,6 +164,13 @@ const links = [
     border-top: 1px solid var(--sable-d);
   }
   .nav__mobile.open { display: flex; }
+  .nav--hero .nav__mobile {
+    background: var(--indigo-d);
+    border-top-color: rgba(255,255,255,.1);
+  }
+  .nav--hero .nav__mobile-link { color: rgba(245,239,225,.85); border-bottom-color: rgba(255,255,255,.08); }
+  .nav--hero .nav__mobile-cta { color: var(--ocre); }
+
   .nav__mobile-link {
     padding: 13px 0;
     color: #4a433b;
@@ -135,22 +187,53 @@ const links = [
 
 <script>
   const nav = document.getElementById('nav');
+  const hero = document.getElementById('top');
+
   const onScroll = () => {
-    if (window.scrollY > 12) nav?.classList.add('scrolled');
-    else nav?.classList.remove('scrolled');
+    nav?.classList.toggle('scrolled', window.scrollY > 24);
   };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+
+  if (hero && nav) {
+    const heroObserver = new IntersectionObserver(
+      ([entry]) => nav.classList.toggle('nav--hero', entry.isIntersecting),
+      { threshold: 0, rootMargin: `-${getComputedStyle(document.documentElement).getPropertyValue('--nav-h').trim() || '68px'} 0px 0px 0px` }
+    );
+    heroObserver.observe(hero);
+  }
+
+  const sectionIds = ['essence', 'programmes', 'emissions', 'projets', 'equipe', 'contact'];
+  const navLinks = document.querySelectorAll('[data-section]');
+
+  const sectionObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const id = entry.target.id;
+        navLinks.forEach((link) => {
+          link.classList.toggle('is-active', link.getAttribute('data-section') === id);
+        });
+      });
+    },
+    { rootMargin: '-40% 0px -55% 0px', threshold: 0 }
+  );
+  sectionIds.forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) sectionObserver.observe(el);
+  });
 
   const burger = document.getElementById('burger');
   const menu = document.getElementById('mobile-menu');
   burger?.addEventListener('click', () => {
     const open = menu?.classList.toggle('open');
+    menu?.toggleAttribute('hidden', !open);
     burger.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
   menu?.querySelectorAll('a').forEach((a) =>
     a.addEventListener('click', () => {
       menu.classList.remove('open');
+      menu.setAttribute('hidden', '');
       burger?.setAttribute('aria-expanded', 'false');
     })
   );

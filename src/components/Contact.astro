@@ -23,8 +23,8 @@ const footLinks = [
       intervenant ou partenaire, il y a une place pour vous.
     </p>
     <div class="contact__cta reveal" data-delay="240">
-      <a href={CHANNEL} target="_blank" rel="noopener noreferrer" class="cbtn cbtn--gold">Suivre sur YouTube</a>
-      <a href="mailto:contact@ytilikan.com" class="cbtn cbtn--ghost">Nous écrire</a>
+      <a href={CHANNEL} target="_blank" rel="noopener noreferrer" class="btn btn--gold">Suivre sur YouTube</a>
+      <a href="mailto:contact@ytilikan.com" class="btn btn--ghost">Nous écrire</a>
     </div>
   </div>
 </section>
@@ -70,16 +70,6 @@ const footLinks = [
   .contact__title em { font-style: normal; color: var(--ocre); }
   .contact__lead { font-size: 1.12rem; color: #d9d2c4; max-width: 56ch; margin: 0 auto 38px; }
   .contact__cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-  .cbtn {
-    font-family: var(--mono); font-weight: 700; font-size: .72rem;
-    letter-spacing: .14em; text-transform: uppercase;
-    padding: 13px 26px; border-radius: var(--r-full);
-    transition: transform .2s, background .2s, border-color .2s, color .2s;
-  }
-  .cbtn--gold { background: var(--ocre); color: var(--encre); }
-  .cbtn--gold:hover { background: var(--ocre-d); transform: translateY(-2px); }
-  .cbtn--ghost { border: 1.5px solid #ffffff33; color: var(--ivoire); }
-  .cbtn--ghost:hover { border-color: var(--ocre); color: var(--ocre); }
 
   .foot { background: var(--encre); color: var(--ivoire); padding: 70px 0 40px; }
   .foot__grid {
@@ -112,9 +102,5 @@ const footLinks = [
   @media (max-width: 860px) {
     .foot__grid { grid-template-columns: 1fr; gap: 32px; }
     .foot__nav { flex-flow: row wrap; gap: 12px 20px; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .cbtn--gold:hover { transform: none; }
   }
 </style>

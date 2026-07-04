@@ -33,7 +33,7 @@ const programmes = [
 
     <div class="prog-grid reveal">
       {programmes.map((p) => (
-        <article class="pcard">
+        <article class="pcard card-hover">
           <div class="pcard__top">
             <span class="pcard__kick">{p.kick}</span>
             <span class="pcard__dur">{p.duration}</span>
@@ -54,15 +54,13 @@ const programmes = [
 <style>
   .prog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-sm); }
   .pcard {
-    background: var(--ivoire);
+    background: #fff;
     border: 1px solid var(--sable-d);
     border-radius: var(--r-md);
     padding: var(--sp-md);
     display: flex;
     flex-direction: column;
-    transition: transform .26s, box-shadow .26s;
   }
-  .pcard:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(22,19,17,.10); }
   .pcard__top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
   .pcard__kick { font-family: var(--mono); font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: var(--kola); }
   .pcard__dur { font-family: var(--mono); font-size: .68rem; color: #8a8175; }
