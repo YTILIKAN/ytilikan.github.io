@@ -1,0 +1,142 @@
+---
+const fondateurs = [
+  {
+    name: 'Hammel Brayan TAGAKOU',
+    role: 'Cofondateur · Chef des opérations · Responsable éditorial',
+    body: "Anime les émissions principales en tant que modérateur, supervise les orientations éditoriales et coordonne les équipes pour assurer la cohérence globale du projet.",
+    initials: 'HT',
+  },
+  {
+    name: 'Michel NIPBIEBA',
+    role: 'Cofondateur · Responsable technique',
+    body: "Supervise toute la partie technique des tournages — image, son, lumière — et assure la qualité du rendu final. Intervenant permanent, il apporte son expertise terrain.",
+    initials: 'MN',
+  },
+  {
+    name: 'Christian Parfait NEBOT',
+    role: 'Cofondateur · Responsable pédagogique',
+    body: "Garant de la validité scientifique et technique des contenus, il élabore la ligne de formation tech de Y'TILIKAN et veille sur la qualité de l'ensemble du projet.",
+    initials: 'CN',
+  },
+];
+
+const elargie = [
+  {
+    name: 'Stelle',
+    role: 'Communication & journaliste tech',
+    body: "Prépare et présente la revue de presse, assure la veille tech et gère les réseaux sociaux.",
+    initials: 'S',
+  },
+  {
+    name: 'Honorine',
+    role: 'Relations extérieures',
+    body: "Coordonne les intervenants, gère les relations partenaires et garantit la fluidité de communication.",
+    initials: 'H',
+  },
+];
+---
+<section class="team section-pad" id="equipe">
+  <div class="container">
+    <div class="team__head">
+      <p class="eyebrow reveal">Notre équipe</p>
+      <h2 class="team__title reveal" data-delay="80">
+        Des fondateurs, une communauté.
+      </h2>
+      <p class="team__lead reveal" data-delay="160">
+        Une équipe agile où chacun intervient à différentes étapes du projet,
+        avec des responsabilités bien définies.
+      </p>
+    </div>
+
+    <div class="team__grid">
+      {fondateurs.map((m, i) => (
+        <article class="member member--founder reveal" data-delay={String(i * 90)}>
+          <div class="member__avatar">{m.initials}</div>
+          <h3 class="member__name">{m.name}</h3>
+          <p class="member__role mono">{m.role}</p>
+          <p class="member__body">{m.body}</p>
+        </article>
+      ))}
+    </div>
+
+    <p class="team__sub mono reveal">Équipe élargie</p>
+    <div class="team__grid team__grid--2">
+      {elargie.map((m, i) => (
+        <article class="member reveal" data-delay={String(i * 90)}>
+          <div class="member__avatar member__avatar--sm">{m.initials}</div>
+          <div>
+            <h3 class="member__name">{m.name}</h3>
+            <p class="member__role mono">{m.role}</p>
+            <p class="member__body">{m.body}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .team { background: var(--yt-ink-950); }
+  .team__head { max-width: 640px; margin-bottom: 56px; }
+  .team__title { font-size: clamp(1.7rem, 3.4vw, 2.6rem); margin: 20px 0 18px; }
+  .team__lead { color: var(--yt-text-dim); font-size: 1.06rem; }
+
+  .team__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .team__sub {
+    color: var(--yt-text-faint);
+    margin: 56px 0 22px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .team__sub::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--yt-border);
+  }
+  .team__grid--2 { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+
+  .member {
+    background: var(--yt-ink-900);
+    border: 1px solid var(--yt-border);
+    border-radius: var(--yt-radius-lg);
+    padding: 30px 28px;
+    transition: transform 0.26s, border-color 0.26s;
+  }
+  .member:hover { transform: translateY(-5px); border-color: var(--yt-accent-deep); }
+  .member--founder { display: flex; flex-direction: column; }
+
+  .member__avatar {
+    width: 54px; height: 54px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    font-family: var(--yt-font-display);
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--yt-ink-950);
+    background: linear-gradient(140deg, var(--yt-amber-500), var(--yt-amber-700));
+    margin-bottom: 20px;
+    letter-spacing: 0.02em;
+  }
+  .member__avatar--sm { width: 46px; height: 46px; font-size: 1rem; margin-bottom: 0; }
+
+  .member--founder + .member { }
+  .team__grid--2 .member { display: flex; gap: 18px; align-items: flex-start; }
+
+  .member__name { font-size: 1.12rem; margin-bottom: 8px; letter-spacing: -0.01em; }
+  .member__role {
+    color: var(--yt-accent);
+    font-size: 0.62rem !important;
+    line-height: 1.5;
+    margin-bottom: 14px;
+    display: block;
+  }
+  .team__grid--2 .member__role { margin-bottom: 10px; }
+  .member__body { color: var(--yt-text-dim); font-size: 0.9rem; line-height: 1.6; }
+</style>

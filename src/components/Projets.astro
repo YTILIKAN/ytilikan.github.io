@@ -1,0 +1,117 @@
+---
+const projets = [
+  {
+    name: 'AfriBench',
+    tag: 'Benchmark IA',
+    body: "Le premier benchmark d'évaluation des grands modèles de langage sur des connaissances africaines francophones. QCM multi-catégories, ouvert et reproductible.",
+    link: 'https://ytilikan.github.io/AfriBench',
+    linkLabel: 'ytilikan.github.io/AfriBench',
+    status: 'Prototype v0.1',
+  },
+  {
+    name: 'Dira',
+    tag: 'Navigateur',
+    body: "Un navigateur web axé sur la souveraineté et le respect de la vie privée. « Dira » — la boussole, en swahili. Une brique de notre écosystème numérique africain.",
+    link: '',
+    linkLabel: 'Bientôt',
+    status: 'En développement',
+  },
+  {
+    name: 'Formation Tech',
+    tag: 'Éducation',
+    body: "Notre programme pédagogique : IA, programmation, cybersécurité et cloud. Des vidéos courtes, gratuites, sans jargon, pour apprendre à son rythme.",
+    link: '#programmes',
+    linkLabel: 'Voir les programmes',
+    status: 'En ligne',
+  },
+];
+---
+<section class="proj section-pad" id="projets">
+  <div class="container">
+    <div class="proj__head">
+      <p class="eyebrow reveal">Initiatives &amp; projets</p>
+      <h2 class="proj__title reveal" data-delay="80">
+        Au-delà des émissions.
+      </h2>
+      <p class="proj__lead reveal" data-delay="160">
+        Y'TILIKAN construit un écosystème : outils ouverts, recherche et
+        formation pour une Afrique qui participe pleinement au numérique.
+      </p>
+    </div>
+
+    <div class="proj__grid">
+      {projets.map((p, i) => (
+        <article class="prj reveal" data-delay={String(i * 90)}>
+          <div class="prj__top">
+            <span class="prj__tag mono">{p.tag}</span>
+            <span class="prj__status">{p.status}</span>
+          </div>
+          <h3 class="prj__name">{p.name}</h3>
+          <p class="prj__body">{p.body}</p>
+          {p.link ? (
+            <a class="prj__link" href={p.link} target={p.link.startsWith('http') ? '_blank' : null} rel={p.link.startsWith('http') ? 'noopener' : null}>
+              {p.linkLabel}
+              <span class="prj__arrow" aria-hidden="true">→</span>
+            </a>
+          ) : (
+            <span class="prj__link prj__link--soon">{p.linkLabel}</span>
+          )}
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .proj { background: var(--yt-ink-900); }
+  .proj__head { max-width: 640px; margin-bottom: 54px; }
+  .proj__title { font-size: clamp(1.7rem, 3.4vw, 2.6rem); margin: 20px 0 18px; }
+  .proj__lead { color: var(--yt-text-dim); font-size: 1.06rem; }
+
+  .proj__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 20px;
+  }
+  .prj {
+    background: var(--yt-ink-950);
+    border: 1px solid var(--yt-border);
+    border-radius: var(--yt-radius-lg);
+    padding: 28px 26px 26px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.26s, border-color 0.26s;
+  }
+  .prj:hover { transform: translateY(-5px); border-color: var(--yt-accent-deep); }
+
+  .prj__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .prj__tag { color: var(--yt-accent); }
+  .prj__status {
+    font-size: 0.68rem;
+    font-family: var(--yt-font-mono);
+    letter-spacing: 0.08em;
+    color: var(--yt-text-faint);
+    border: 1px solid var(--yt-border);
+    padding: 3px 9px;
+    border-radius: 999px;
+  }
+  .prj__name { font-size: 1.4rem; font-weight: 800; margin-bottom: 12px; }
+  .prj__body { color: var(--yt-text-dim); font-size: 0.92rem; line-height: 1.62; flex: 1; margin-bottom: 22px; }
+
+  .prj__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: var(--yt-accent);
+  }
+  .prj__arrow { transition: transform 0.2s; }
+  .prj__link:hover .prj__arrow { transform: translateX(4px); }
+  .prj__link--soon { color: var(--yt-text-faint); font-weight: 500; }
+</style>

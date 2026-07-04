@@ -1,0 +1,108 @@
+---
+---
+<section class="contact section-pad" id="contact">
+  <div class="contact__glow" aria-hidden="true"></div>
+  <div class="container contact__inner">
+    <img src="/mark-amber.svg" alt="" class="contact__mark reveal" width="72" height="72" />
+    <h2 class="contact__title reveal" data-delay="80">
+      Construisons une Afrique qui comprend<br />
+      la technologie — <span class="acc">parce qu'elle y participe.</span>
+    </h2>
+    <p class="contact__lead reveal" data-delay="160">
+      Rejoignez la communauté Y'TILIKAN. Que vous soyez curieux, étudiant,
+      professionnel, intervenant ou partenaire — il y a une place pour vous.
+    </p>
+    <div class="contact__cta reveal" data-delay="240">
+      <a href="mailto:contact@ytilikan.com" class="btn btn--primary">Nous écrire</a>
+      <a href="https://github.com/ytilikan" target="_blank" rel="noopener" class="btn btn--ghost">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <img src="/mark.svg" alt="" width="30" height="30" />
+      <div>
+        <span class="footer__word">Y'TILIKAN</span>
+        <span class="footer__tag mono">Démocratiser l'IA en Afrique</span>
+      </div>
+    </div>
+    <nav class="footer__nav" aria-label="Pied de page">
+      <a href="#mission">Mission</a>
+      <a href="#programmes">Programmes</a>
+      <a href="#equipe">Équipe</a>
+      <a href="#projets">Projets</a>
+    </nav>
+    <p class="footer__copy mono">© {new Date().getFullYear()} Y'TILIKAN</p>
+  </div>
+</footer>
+
+<style>
+  .contact {
+    background: linear-gradient(180deg, var(--yt-ink-900), var(--yt-ink-950));
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .contact__glow {
+    position: absolute;
+    width: 700px; height: 700px;
+    left: 50%; top: 30%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, color-mix(in srgb, var(--yt-amber-600) 16%, transparent), transparent 65%);
+    filter: blur(40px);
+    pointer-events: none;
+  }
+  .contact__inner { position: relative; z-index: 2; max-width: 780px; margin: 0 auto; }
+  .contact__mark { display: block; margin: 0 auto 30px; border-radius: 16px; }
+  .contact__title {
+    font-size: clamp(1.9rem, 4vw, 3rem);
+    margin-bottom: 22px;
+  }
+  .contact__title .acc {
+    color: var(--yt-accent);
+    font-family: var(--yt-font-serif);
+    font-style: italic;
+    font-weight: 500;
+  }
+  .contact__lead {
+    color: var(--yt-text-dim);
+    font-size: 1.08rem;
+    max-width: 580px;
+    margin: 0 auto 38px;
+    line-height: 1.7;
+  }
+  .contact__cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+  .footer {
+    background: var(--yt-ink-950);
+    border-top: 1px solid var(--yt-border);
+    padding: 40px 0;
+  }
+  .footer__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 26px;
+    flex-wrap: wrap;
+  }
+  .footer__brand { display: flex; align-items: center; gap: 13px; }
+  .footer__brand img { border-radius: 8px; }
+  .footer__word {
+    display: block;
+    font-family: var(--yt-font-display);
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    font-size: 0.9rem;
+  }
+  .footer__tag { display: block; color: var(--yt-text-faint); margin-top: 3px; font-size: 0.62rem; }
+  .footer__nav { display: flex; gap: 26px; flex-wrap: wrap; }
+  .footer__nav a { font-size: 0.85rem; color: var(--yt-text-dim); transition: color 0.2s; }
+  .footer__nav a:hover { color: var(--yt-accent); }
+  .footer__copy { color: var(--yt-text-faint); }
+
+  @media (max-width: 640px) {
+    .footer__inner { flex-direction: column; align-items: flex-start; gap: 20px; }
+  }
+</style>

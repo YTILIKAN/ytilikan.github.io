@@ -1,0 +1,189 @@
+---
+---
+<section class="hero" id="top">
+  <div class="hero__glow" aria-hidden="true"></div>
+  <div class="hero__mask" aria-hidden="true">
+    <img src="/mark-amber.svg" alt="" />
+  </div>
+
+  <div class="container hero__inner">
+    <p class="eyebrow reveal">Communauté · IA · Afrique francophone</p>
+
+    <h1 class="hero__title reveal" data-delay="80">
+      Démocratiser l'intelligence<br />
+      artificielle <span class="hero__accent">en Afrique</span>
+    </h1>
+
+    <p class="hero__lead reveal" data-delay="180">
+      Y'TILIKAN vulgarise la tech et l'IA pour les populations africaines et
+      leur diaspora. Comprendre, apprendre, débattre — sans jargon, sans
+      exclure. <span class="hero__moore">« Y'tilikan »</span>, en mooré :
+      <em>ce n'est pas sorcier.</em>
+    </p>
+
+    <div class="hero__cta reveal" data-delay="280">
+      <a href="#programmes" class="btn btn--primary">Découvrir nos programmes</a>
+      <a href="#contact" class="btn btn--ghost">Rejoindre la communauté</a>
+    </div>
+
+    <div class="hero__stats reveal" data-delay="380">
+      <div class="stat">
+        <span class="stat__num">4</span>
+        <span class="stat__label">Axes de mission</span>
+      </div>
+      <div class="stat">
+        <span class="stat__num">3</span>
+        <span class="stat__label">Formats d'émission</span>
+      </div>
+      <div class="stat">
+        <span class="stat__num">100%</span>
+        <span class="stat__label">Gratuit &amp; accessible</span>
+      </div>
+    </div>
+  </div>
+
+  <a href="#mission" class="hero__scroll" aria-label="Défiler">
+    <span></span>
+  </a>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    padding: 120px 0 80px;
+    overflow: hidden;
+    background:
+      radial-gradient(1200px 600px at 70% -10%, color-mix(in srgb, var(--yt-amber-700) 14%, transparent), transparent 60%),
+      linear-gradient(160deg, var(--yt-ink-900), var(--yt-ink-950) 55%);
+  }
+  .hero__glow {
+    position: absolute;
+    width: 620px; height: 620px;
+    right: -120px; top: 8%;
+    background: radial-gradient(circle, color-mix(in srgb, var(--yt-amber-600) 22%, transparent), transparent 68%);
+    filter: blur(30px);
+    opacity: 0.5;
+  }
+  .hero__mask {
+    position: absolute;
+    right: -4%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: min(48vw, 560px);
+    opacity: 0.10;
+    pointer-events: none;
+  }
+  .hero__mask img { width: 100%; display: block; }
+
+  .hero__inner { position: relative; z-index: 2; max-width: 860px; }
+
+  .hero__title {
+    font-size: clamp(2.5rem, 6.4vw, 4.6rem);
+    font-weight: 800;
+    margin: 26px 0 22px;
+  }
+  .hero__accent {
+    color: var(--yt-accent);
+    font-family: var(--yt-font-serif);
+    font-style: italic;
+    font-weight: 500;
+  }
+  .hero__lead {
+    font-size: clamp(1rem, 1.7vw, 1.24rem);
+    color: var(--yt-text-dim);
+    max-width: 640px;
+    line-height: 1.7;
+  }
+  .hero__moore {
+    color: var(--yt-text);
+    font-weight: 600;
+  }
+  .hero__lead em { color: var(--yt-accent); font-style: italic; }
+
+  .hero__cta {
+    display: flex;
+    gap: 14px;
+    margin: 38px 0 56px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 28px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.92rem;
+    letter-spacing: 0.01em;
+    transition: all 0.22s cubic-bezier(0.22,1,0.36,1);
+  }
+  .btn--primary {
+    background: var(--yt-accent);
+    color: var(--yt-ink-950);
+  }
+  .btn--primary:hover {
+    background: var(--yt-amber-600);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px -8px color-mix(in srgb, var(--yt-amber-600) 60%, transparent);
+  }
+  .btn--ghost {
+    border: 1px solid var(--yt-border);
+    color: var(--yt-text);
+  }
+  .btn--ghost:hover {
+    border-color: var(--yt-accent-deep);
+    color: var(--yt-accent);
+  }
+
+  .hero__stats {
+    display: flex;
+    gap: 52px;
+    flex-wrap: wrap;
+  }
+  .stat { display: flex; flex-direction: column; gap: 4px; }
+  .stat__num {
+    font-family: var(--yt-font-display);
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--yt-text);
+    line-height: 1;
+  }
+  .stat__label {
+    font-family: var(--yt-font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--yt-text-faint);
+  }
+
+  .hero__scroll {
+    position: absolute;
+    bottom: 30px; left: 50%;
+    transform: translateX(-50%);
+    width: 26px; height: 42px;
+    border: 1px solid var(--yt-border);
+    border-radius: 999px;
+    display: flex;
+    justify-content: center;
+    padding-top: 8px;
+  }
+  .hero__scroll span {
+    width: 3px; height: 8px;
+    background: var(--yt-accent);
+    border-radius: 3px;
+    animation: scrolldot 1.8s infinite;
+  }
+  @keyframes scrolldot {
+    0% { opacity: 0; transform: translateY(-4px); }
+    40% { opacity: 1; }
+    80% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 0; }
+  }
+
+  @media (max-width: 820px) {
+    .hero__mask { opacity: 0.06; }
+    .hero__stats { gap: 34px; }
+  }
+</style>

@@ -1,0 +1,151 @@
+/* =============================================================
+   Y'TILIKAN · Design tokens & base — site vitrine
+   Dark premium · Afrique tech · Accents or/bronze
+   ============================================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap");
+
+:root {
+  /* Ink (fonds dark) */
+  --yt-ink-950: #050810;
+  --yt-ink-900: #0B1424;
+  --yt-ink-800: #111C30;
+  --yt-ink-700: #1A2840;
+  --yt-ink-500: #6B7D94;
+  --yt-ink-300: #A0B0C4;
+  --yt-ink-100: #E8E8E8;
+
+  /* Amber (accents dorés) */
+  --yt-amber-50:  #FBF4E2;
+  --yt-amber-500: #D4A853;
+  --yt-amber-600: #C49A3C;
+  --yt-amber-700: #9E7A2A;
+
+  /* Cream (light alt) */
+  --yt-cream-50:  #FAF8F4;
+  --yt-cream-100: #F2EFE8;
+  --yt-cream-200: #E8E4DB;
+  --yt-cream-300: #D1CBC0;
+  --yt-cream-900: #1A1A1A;
+
+  /* Sémantique */
+  --yt-bg:            var(--yt-ink-950);
+  --yt-bg-alt:        var(--yt-ink-900);
+  --yt-bg-2:          var(--yt-ink-800);
+  --yt-text:          var(--yt-ink-100);
+  --yt-text-dim:      var(--yt-ink-300);
+  --yt-text-faint:    var(--yt-ink-500);
+  --yt-border:        var(--yt-ink-700);
+  --yt-accent:        var(--yt-amber-500);
+  --yt-accent-deep:   var(--yt-amber-600);
+
+  /* Fonts */
+  --yt-font-display: "Inter", "Montserrat", system-ui, sans-serif;
+  --yt-font-text:    "Inter", "SF Pro", system-ui, sans-serif;
+  --yt-font-mono:    "JetBrains Mono", "SF Mono", "Consolas", monospace;
+  --yt-font-serif:   "Playfair Display", Georgia, serif;
+
+  /* Layout */
+  --yt-maxw: 1160px;
+  --yt-radius: 14px;
+  --yt-radius-lg: 22px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--yt-bg);
+  color: var(--yt-text);
+  font-family: var(--yt-font-text);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--yt-font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  margin: 0;
+}
+
+a { color: inherit; text-decoration: none; }
+
+p { margin: 0; }
+
+.container {
+  width: 100%;
+  max-width: var(--yt-maxw);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.mono {
+  font-family: var(--yt-font-mono);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+}
+
+.eyebrow {
+  font-family: var(--yt-font-mono);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  color: var(--yt-accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: var(--yt-accent-deep);
+  opacity: 0.7;
+}
+
+section { position: relative; }
+
+.section-pad { padding: 108px 0; }
+
+@media (max-width: 720px) {
+  .section-pad { padding: 72px 0; }
+  body { font-size: 15px; }
+}
+
+/* Animations reveal */
+@keyframes yt-blur-in {
+  from { opacity: 0; transform: translateY(18px); filter: blur(8px); }
+  to   { opacity: 1; transform: translateY(0);    filter: blur(0); }
+}
+
+.reveal {
+  opacity: 0;
+}
+.reveal.is-visible {
+  animation: yt-blur-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal.is-visible { opacity: 1; animation: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* Grain / texture subtile */
+.noise::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}

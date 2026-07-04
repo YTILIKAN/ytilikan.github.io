@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none">
+  <!-- Y'TILIKAN Mask Logo — Monochrome White -->
+  <g transform="translate(200,200)">
+    <!-- Face outline -->
+    <path d="M-60,-140 C-60,-140 -80,-80 -80,0 C-80,80 -60,140 -60,140
+             L-40,160 L40,160 L60,140
+             C60,140 80,80 80,0 C80,-80 60,-140 60,-140
+             C60,-140 40,-145 0,-150 C-40,-145 -60,-140 -60,-140Z"
+          stroke="#E8E8E8" stroke-width="3" fill="none"/>
+    <line x1="-25" y1="-115" x2="25" y2="-115" stroke="#E8E8E8" stroke-width="2" opacity="0.5"/>
+    <line x1="-20" y1="-107" x2="20" y2="-107" stroke="#E8E8E8" stroke-width="2" opacity="0.5"/>
+    <line x1="-15" y1="-99" x2="15" y2="-99" stroke="#E8E8E8" stroke-width="2" opacity="0.5"/>
+    <path d="M-50,-45 C-50,-65 -25,-65 -20,-45 C-20,-30 -50,-25 -50,-45Z"
+          stroke="#E8E8E8" stroke-width="3" fill="none"/>
+    <ellipse cx="-35" cy="-47" rx="4" ry="4" fill="#E8E8E8"/>
+    <path d="M50,-45 C50,-65 25,-65 20,-45 C20,-30 50,-25 50,-45Z"
+          stroke="#E8E8E8" stroke-width="3" fill="none"/>
+    <ellipse cx="35" cy="-47" rx="4" ry="4" fill="#E8E8E8"/>
+    <line x1="0" y1="-20" x2="0" y2="40" stroke="#E8E8E8" stroke-width="3"/>
+    <path d="M-8,40 C-8,55 8,55 8,40" stroke="#E8E8E8" stroke-width="2.5" fill="none"/>
+    <path d="M-15,75 C-5,85 5,85 15,75" stroke="#E8E8E8" stroke-width="2.5" fill="none"/>
+    <line x1="-15" y1="110" x2="15" y2="110" stroke="#E8E8E8" stroke-width="2" opacity="0.3"/>
+  </g>
+</svg>

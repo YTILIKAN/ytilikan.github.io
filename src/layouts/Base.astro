@@ -1,0 +1,47 @@
+---
+import '../styles/global.css';
+const {
+  title = "Y'TILIKAN — Démocratiser l'IA en Afrique",
+  description = "Y'TILIKAN est une communauté de partage qui vulgarise et facilite l'accès à l'intelligence artificielle pour l'Afrique et sa diaspora francophone.",
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/mark.svg" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/lockup-h.svg" />
+    <meta name="theme-color" content="#050810" />
+  </head>
+  <body class="noise">
+    <slot />
+
+    <script>
+      // Reveal on scroll
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (e.isIntersecting) {
+              const el = e.target as HTMLElement;
+              const delay = el.dataset.delay || '0';
+              el.style.animationDelay = delay + 'ms';
+              el.classList.add('is-visible');
+              io.unobserve(el);
+            }
+          }
+        },
+        { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+      );
+      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+    </script>
+  </body>
+</html>

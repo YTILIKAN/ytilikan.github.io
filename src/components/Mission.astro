@@ -1,0 +1,97 @@
+---
+const axes = [
+  {
+    n: '01',
+    title: 'Informer le grand public',
+    body: "Émissions, interviews, débats et revues d'actualité pour expliquer comment la tech et l'IA transforment nos vies, nos métiers, nos institutions.",
+  },
+  {
+    n: '02',
+    title: 'Former sans exclure',
+    body: 'Des contenus éducatifs concrets, pratiques et gratuits — pour que chacun, débutant ou initié, puisse comprendre et utiliser les outils numériques.',
+  },
+  {
+    n: '03',
+    title: "Valoriser l'expertise africaine",
+    body: "Donner la parole aux ingénieurs, entrepreneurs, chercheurs et étudiants du continent. Montrer que l'Afrique pense, crée et innove dans la tech.",
+  },
+  {
+    n: '04',
+    title: 'Créer un espace critique',
+    body: "Aborder les impacts sociaux, culturels, politiques et économiques de la tech, pour une citoyenneté numérique active et consciente.",
+  },
+];
+---
+<section class="mission section-pad" id="mission">
+  <div class="container">
+    <div class="mission__head">
+      <p class="eyebrow reveal">Notre mission</p>
+      <h2 class="mission__title reveal" data-delay="80">
+        La technologie n'est pas une affaire de spécialistes.<br />
+        <span class="dim">C'est une affaire de société.</span>
+      </h2>
+      <p class="mission__lead reveal" data-delay="160">
+        Nous démystifions l'intelligence artificielle pour la rendre
+        compréhensible, accessible et utile aux populations africaines et
+        francophones. Sans simplisme, mais avec pédagogie, respect du contexte
+        et ouverture au dialogue.
+      </p>
+    </div>
+
+    <div class="mission__grid">
+      {axes.map((a, i) => (
+        <article class="axis reveal" data-delay={String(i * 90)}>
+          <span class="axis__n mono">{a.n}</span>
+          <h3 class="axis__title">{a.title}</h3>
+          <p class="axis__body">{a.body}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .mission { background: var(--yt-ink-950); }
+  .mission__head { max-width: 760px; margin-bottom: 64px; }
+  .mission__title {
+    font-size: clamp(1.7rem, 3.6vw, 2.7rem);
+    margin: 20px 0 22px;
+  }
+  .mission__title .dim { color: var(--yt-accent); }
+  .mission__lead {
+    color: var(--yt-text-dim);
+    font-size: 1.08rem;
+    line-height: 1.7;
+  }
+
+  .mission__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1px;
+    background: var(--yt-border);
+    border: 1px solid var(--yt-border);
+    border-radius: var(--yt-radius-lg);
+    overflow: hidden;
+  }
+  .axis {
+    background: var(--yt-ink-900);
+    padding: 34px 30px 38px;
+    transition: background 0.3s;
+  }
+  .axis:hover { background: var(--yt-ink-800); }
+  .axis__n {
+    color: var(--yt-accent);
+    display: block;
+    margin-bottom: 20px;
+  }
+  .axis__title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .axis__body {
+    color: var(--yt-text-dim);
+    font-size: 0.94rem;
+    line-height: 1.65;
+  }
+</style>
