@@ -15,16 +15,10 @@ const values = [
       <p class="lead">Y'TILIKAN est né d'un constat : pendant que l'intelligence artificielle redessine le monde, l'Afrique francophone regarde de loin. Par manque d'accès, pas de talent. On change la donne.</p>
     </div>
 
-    <div class="name-story reveal">
-      <div class="mission-block">
-        <p><span class="big">Former, informer, outiller.</span> Des émissions qui décryptent l'actualité tech. Des formations concrètes pour apprendre à coder, automatiser, comprendre. Des outils open-source que chacun peut utiliser, modifier, améliorer. En français, ancré dans les réalités du continent.</p>
-      </div>
-      <div class="name-card">
-        <div class="glyph">Y'</div>
-        <div class="moore">Du mooré, langue du Burkina Faso</div>
-        <div class="meaning">« Ce n'est pas sorcier »</div>
-      </div>
-    </div>
+    <p class="mission reveal" style="max-width:48ch; font-size:1.22rem; color:#332d27; line-height:1.6; margin-bottom:56px;">
+      <span style="font-family:var(--display); font-weight:700; color:var(--kola);">Former, informer, outiller.</span>
+      Des émissions qui décryptent l'actualité tech. Des formations concrètes pour apprendre à coder, automatiser, comprendre. Des outils open-source que chacun peut utiliser, modifier, améliorer. En français, ancré dans les réalités du continent.
+    </p>
 
     <div class="values reveal">
       {values.map((v) => (
@@ -35,25 +29,10 @@ const values = [
 </section>
 
 <style>
-  .name-story { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; }
-  .name-card {
-    background: var(--encre); color: var(--ivoire); border-radius: 20px; padding: 44px;
-    position: relative; overflow: hidden;
-  }
-  .name-card .glyph { font-family: var(--display); font-weight: 800; font-size: 9rem; line-height: .8; color: var(--ocre); }
-  .name-card .moore { font-family: var(--mono); letter-spacing: .14em; text-transform: uppercase; font-size: .75rem; color: var(--sable-d); margin-top: 18px; }
-  .name-card .meaning { font-family: var(--display); font-weight: 700; font-size: 1.9rem; margin-top: 6px; letter-spacing: -.01em; }
-  .mission-block p { font-size: 1.24rem; color: #332d27; max-width: 44ch; line-height: 1.55; }
-  .mission-block .big { font-family: var(--display); font-weight: 700; color: var(--kola); }
-
-  .values { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-top: 60px; }
+  .values { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
   .value { background: var(--sable); border-radius: 14px; padding: 22px 20px; border-bottom: 3px solid var(--ocre); }
   .value h4 { font-family: var(--display); font-weight: 700; font-size: 1.1rem; margin-bottom: 8px; }
   .value p { font-size: .84rem; color: #4a433b; line-height: 1.45; }
 
-  @media (max-width: 860px) {
-    .name-story { grid-template-columns: 1fr; }
-    .values { grid-template-columns: repeat(2, 1fr); }
-    .name-card .glyph { font-size: 6rem; }
-  }
+  @media (max-width: 860px) { .values { grid-template-columns: repeat(2, 1fr); } }
 </style>
