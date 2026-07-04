@@ -4,6 +4,7 @@ const projetlist = [
     name: 'AfriBench',
     tag: 'ML · Benchmark',
     desc: "Le premier benchmark d'évaluation des grands modèles de langage sur des connaissances africaines francophones. QCM multi-catégories, reproductible, ouvert aux contributions.",
+    authors: 'Christian NEBOT (Lead) · Michel Azarias',
     link: 'https://github.com/YTILIKAN/AfriBench',
     linkLabel: 'github.com/YTILIKAN/AfriBench',
     status: '★1',
@@ -12,7 +13,8 @@ const projetlist = [
   {
     name: 'AfroLang-Library',
     tag: 'Data · NLP',
-    desc: "La plus grande bibliothèque organisée de datasets de langues africaines. Navigable, filtrable, ouverte aux contributions. Infrastructure essentielle pour l'IA en langues africaines.",
+    desc: "La plus grande bibliothèque organisée de datasets de langues africaines. Navigable, filtrable, ouverte aux contributions.",
+    authors: 'Stelle Matha (Lead) · Balla Moussa Keita · Bayard Ombgwa Kuddy',
     link: 'https://github.com/YTILIKAN/AfroLang-Library',
     linkLabel: 'github.com/YTILIKAN/AfroLang-Library',
     status: 'Public',
@@ -22,6 +24,7 @@ const projetlist = [
     name: 'AfroTech-Pulse',
     tag: 'Veille · Newsletter',
     desc: "Dashboard de veille IA pour le continent africain + pipeline newsletter automatisée publiée chaque lundi. Python, scraping, curation.",
+    authors: 'Hilary Cynthia (Lead) · Brayan Tagakou · Steeve Junix',
     link: 'https://github.com/YTILIKAN/AfroTech-Pulse',
     linkLabel: 'github.com/YTILIKAN/AfroTech-Pulse',
     status: 'Public',
@@ -30,7 +33,8 @@ const projetlist = [
   {
     name: 'Dira Browser',
     tag: 'Navigateur · C++',
-    desc: "Un navigateur web axé sur la souveraineté et le respect de la vie privée, basé sur Chromium. Dira, la boussole en swahili. Fork de Brave, en rebranding actif.",
+    desc: "Un navigateur web axé sur la souveraineté et le respect de la vie privée, basé sur Chromium. Dira, la boussole en swahili.",
+    authors: 'Christian NEBOT (Lead) · YTILIKAN',
     link: 'https://github.com/YTILIKAN/brave-core',
     linkLabel: 'github.com/YTILIKAN/brave-core',
     status: 'En dev',
@@ -55,6 +59,7 @@ const projetlist = [
           </div>
           <h3 class="bento__name">{p.name}</h3>
           <p class="bento__desc">{p.desc}</p>
+          <p class="bento__authors">{p.authors}</p>
           <span class="bento__link">{p.linkLabel} →</span>
         </a>
       ))}
@@ -63,7 +68,7 @@ const projetlist = [
 </section>
 
 <style>
-  .bento { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; grid-auto-rows: 200px; gap: var(--sp-sm); }
+  .bento { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; grid-auto-rows: 210px; gap: var(--sp-sm); }
   .bento__item {
     background: var(--ivoire);
     border: 1px solid var(--sable-d);
@@ -71,24 +76,25 @@ const projetlist = [
     padding: var(--sp-md);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     transition: transform .22s, box-shadow .22s;
     cursor: pointer;
+    overflow: hidden;
   }
   .bento__item:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(22,19,17,.08); border-color: var(--ocre); }
   .bento__item--lg { grid-column: span 2; grid-row: span 2; }
   .bento__item--md { grid-column: span 2; }
   .bento__item--sm { }
 
-  .bento__top { display: flex; justify-content: space-between; align-items: center; }
+  .bento__top { display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
   .bento__tag {
     font-family: var(--mono); font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; color: var(--kola);
     background: color-mix(in srgb, var(--kola) 8%, transparent); padding: 2px 7px; border-radius: var(--r-sm);
   }
   .bento__status { font-family: var(--mono); font-size: .6rem; color: #8a8175; }
-  .bento__name { font-family: var(--display); font-weight: 800; font-size: 1.35rem; letter-spacing: -.01em; margin-top: 4px; }
-  .bento__desc { color: #4a433b; font-size: .86rem; line-height: 1.5; flex: 1; margin-top: var(--sp-xs); }
-  .bento__link { font-family: var(--mono); font-size: .66rem; color: var(--indigo); margin-top: 10px; }
+  .bento__name { font-family: var(--display); font-weight: 800; font-size: clamp(1.1rem, 1.5vw, 1.35rem); letter-spacing: -.01em; margin-top: 6px; flex-shrink: 0; }
+  .bento__desc { color: #4a433b; font-size: clamp(.76rem, 1.1vw, .86rem); line-height: 1.45; flex: 1; margin-top: 6px; overflow: hidden; }
+  .bento__authors { font-family: var(--mono); font-size: .6rem; color: #8a8175; letter-spacing: .02em; margin-top: 8px; flex-shrink: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .bento__link { font-family: var(--mono); font-size: .66rem; color: var(--indigo); margin-top: 6px; flex-shrink: 0; }
   .bento__item:hover .bento__link { color: var(--ocre); }
 
   @media (max-width: 860px) {

@@ -40,6 +40,11 @@ const membres = [
       <p class="lead">Chacun intervient à différentes étapes du projet, avec des responsabilités bien définies. Une structure agile au service de la vulgarisation tech en Afrique.</p>
     </div>
 
+    <div class="team-photos reveal">
+      <img src="/team-group.png" alt="L'équipe Y'TILIKAN en session de travail" class="team-photo team-photo--main" loading="lazy" />
+      <img src="/team-podcast.png" alt="Enregistrement d'une émission Y'TILIKAN" class="team-photo team-photo--side" loading="lazy" />
+    </div>
+
     <div class="tm-grid reveal">
       {membres.map((m) => (
         <article class="tm">
@@ -54,6 +59,11 @@ const membres = [
 </section>
 
 <style>
+  .team-photos { display: grid; grid-template-columns: 2fr 1fr; gap: var(--sp-sm); margin-bottom: var(--sp-lg); }
+  .team-photo { width: 100%; border-radius: var(--r-md); object-fit: cover; display: block; }
+  .team-photo--main { aspect-ratio: 16/9; }
+  .team-photo--side { aspect-ratio: 3/2; }
+
   .tm-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-sm); }
   .tm {
     background: var(--ivoire);
@@ -75,6 +85,9 @@ const membres = [
   .tm__role { font-family: var(--mono); font-size: .66rem; letter-spacing: .04em; color: var(--indigo); margin-bottom: 12px; text-transform: uppercase; }
   .tm__body { color: #4a433b; font-size: .88rem; line-height: 1.5; }
 
-  @media (max-width: 860px) { .tm-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 860px) {
+    .team-photos { grid-template-columns: 1fr; }
+    .tm-grid { grid-template-columns: 1fr 1fr; }
+  }
   @media (max-width: 500px) { .tm-grid { grid-template-columns: 1fr; } }
 </style>
