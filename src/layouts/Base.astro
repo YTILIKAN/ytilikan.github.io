@@ -3,7 +3,11 @@ import '../styles/global.css';
 const {
   title = "Y'TILIKAN — Ce n'est pas sorcier",
   description = "Y'TILIKAN est une communauté de partage qui vulgarise et rend accessible la technologie, et surtout l'IA, pour l'Afrique et sa diaspora.",
+  ogImage = "/logo.jpeg",
 } = Astro.props;
+
+const siteUrl = "https://ytilikan.github.io";
+const canonical = new URL(Astro.url.pathname, siteUrl).href;
 ---
 
 <!DOCTYPE html>
@@ -14,13 +18,44 @@ const {
     <link rel="icon" type="image/jpeg" href="/logo.jpeg" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+    />
+
+    <link rel="preload" as="image" href="/hero-bg.jpg" fetchpriority="high" />
+    <link rel="preload" as="image" href="/logo-white.jpg" />
 
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, siteUrl).href} />
+    <meta property="og:locale" content="fr_FR" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, siteUrl).href} />
+
     <meta name="theme-color" content="#242E58" />
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "Y'TILIKAN",
+      url: siteUrl,
+      logo: new URL("/logo.jpeg", siteUrl).href,
+      description,
+      sameAs: ["https://www.youtube.com/@YTILIKAN"],
+    })} />
   </head>
   <body>
+    <a class="skip-link" href="#main">Aller au contenu</a>
     <slot />
 
     <script>

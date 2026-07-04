@@ -37,6 +37,14 @@ const stats = [
 
 <script>
   function animateCounters() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('.stat__n[data-target]').forEach((el) => {
+        const target = parseInt(el.dataset.target);
+        const isPct = el.closest('.stat')?.querySelector('.stat__label')?.textContent?.includes('%');
+        el.textContent = isPct ? target + '%' : String(target);
+      });
+      return;
+    }
     const counters = document.querySelectorAll('.stat__n[data-target]');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {

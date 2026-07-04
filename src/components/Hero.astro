@@ -1,49 +1,51 @@
 ---
+const CHANNEL = 'https://www.youtube.com/@YTILIKAN';
 ---
-<header class="cover" id="top" style="background-image:url('/hero-bg.jpg'); background-size:cover; background-position:center; background-blend-mode:overlay">
+<header class="cover" id="top">
   <div class="cover__overlay" aria-hidden="true"></div>
   <svg class="cover__pattern" aria-hidden="true"><rect width="100%" height="100%" fill="url(#maskpat)" opacity="0.10"/></svg>
   <div class="wrap cover__inner">
     <span class="eyebrow cover__tag">Communauté · IA · Afrique francophone</span>
 
     <div class="cover__lockup reveal">
-      <img src="/logo-white.jpg" alt="Y'TILIKAN" class="cover__logo" width="108" height="108" />
-      <div class="cover__word">Y<span class="apos">'</span>TILIKAN</div>
+      <img src="/logo-white.jpg" alt="" class="cover__logo" width="108" height="108" fetchpriority="high" decoding="async" />
+      <h1 class="cover__word">Y<span class="apos">'</span>TILIKAN</h1>
     </div>
 
-    <div class="cover__tagline reveal" data-delay="80"><em>« Ce n'est pas sorcier. »</em></div>
+    <p class="cover__tagline reveal" data-delay="80"><em>« Ce n'est pas sorcier. »</em></p>
 
     <p class="cover__sub reveal" data-delay="160">
-      La communauté qui vulgarise et rend accessible la technologie,
-      et surtout l'intelligence artificielle, pour l'Afrique et sa diaspora.
+      Formations gratuites, émissions en français et outils open-source pour
+      rendre l'intelligence artificielle accessible à l'Afrique francophone et sa diaspora.
     </p>
 
     <div class="cover__cta reveal" data-delay="240">
-      <a href="https://www.youtube.com/@YTILIKAN" target="_blank" rel="noopener" class="btn btn--gold">Voir les émissions</a>
-      <a href="#contact" class="btn btn--ghost">Rejoindre la communauté</a>
+      <a href="#emissions" class="btn btn--gold">Voir les émissions</a>
+      <a href={CHANNEL} target="_blank" rel="noopener noreferrer" class="btn btn--ghost">Chaîne YouTube</a>
     </div>
 
-    <p class="cover__translate reveal" data-delay="320">Du mooré : « ce n'est pas sorcier »</p>
+    <p class="cover__translate reveal" data-delay="320">Du mooré (Burkina Faso) · vulgarisation tech sans jargon</p>
   </div>
 </header>
 
 <style>
   .cover {
-    background: var(--indigo);
-    background-size: cover;
-    background-position: center;
+    background: var(--indigo) url('/hero-bg.jpg') center / cover no-repeat;
+    background-blend-mode: overlay;
     color: var(--ivoire);
     position: relative;
     overflow: hidden;
     min-height: 92vh;
     display: flex;
     align-items: center;
-    animation: hero-drift 14s ease-in-out infinite alternate;
   }
-  @keyframes hero-drift { 0% { background-position: center top; } 100% { background-position: center bottom; } }
-  .cover__overlay { position: absolute; inset: 0; background: linear-gradient(135deg, var(--indigo-d) 0%, transparent 60%, var(--indigo) 100%); z-index: 1; }
+  @media (prefers-reduced-motion: no-preference) {
+    .cover { animation: hero-drift 14s ease-in-out infinite alternate; }
+    @keyframes hero-drift { 0% { background-position: center top; } 100% { background-position: center bottom; } }
+  }
+  .cover__overlay { position: absolute; inset: 0; background: linear-gradient(135deg, var(--indigo-d) 0%, transparent 55%, var(--indigo) 100%); z-index: 1; }
   .cover__pattern { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
-  .cover__inner { position: relative; z-index: 3; padding: 100px 0 80px; width: 100%; }
+  .cover__inner { position: relative; z-index: 3; padding: calc(68px + 48px) 0 80px; width: 100%; }
   .cover__tag { color: var(--ocre); }
 
   .cover__lockup {
@@ -73,7 +75,7 @@
   .cover__tagline em { font-style: normal; color: var(--ocre); }
 
   .cover__sub {
-    max-width: 54ch;
+    max-width: 52ch;
     font-size: 1.14rem;
     color: #d9d2c4;
   }
@@ -87,12 +89,14 @@
   .btn {
     display: inline-flex;
     align-items: center;
-    font-family: var(--display);
+    font-family: var(--mono);
     font-weight: 700;
-    font-size: .95rem;
+    font-size: .72rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
     padding: 13px 26px;
     border-radius: var(--r-full);
-    transition: transform .2s, background .2s, border-color .2s;
+    transition: transform .2s, background .2s, border-color .2s, color .2s;
   }
   .btn--gold { background: var(--ocre); color: var(--encre); }
   .btn--gold:hover { background: var(--ocre-d); transform: translateY(-2px); }
@@ -101,8 +105,9 @@
 
   .cover__translate {
     font-family: var(--mono);
-    font-size: .8rem;
-    letter-spacing: .05em;
+    font-size: .72rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
     color: #b9c0d6;
     border-left: 2px solid var(--ocre);
     padding-left: 14px;
@@ -110,5 +115,10 @@
 
   @media (max-width: 860px) {
     .cover__logo { width: 76px; height: 76px; }
+    .cover__inner { padding-top: calc(68px + 32px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn--gold:hover, .btn--ghost:hover { transform: none; }
   }
 </style>

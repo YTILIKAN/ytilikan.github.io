@@ -1,37 +1,52 @@
 ---
 const CHANNEL = 'https://www.youtube.com/@YTILIKAN';
 const year = new Date().getFullYear();
+
+const footLinks = [
+  { href: '#essence', label: 'Essence' },
+  { href: '#programmes', label: 'Programmes' },
+  { href: '#emissions', label: 'Émissions' },
+  { href: '#projets', label: 'Projets' },
+  { href: '#equipe', label: 'Équipe' },
+];
 ---
-<section class="contact" id="contact">
+<section class="contact" id="contact" aria-labelledby="contact-title">
   <svg class="contact__pattern" aria-hidden="true"><rect width="100%" height="100%" fill="url(#maskpat)"/></svg>
   <div class="wrap contact__inner">
-    <img src="/logo-white.jpg" alt="Y'TILIKAN" class="contact__logo reveal" width="76" height="76" />
-    <h2 class="contact__title reveal" data-delay="80">
+    <img src="/logo-white.jpg" alt="" class="contact__logo reveal" width="76" height="76" loading="lazy" decoding="async" />
+    <h2 class="contact__title reveal" id="contact-title" data-delay="80">
       Construisons une Afrique qui comprend<br />
       la technologie <em>parce qu'on y participe.</em>
     </h2>
     <p class="contact__lead reveal" data-delay="160">
-      Rejoignez la communauté Y'TILIKAN. Curieux, étudiant, professionnel,
-      Curieux, étudiant, professionnel, intervenant ou partenaire, il y a une place pour vous.
+      Rejoignez la communauté Y'TILIKAN — curieux, étudiant, professionnel,
+      intervenant ou partenaire, il y a une place pour vous.
     </p>
     <div class="contact__cta reveal" data-delay="240">
-      <a href={CHANNEL} target="_blank" rel="noopener" class="cbtn cbtn--gold">Suivre sur YouTube</a>
+      <a href={CHANNEL} target="_blank" rel="noopener noreferrer" class="cbtn cbtn--gold">Suivre sur YouTube</a>
       <a href="mailto:contact@ytilikan.com" class="cbtn cbtn--ghost">Nous écrire</a>
     </div>
   </div>
 </section>
 
 <footer class="foot">
-  <div class="wrap">
-    <div class="foot__lock">
-      <img src="/logo-white.jpg" alt="Y'TILIKAN" class="foot__logo" width="52" height="52" />
-      <span class="foot__wm">Y'TILIKAN</span>
+  <div class="wrap foot__grid">
+    <div class="foot__brand">
+      <div class="foot__lock">
+        <img src="/logo-white.jpg" alt="" class="foot__logo" width="52" height="52" loading="lazy" decoding="async" />
+        <span class="foot__wm">Y'TILIKAN</span>
+      </div>
+      <p class="foot__desc">Communauté de vulgarisation de l'IA pour l'Afrique francophone et sa diaspora. Formations, émissions et outils open-source — gratuits et en français.</p>
     </div>
-    <p class="foot__desc">Une communauté de partage qui vulgarise l'IA pour l'Afrique et sa diaspora. Ensemble, construisons une Afrique où l'on comprend la technologie, parce qu'on y participe pleinement.</p>
-    <div class="foot__row">
-      <span class="foot__meta">© {year} Y'TILIKAN · Tous droits réservés</span>
-      <span class="foot__meta foot__meta--gold">Ce n'est pas sorcier.</span>
-    </div>
+    <nav class="foot__nav" aria-label="Liens du pied de page">
+      {footLinks.map((l) => <a href={l.href}>{l.label}</a>)}
+      <a href={CHANNEL} target="_blank" rel="noopener noreferrer">YouTube</a>
+      <a href="mailto:contact@ytilikan.com">Contact</a>
+    </nav>
+  </div>
+  <div class="wrap foot__row">
+    <span class="foot__meta">© {year} Y'TILIKAN · Tous droits réservés</span>
+    <span class="foot__meta foot__meta--gold">Ce n'est pas sorcier.</span>
   </div>
 </footer>
 
@@ -56,7 +71,8 @@ const year = new Date().getFullYear();
   .contact__lead { font-size: 1.12rem; color: #d9d2c4; max-width: 56ch; margin: 0 auto 38px; }
   .contact__cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
   .cbtn {
-    font-family: var(--display); font-weight: 700; font-size: .95rem;
+    font-family: var(--mono); font-weight: 700; font-size: .72rem;
+    letter-spacing: .14em; text-transform: uppercase;
     padding: 13px 26px; border-radius: var(--r-full);
     transition: transform .2s, background .2s, border-color .2s, color .2s;
   }
@@ -65,12 +81,40 @@ const year = new Date().getFullYear();
   .cbtn--ghost { border: 1.5px solid #ffffff33; color: var(--ivoire); }
   .cbtn--ghost:hover { border-color: var(--ocre); color: var(--ocre); }
 
-  .foot { background: var(--encre); color: var(--ivoire); padding: 70px 0; }
-  .foot__lock { display: flex; align-items: center; gap: 18px; margin-bottom: 22px; }
+  .foot { background: var(--encre); color: var(--ivoire); padding: 70px 0 40px; }
+  .foot__grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 48px;
+    margin-bottom: 40px;
+    align-items: start;
+  }
+  .foot__lock { display: flex; align-items: center; gap: 18px; margin-bottom: 16px; }
   .foot__logo { width: 52px; height: 52px; border-radius: 8px; object-fit: contain; }
   .foot__wm { font-family: var(--display); font-weight: 800; font-size: 1.7rem; }
-  .foot__desc { color: #a9a294; max-width: 52ch; font-size: .98rem; }
-  .foot__row { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; flex-wrap: wrap; margin-top: 40px; }
+  .foot__desc { color: #a9a294; max-width: 46ch; font-size: .95rem; line-height: 1.55; }
+  .foot__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .foot__nav a {
+    font-size: .9rem;
+    color: #a9a294;
+    transition: color .2s;
+  }
+  .foot__nav a:hover { color: var(--ocre); }
+  .foot__row { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; flex-wrap: wrap; padding-top: 24px; border-top: 1px solid #2a2520; }
   .foot__meta { font-family: var(--mono); font-size: .72rem; letter-spacing: .1em; color: #7d7568; text-transform: uppercase; }
   .foot__meta--gold { color: var(--ocre); }
+
+  @media (max-width: 860px) {
+    .foot__grid { grid-template-columns: 1fr; gap: 32px; }
+    .foot__nav { flex-flow: row wrap; gap: 12px 20px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cbtn--gold:hover { transform: none; }
+  }
 </style>

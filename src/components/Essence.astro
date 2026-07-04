@@ -10,29 +10,88 @@ const values = [
 <section class="section" id="essence">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">03 — L'essence</span>
+      <span class="eyebrow">01 — L'essence</span>
       <h2 class="sec-title">La tech expliquée, pas compliquée.</h2>
-      <p class="lead">Y'TILIKAN est né d'un constat : pendant que l'intelligence artificielle redessine le monde, l'Afrique francophone regarde de loin. Par manque d'accès, pas de talent. On change la donne.</p>
+      <p class="lead">Y'TILIKAN est né d'un constat : pendant que l'intelligence artificielle redessine le monde, l'Afrique francophone regarde de loin — par manque d'accès, pas de talent. On change la donne.</p>
     </div>
 
-    <p class="mission reveal" style="max-width:48ch; font-size:1.22rem; color:#332d27; line-height:1.6; margin-bottom:56px;">
-      <span style="font-family:var(--display); font-weight:700; color:var(--kola);">Former, informer, outiller.</span>
-      Des émissions qui décryptent l'actualité tech. Des formations concrètes pour apprendre à coder, automatiser, comprendre. Des outils open-source que chacun peut utiliser, modifier, améliorer. En français, ancré dans les réalités du continent.
-    </p>
+    <div class="essence-grid reveal">
+      <div class="essence-main">
+        <p class="mission">
+          <strong>Former, informer, outiller.</strong>
+          Des émissions qui décryptent l'actualité tech. Des formations concrètes pour apprendre à coder, automatiser, comprendre. Des outils open-source que chacun peut utiliser, modifier, améliorer — en français, ancré dans les réalités du continent.
+        </p>
+      </div>
+      <aside class="essence-card" aria-label="Étymologie du nom">
+        <span class="essence-card__label">Le nom</span>
+        <p class="essence-card__word">Y<span class="apos">'</span>tilikan</p>
+        <p class="essence-card__def">En mooré (Burkina Faso) : « ce n'est pas sorcier » — la technologie n'est pas réservée à une élite.</p>
+      </aside>
+    </div>
 
     <div class="values reveal">
       {values.map((v) => (
-        <div class="value"><h4>{v.h}</h4><p>{v.p}</p></div>
+        <div class="value"><h3>{v.h}</h3><p>{v.p}</p></div>
       ))}
     </div>
   </div>
 </section>
 
 <style>
+  .essence-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: var(--sp-sm);
+    margin-bottom: var(--sp-lg);
+    align-items: stretch;
+  }
+  .mission {
+    font-size: 1.15rem;
+    color: #332d27;
+    line-height: 1.65;
+    max-width: 52ch;
+  }
+  .mission strong {
+    font-family: var(--display);
+    font-weight: 700;
+    color: var(--kola);
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.22rem;
+  }
+  .essence-card {
+    background: var(--encre);
+    color: var(--ivoire);
+    border-radius: var(--r-lg);
+    padding: 32px 28px;
+  }
+  .essence-card__label {
+    font-family: var(--mono);
+    font-size: .68rem;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--ocre);
+    display: block;
+    margin-bottom: 12px;
+  }
+  .essence-card__word {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 2rem;
+    letter-spacing: -.02em;
+    margin-bottom: 10px;
+  }
+  .essence-card .apos { color: var(--ocre); }
+  .essence-card__def { font-size: .92rem; color: #a9a294; line-height: 1.55; }
+
   .values { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--sp-sm); }
   .value { background: var(--sable); border-radius: var(--r-md); padding: var(--sp-md); border-bottom: 3px solid var(--ocre); }
-  .value h4 { font-family: var(--display); font-weight: 700; font-size: 1.1rem; margin-bottom: 8px; }
+  .value h3 { font-family: var(--display); font-weight: 700; font-size: 1.1rem; margin-bottom: 8px; }
   .value p { font-size: .84rem; color: #4a433b; line-height: 1.45; }
 
-  @media (max-width: 860px) { .values { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 860px) {
+    .essence-grid { grid-template-columns: 1fr; }
+    .values { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 500px) { .values { grid-template-columns: 1fr; } }
 </style>

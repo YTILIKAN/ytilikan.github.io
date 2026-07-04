@@ -3,8 +3,8 @@ const links = [
   { href: '#essence', label: 'Essence' },
   { href: '#programmes', label: 'Programmes' },
   { href: '#emissions', label: 'Émissions' },
-  { href: '#equipe', label: 'Équipe' },
   { href: '#projets', label: 'Projets' },
+  { href: '#equipe', label: 'Équipe' },
 ];
 ---
 
@@ -21,7 +21,7 @@ const links = [
 
     <a href="#contact" class="nav__cta">Rejoindre</a>
 
-    <button class="nav__burger" aria-label="Menu" id="burger">
+    <button class="nav__burger" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu" id="burger">
       <span></span><span></span>
     </button>
   </div>
@@ -144,8 +144,14 @@ const links = [
 
   const burger = document.getElementById('burger');
   const menu = document.getElementById('mobile-menu');
-  burger?.addEventListener('click', () => menu?.classList.toggle('open'));
+  burger?.addEventListener('click', () => {
+    const open = menu?.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
   menu?.querySelectorAll('a').forEach((a) =>
-    a.addEventListener('click', () => menu.classList.remove('open'))
+    a.addEventListener('click', () => {
+      menu.classList.remove('open');
+      burger?.setAttribute('aria-expanded', 'false');
+    })
   );
 </script>
