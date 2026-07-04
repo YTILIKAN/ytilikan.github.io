@@ -1,6 +1,7 @@
 ---
 const links = [
   { href: '#essence', label: 'Essence', id: 'essence' },
+  { href: '#participer', label: 'Participer', id: 'participer' },
   { href: '#emissions', label: 'Émissions', id: 'emissions' },
   { href: '#programmes', label: 'Programmes', id: 'programmes' },
   { href: '#projets', label: 'Projets', id: 'projets' },
@@ -203,7 +204,7 @@ const links = [
     heroObserver.observe(hero);
   }
 
-  const sectionIds = ['essence', 'programmes', 'emissions', 'projets', 'equipe', 'contact'];
+  const sectionIds = ['essence', 'participer', 'programmes', 'emissions', 'projets', 'equipe', 'contact'];
   const navLinks = document.querySelectorAll('[data-section]');
 
   const sectionObserver = new IntersectionObserver(

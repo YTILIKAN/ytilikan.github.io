@@ -1,7 +1,9 @@
 ---
-const CHANNEL = 'https://www.youtube.com/@YTILIKAN';
-const GITHUB = 'https://github.com/YTILIKAN';
-const EMAIL = 'mailto:contact@ytilikan.com';
+import { SITE } from '../data/site';
+
+const CHANNEL = SITE.youtube.url;
+const GITHUB = SITE.github;
+const EMAIL = SITE.email;
 const year = new Date().getFullYear();
 
 const participate = [
@@ -30,6 +32,7 @@ const participate = [
 
 const footLinks = [
   { href: '#essence', label: 'Essence' },
+  { href: '#participer', label: 'Participer' },
   { href: '#emissions', label: 'Émissions' },
   { href: '#programmes', label: 'Programmes' },
   { href: '#projets', label: 'Projets' },
