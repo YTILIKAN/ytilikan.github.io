@@ -1,7 +1,6 @@
 ---
 ---
-<header class="cover" id="top">
-  <img class="cover__bg" src="/hero-bg.png" alt="" aria-hidden="true" />
+<header class="cover" id="top" style="background-image:url('/hero-bg.jpg'); background-size:cover; background-position:center; background-blend-mode:overlay">
   <div class="cover__overlay" aria-hidden="true"></div>
   <svg class="cover__pattern" aria-hidden="true"><rect width="100%" height="100%" fill="url(#maskpat)" opacity="0.10"/></svg>
   <div class="wrap cover__inner">
@@ -38,7 +37,6 @@
     display: flex;
     align-items: center;
   }
-  .cover__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.45; z-index: 0; }
   .cover__overlay { position: absolute; inset: 0; background: linear-gradient(135deg, var(--indigo-d) 0%, transparent 60%, var(--indigo) 100%); z-index: 1; }
   .cover__pattern { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
   .cover__inner { position: relative; z-index: 3; padding: 100px 0 80px; width: 100%; }
