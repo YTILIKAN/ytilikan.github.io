@@ -1,5 +1,5 @@
 ---
-const fondateurs = [
+const membres = [
   {
     name: 'Hammel Brayan TAGAKOU',
     role: 'Chef des opérations · Responsable éditorial',
@@ -18,43 +18,35 @@ const fondateurs = [
     body: "Garant de la validité scientifique et technique des contenus, élabore la ligne de formation tech et veille sur la qualité de l'ensemble.",
     initials: 'CN',
   },
-];
-
-const elargie = [
-  { name: 'Stelle', role: 'Communication & journaliste tech', body: "Revue de presse, veille tech et gestion des réseaux sociaux.", initials: 'S' },
-  { name: 'Honorine', role: 'Relations extérieures', body: "Coordination des intervenants, relations partenaires et communication externe.", initials: 'H' },
+  {
+    name: 'Stelle',
+    role: 'Communication & journaliste tech',
+    body: "Prépare et présente la revue de presse, assure la veille tech et gère les réseaux sociaux (LinkedIn, Instagram, YouTube).",
+    initials: 'S',
+  },
+  {
+    name: 'Honorine',
+    role: 'Relations extérieures',
+    body: "Coordonne les intervenants, gère les relations partenaires et garantit la fluidité de communication entre l'équipe et les personnes externes.",
+    initials: 'H',
+  },
 ];
 ---
 <section class="section" id="equipe">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">04 — Notre équipe</span>
-      <h2 class="sec-title">Des fondateurs, une communauté.</h2>
-      <p class="lead">Une équipe agile où chacun intervient à différentes étapes du projet, avec des responsabilités bien définies.</p>
+      <span class="eyebrow">05 — Notre équipe</span>
+      <h2 class="sec-title">Une équipe, une mission.</h2>
+      <p class="lead">Chacun intervient à différentes étapes du projet, avec des responsabilités bien définies. Une structure agile au service de la vulgarisation tech en Afrique.</p>
     </div>
 
     <div class="tm-grid reveal">
-      {fondateurs.map((m) => (
+      {membres.map((m) => (
         <article class="tm">
           <div class="tm__avatar">{m.initials}</div>
-          <div class="tm__badge">Cofondateur</div>
           <h3 class="tm__name">{m.name}</h3>
           <p class="tm__role">{m.role}</p>
           <p class="tm__body">{m.body}</p>
-        </article>
-      ))}
-    </div>
-
-    <div class="tm-sub reveal">Équipe élargie</div>
-    <div class="tm-grid tm-grid--2 reveal">
-      {elargie.map((m) => (
-        <article class="tm tm--row">
-          <div class="tm__avatar tm__avatar--sm">{m.initials}</div>
-          <div>
-            <h3 class="tm__name">{m.name}</h3>
-            <p class="tm__role">{m.role}</p>
-            <p class="tm__body">{m.body}</p>
-          </div>
         </article>
       ))}
     </div>
@@ -62,42 +54,27 @@ const elargie = [
 </section>
 
 <style>
-  .tm-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .tm-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
   .tm {
     background: #fff;
     border: 1px solid var(--sable-d);
-    border-radius: 18px;
-    padding: 30px 28px;
-    transition: transform .24s, box-shadow .24s;
+    border-radius: 14px;
+    padding: 26px 24px;
+    transition: transform .22s, box-shadow .22s;
   }
-  .tm:hover { transform: translateY(-5px); box-shadow: 0 18px 40px rgba(22,19,17,.10); }
+  .tm:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(22,19,17,.08); }
   .tm__avatar {
-    width: 56px; height: 56px;
+    width: 48px; height: 48px;
     border-radius: 50%;
     display: grid; place-items: center;
-    font-family: var(--display); font-weight: 800; font-size: 1.2rem;
+    font-family: var(--display); font-weight: 800; font-size: 1.05rem;
     background: var(--indigo); color: var(--ivoire);
-    margin-bottom: 16px;
+    margin-bottom: 14px;
   }
-  .tm__avatar--sm { width: 48px; height: 48px; font-size: 1.05rem; margin-bottom: 0; }
-  .tm__badge {
-    font-family: var(--mono); font-size: .64rem; letter-spacing: .12em; text-transform: uppercase;
-    color: var(--kola); margin-bottom: 8px;
-  }
-  .tm__name { font-family: var(--display); font-weight: 700; font-size: 1.14rem; letter-spacing: -.01em; margin-bottom: 6px; }
-  .tm__role { font-family: var(--mono); font-size: .68rem; letter-spacing: .04em; color: var(--indigo); margin-bottom: 14px; text-transform: uppercase; }
-  .tm__body { color: #4a433b; font-size: .9rem; line-height: 1.55; }
+  .tm__name { font-family: var(--display); font-weight: 700; font-size: 1.08rem; letter-spacing: -.01em; margin-bottom: 4px; }
+  .tm__role { font-family: var(--mono); font-size: .66rem; letter-spacing: .04em; color: var(--indigo); margin-bottom: 12px; text-transform: uppercase; }
+  .tm__body { color: #4a433b; font-size: .88rem; line-height: 1.5; }
 
-  .tm-sub {
-    font-family: var(--mono); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;
-    color: #8a8175; margin: 52px 0 20px;
-    display: flex; align-items: center; gap: 12px;
-  }
-  .tm-sub::after { content: ""; flex: 1; height: 1px; background: var(--sable-d); }
-  .tm-grid--2 { grid-template-columns: repeat(2, 1fr); }
-  .tm--row { display: flex; gap: 18px; align-items: flex-start; }
-
-  @media (max-width: 860px) {
-    .tm-grid, .tm-grid--2 { grid-template-columns: 1fr; }
-  }
+  @media (max-width: 860px) { .tm-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 500px) { .tm-grid { grid-template-columns: 1fr; } }
 </style>

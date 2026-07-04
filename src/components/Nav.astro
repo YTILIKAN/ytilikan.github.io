@@ -11,7 +11,7 @@ const links = [
 <header class="nav" id="nav">
   <div class="wrap nav__inner">
     <a href="#top" class="nav__brand" aria-label="Y'TILIKAN — accueil">
-      <svg class="mark nav__mark" viewBox="0 0 200 200"><use href="#ytmark" /></svg>
+      <img src="/logo.jpeg" alt="Y'TILIKAN" class="nav__logo" width="34" height="34" />
       <span class="nav__word">Y<span class="apos">'</span>TILIKAN</span>
     </a>
 
@@ -53,7 +53,7 @@ const links = [
     justify-content: space-between;
   }
   .nav__brand { display: flex; align-items: center; gap: 11px; }
-  .nav__mark { width: 34px; height: 34px; color: var(--indigo); }
+  .nav__logo { width: 34px; height: 34px; border-radius: 6px; object-fit: contain; }
   .nav__word {
     font-family: var(--display);
     font-weight: 800;

@@ -5,7 +5,7 @@ const year = new Date().getFullYear();
 <section class="contact" id="contact">
   <svg class="contact__pattern" aria-hidden="true"><rect width="100%" height="100%" fill="url(#maskpat)"/></svg>
   <div class="wrap contact__inner">
-    <svg class="mark contact__mark reveal" viewBox="0 0 200 200"><use href="#ytmark"/></svg>
+    <img src="/logo-dark.jpg" alt="Y'TILIKAN" class="contact__logo reveal" width="76" height="76" />
     <h2 class="contact__title reveal" data-delay="80">
       Construisons une Afrique qui comprend<br />
       la technologie — <em>parce qu'on y participe.</em>
@@ -24,7 +24,7 @@ const year = new Date().getFullYear();
 <footer class="foot">
   <div class="wrap">
     <div class="foot__lock">
-      <svg class="mark foot__mark" viewBox="0 0 200 200"><use href="#ytmark"/></svg>
+      <img src="/logo-dark.jpg" alt="Y'TILIKAN" class="foot__logo" width="52" height="52" />
       <span class="foot__wm">Y'TILIKAN</span>
     </div>
     <p class="foot__desc">Une communauté de partage qui vulgarise l'IA pour l'Afrique et sa diaspora. Ensemble, construisons une Afrique où l'on comprend la technologie — parce qu'on y participe pleinement.</p>
@@ -46,7 +46,7 @@ const year = new Date().getFullYear();
   }
   .contact__pattern { position: absolute; inset: 0; opacity: .08; pointer-events: none; }
   .contact__inner { position: relative; z-index: 2; max-width: 760px; margin: 0 auto; }
-  .contact__mark { width: 76px; height: 76px; color: var(--ocre); margin: 0 auto 28px; }
+  .contact__logo { width: 76px; height: 76px; border-radius: 12px; object-fit: contain; margin: 0 auto 28px; display: block; }
   .contact__title {
     font-family: var(--display); font-weight: 800;
     font-size: clamp(1.9rem, 4.4vw, 3rem);
@@ -67,7 +67,7 @@ const year = new Date().getFullYear();
 
   .foot { background: var(--encre); color: var(--ivoire); padding: 70px 0; }
   .foot__lock { display: flex; align-items: center; gap: 18px; margin-bottom: 22px; }
-  .foot__mark { width: 52px; height: 52px; color: var(--ocre); }
+  .foot__logo { width: 52px; height: 52px; border-radius: 8px; object-fit: contain; }
   .foot__wm { font-family: var(--display); font-weight: 800; font-size: 1.7rem; }
   .foot__desc { color: #a9a294; max-width: 52ch; font-size: .98rem; }
   .foot__row { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; flex-wrap: wrap; margin-top: 40px; }
