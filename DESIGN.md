@@ -1,60 +1,43 @@
 ---
-version: alpha
+version: 1.0
 name: Y'TILIKAN
-description: "Indigo & or du Sahel — dark premium meets African warmth. A community-driven brand for democratizing AI across Francophone Africa."
+source: "Charte graphique officielle — Three CM, 2025"
+description: "Identité pédagogique et accessible : noir intense, gris charbon, ivoire doux, rehaussés d'orange. Vulgariser l'IA pour l'Afrique francophone."
 colors:
-  primary: "#242E58"
-  secondary: "#E4A62B"
-  neutral: "#161311"
-  indigo: "#242E58"
-  indigo-d: "#1A2143"
-  ocre: "#E4A62B"
-  ocre-d: "#C88A16"
-  kola: "#B5522E"
-  encre: "#161311"
-  ivoire: "#F5EFE1"
-  sable: "#EAE0CC"
-  sable-d: "#D8C8A6"
-  white: "#FFFFFF"
-  on-indigo: "#F5EFE1"
-  on-encre: "#F5EFE1"
-  on-ocre: "#161311"
-  on-kola: "#FFFFFF"
+  noir: "#0A0806"
+  charbon: "#2B2B2B"
+  ivoire: "#FAF9F6"
+  orange: "#FFA726"
+  orange-clair: "#F9A03F"
+  orange-d: "#F08A00"
+  surface: "#FFFFFF"
+  surface-2: "#F2EFEA"
+  line: "#E6E2DC"
+  muted: "#5B5854"
+  on-dark: "#FAF9F6"
 typography:
-  display-xl:
-    fontFamily: "Bricolage Grotesque"
-    fontSize: "96px"
-    fontWeight: 800
-    lineHeight: 0.9
-    letterSpacing: "-0.01em"
+  family: "Sora"
   display:
-    fontFamily: "Bricolage Grotesque"
-    fontSize: "54px"
+    fontFamily: "Sora"
     fontWeight: 800
     lineHeight: 1.02
     letterSpacing: "-0.02em"
   body:
-    fontFamily: "Hanken Grotesk"
-    fontSize: "1rem"
+    fontFamily: "Sora"
     fontWeight: 400
     lineHeight: 1.6
-  body-lg:
-    fontFamily: "Hanken Grotesk"
-    fontSize: "1.15rem"
-    fontWeight: 400
-    lineHeight: 1.6
-  mono:
-    fontFamily: "Space Mono"
-    fontSize: "0.72rem"
-    fontWeight: 400
-    lineHeight: 1.4
-    letterSpacing: "0.14em"
-  mono-caps:
-    fontFamily: "Space Mono"
-    fontSize: "0.72rem"
+  label:
+    fontFamily: "Sora"
     fontWeight: 500
-    lineHeight: 1.4
-    letterSpacing: "0.22em"
+    letterSpacing: "0.18em"
+    textTransform: "uppercase"
+values:
+  - Accessible
+  - Innovant
+  - Créatif
+  - Pédagogique
+  - Engagé
+  - Fier
 rounded:
   sm: 4px
   md: 14px
@@ -66,94 +49,49 @@ spacing:
   md: 24px
   lg: 48px
   xl: 96px
-components:
-  button-primary:
-    backgroundColor: "{colors.ocre}"
-    textColor: "{colors.on-ocre}"
-    rounded: "{rounded.full}"
-    padding: "13px 26px"
-    typography: "{typography.mono-caps}"
-  button-primary-hover:
-    backgroundColor: "{colors.ocre-d}"
-    textColor: "{colors.on-ocre}"
-  button-ghost:
-    backgroundColor: transparent
-    textColor: "{colors.on-indigo}"
-    rounded: "{rounded.full}"
-    padding: "13px 26px"
-  card-white:
-    backgroundColor: "{colors.white}"
-    textColor: "{colors.encre}"
-    rounded: "{rounded.md}"
-    padding: 24px
-  card-sable:
-    backgroundColor: "{colors.sable}"
-    textColor: "{colors.encre}"
-    rounded: "{rounded.md}"
-    padding: "22px 20px"
-  card-encre:
-    backgroundColor: "{colors.encre}"
-    textColor: "{colors.ivoire}"
-    rounded: "{rounded.lg}"
-    padding: 44px
-  nav-header:
-    backgroundColor: "{colors.ivoire}"
-    textColor: "{colors.encre}"
-    height: 68px
-  hero-section:
-    backgroundColor: "{colors.indigo}"
-    textColor: "{colors.ivoire}"
-  footer-section:
-    backgroundColor: "{colors.encre}"
-    textColor: "{colors.ivoire}"
 ---
 ## Overview
 
-Y'TILIKAN is a brand rooted in African identity and tech accessibility. The name means "it's not complicated" in Mooré (Burkina Faso). The visual identity balances deep indigo — evoking West African indigo-dyed cloth and digital depth — with warm Saharan gold and creamy ivory. The tone is confident, clear, and warm: we explain, we don't impress.
+Y'TILIKAN est une communauté de vulgarisation de la tech et de l'IA pour l'Afrique francophone. Le nom signifie « ce n'est pas sorcier » en mooré (Burkina Faso). L'identité visuelle, définie par Three CM (2025), est **pédagogique avant d'être spectaculaire** : clarté, sobriété, chaleur maîtrisée. On explique, on ne cherche pas à impressionner.
 
-The typography uses three voices: Bricolage Grotesque for headlines (firm, humanist), Hanken Grotesk for body (clear, readable), and Space Mono for labels and data (the digital accent). The eye motif from the mask logo repeats as a subtle texture throughout.
+La marque repose sur une palette réduite — noir, charbon, ivoire — rehaussée d'un orange chaud utilisé avec parcimonie pour l'action. Une seule typographie, Sora, porte toutes les voix : titres, corps et étiquettes techniques.
 
 ## Colors
 
-- **Indigo (#242E58):** Signature color. Hero backgrounds, footer, strong surfaces. The emotional anchor of the brand.
-- **Indigo Dark (#1A2143):** Gradient endpoints, hover states on indigo backgrounds.
-- **Ocre (#E4A62B):** Accent. Buttons, highlighted text, the Y' in the logo. The sole driver of visual warmth. Use sparingly.
-- **Ocre Dark (#C88A16):** Hover state for ocre buttons.
-- **Kola (#B5522E):** Secondary accent. Section eyebrow labels, category tags. Use with restraint.
-- **Encre (#161311):** Body text and logo. A warm black — never pure #000.
-- **Ivoire (#F5EFE1):** Main page background. Airy, warm, the space to breathe.
-- **Sable (#EAE0CC):** Card backgrounds, separator panels.
-- **Sable Dark (#D8C8A6):** Borders and dividers.
-- **White (#FFFFFF):** Card surfaces within sections for contrast.
+La charte définit cinq couleurs, complétées par quelques neutres dérivés pour les surfaces et bordures.
+
+- **Noir intense (#0A0806) :** Fond sombre (hero, contact, footer) et texte principal. Profondeur & autorité.
+- **Gris charbon (#2B2B2B) :** Blocs neutres, texte de titre secondaire, étiquettes discrètes. Sobriété & solidité.
+- **Ivoire doux (#FAF9F6) :** Fond clair principal. Clarté & pédagogie — la respiration de la marque.
+- **Orange vif (#FFA726) :** Boutons, hover, accents d'action. Action & vivacité. **À garder rare** — il fonctionne parce qu'il est rare.
+- **Orange clair (#F9A03F) :** Accent secondaire, actions clés. Énergie maîtrisée.
+- **Orange foncé (#F08A00) :** État hover des boutons orange (dérivé, hors charte stricte).
+
+Neutres dérivés (hors charte, pour l'implémentation web) : `surface #FFFFFF`, `surface-2 #F2EFEA`, `line #E6E2DC`, `muted #5B5854`.
 
 ## Typography
 
-Three families, one system. Bricolage Grotesque carries the brand voice — weights 700-800 only. Hanken Grotesk is reading text — weights 400-600. Space Mono is the technical layer — uppercase labels, hex codes, durations. Google Fonts imports required.
+**Une seule famille : Sora.** Typographie sans-serif géométrique conçue pour les environnements numériques modernes, aux courbes légèrement adoucies qui équilibrent le côté rigide de la tech et l'aspect humain de la pédagogie.
+
+- **Titres :** Sora 700–800, interlettrage serré (-0.02em).
+- **Corps :** Sora 400, hauteur de ligne 1.6.
+- **Étiquettes / métadonnées :** Sora 500, majuscules, interlettrage large (0.18em).
+
+Import Google Fonts requis (`Sora:wght@300;400;500;600;700;800`).
+
+## Personnalité de marque
+
+Six adjectifs officiels décrivent le ton : **Accessible, Innovant, Créatif, Pédagogique, Engagé, Fier.** Ils orientent l'écriture et le design plus que n'importe quelle métrique — la promesse est pédagogique avant d'être commerciale.
 
 ## Layout
 
-Sections are separated by a `1px solid {colors.sable-d}` top border. Section padding is `xl` (96px) on desktop, collapsing to 64px on mobile. Content width is capped at 1120px with 28px side padding. The rhythm follows a 4px baseline grid.
-
-## Shapes
-
-Cards use `md` (14px) to `lg` (20px) rounding. Buttons are pill-shaped (`full`). Avatars and profile images are circular. The mask logo itself has soft corners (8-12px).
-
-## Components
-
-- `button-primary` — the only gold-filled CTA. Used once or twice per screen.
-- `button-ghost` — translucent white border on indigo backgrounds. Secondary action.
-- `card-white` — default content card on ivoire or sable backgrounds.
-- `card-sable` — subdued card for value propositions or secondary content.
-- `card-encre` — high-contrast dark card for standout content (the Y' etymology card).
-- `nav-header` — sticky, blurred ivoire bar with indigo logo mark.
-- `hero-section` — full-viewport indigo block with ocre accent, white text, and eye pattern overlay.
-- `footer-section` — encre background with ivoire text and ocre accent.
+Sections séparées par une bordure supérieure `1px solid {line}`. Padding vertical `xl` (96px) sur desktop, réduit à 48px sur mobile. Largeur de contenu plafonnée à 1120px, marges latérales de 28px.
 
 ## Do's and Don'ts
 
-- **Do** keep the accent (ocre) to a minimum — it works because it's rare.
-- **Do** use Space Mono for any technical label, duration, or metadata.
-- **Do** reference palette colors by token name in component definitions.
-- **Don't** use ocre text on light backgrounds — it fails WCAG contrast.
-- **Don't** introduce colors outside this palette without extending it here first.
-- **Don't** add shadows, gradients, or effects to the mask logo.
+- **Do** garder l'orange minimal — c'est un signal d'action, pas une couleur d'ambiance.
+- **Do** utiliser Sora pour tout, en jouant sur les graisses et l'interlettrage.
+- **Do** privilégier l'ivoire et l'espace : la clarté est une valeur de marque.
+- **Don't** réintroduire l'indigo, l'ocre ou les typographies multiples de l'ancienne version — elles ne font pas partie de la charte Three CM.
+- **Don't** utiliser l'orange en texte sur fond clair (contraste WCAG insuffisant) ; réserver l'orange aux surfaces d'action et aux petits accents.
+- **Don't** introduire de couleur hors palette sans l'ajouter ici d'abord.

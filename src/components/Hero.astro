@@ -1,5 +1,4 @@
 ---
-const CHANNEL = 'https://www.youtube.com/@YTILIKAN';
 ---
 <header class="cover" id="top">
   <div class="cover__overlay" aria-hidden="true"></div>
@@ -10,7 +9,6 @@ const CHANNEL = 'https://www.youtube.com/@YTILIKAN';
       <span class="eyebrow cover__tag">Communauté · IA · Afrique francophone</span>
 
       <div class="cover__lockup reveal">
-        <img src="/logo-white.jpg" alt="" class="cover__logo" width="88" height="88" fetchpriority="high" decoding="async" />
         <h1 class="cover__word">Y<span class="apos">'</span>TILIKAN</h1>
       </div>
 
@@ -26,7 +24,7 @@ const CHANNEL = 'https://www.youtube.com/@YTILIKAN';
 
       <div class="cover__cta reveal" data-delay="240">
         <a href="#emissions" class="btn btn--gold">Voir les émissions</a>
-        <a href="#contact" class="btn btn--ghost">Rejoindre la communauté</a>
+        <a href="#contact" class="btn btn--ghost">Comment participer</a>
       </div>
 
       <p class="cover__translate reveal" data-delay="320">Du mooré (Burkina Faso) · « ce n'est pas sorcier »</p>
@@ -58,10 +56,10 @@ const CHANNEL = 'https://www.youtube.com/@YTILIKAN';
     position: absolute; inset: 0; z-index: 1;
     background: linear-gradient(
       102deg,
-      rgba(26, 33, 67, 0.94) 0%,
-      rgba(26, 33, 67, 0.82) 38%,
-      rgba(36, 46, 88, 0.55) 58%,
-      rgba(36, 46, 88, 0.2) 100%
+      rgba(10, 8, 6, 0.94) 0%,
+      rgba(10, 8, 6, 0.82) 38%,
+      rgba(10, 8, 6, 0.55) 58%,
+      rgba(10, 8, 6, 0.2) 100%
     );
   }
   .cover__pattern { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
@@ -74,20 +72,7 @@ const CHANNEL = 'https://www.youtube.com/@YTILIKAN';
 
   .cover__tag { color: var(--ocre); margin-bottom: 4px; }
 
-  .cover__lockup {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    margin: 20px 0 24px;
-    flex-wrap: wrap;
-  }
-  .cover__logo {
-    width: 88px; height: 88px;
-    border-radius: 12px;
-    object-fit: contain;
-    flex: none;
-    box-shadow: 0 8px 32px rgba(0,0,0,.25);
-  }
+  .cover__lockup { margin: 20px 0 24px; }
   .cover__word {
     font-family: var(--display);
     font-weight: 800;
@@ -112,14 +97,14 @@ const CHANNEL = 'https://www.youtube.com/@YTILIKAN';
     font-family: var(--body);
     font-weight: 400;
     font-size: clamp(1rem, 2vw, 1.15rem);
-    color: rgba(245,239,225,.88);
+    color: rgba(250,249,246,.88);
     letter-spacing: 0;
   }
 
   .cover__sub {
     max-width: 48ch;
     font-size: 1.08rem;
-    color: rgba(245,239,225,.78);
+    color: rgba(250,249,246,.78);
     line-height: 1.65;
     margin-bottom: 4px;
   }
@@ -136,7 +121,7 @@ const CHANNEL = 'https://www.youtube.com/@YTILIKAN';
     font-size: .68rem;
     letter-spacing: .1em;
     text-transform: uppercase;
-    color: rgba(185,192,214,.9);
+    color: rgba(250,249,246,.6);
     border-left: 2px solid var(--ocre);
     padding-left: 14px;
   }
@@ -151,7 +136,7 @@ const CHANNEL = 'https://www.youtube.com/@YTILIKAN';
     flex-direction: column;
     align-items: center;
     gap: 6px;
-    color: rgba(245,239,225,.55);
+    color: rgba(250,249,246,.55);
     font-family: var(--mono);
     font-size: .62rem;
     letter-spacing: .18em;
@@ -165,7 +150,6 @@ const CHANNEL = 'https://www.youtube.com/@YTILIKAN';
   }
 
   @media (max-width: 860px) {
-    .cover__logo { width: 64px; height: 64px; }
     .cover__inner { padding-top: calc(var(--nav-h) + 36px); padding-bottom: 80px; }
     .cover__scroll { display: none; }
   }

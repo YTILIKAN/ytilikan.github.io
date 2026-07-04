@@ -1,33 +1,41 @@
 ---
+// Pour afficher une vraie photo : dépose le fichier dans /public/team/
+// puis renseigne le chemin dans `photo` (ex. '/team/brayan.jpg').
+// Tant que `photo` est null, la silhouette par défaut s'affiche.
 const membres = [
   {
     name: 'Hammel Brayan TAGAKOU',
     role: 'Chef des opérations · Responsable éditorial',
     body: "Anime les émissions en tant que modérateur, supervise les orientations éditoriales et coordonne les équipes.",
+    photo: null,
     linkedin: '#',
   },
   {
     name: 'Michel NIPBIEBA',
     role: 'Responsable technique',
     body: "Supervise la partie technique des tournages, image, son, lumière. Intervenant permanent, expertise terrain.",
+    photo: null,
     linkedin: '#',
   },
   {
     name: 'Christian Parfait NEBOT',
     role: 'Responsable pédagogique',
     body: "Garant de la validité scientifique et technique des contenus, élabore la ligne de formation tech.",
+    photo: null,
     linkedin: '#',
   },
   {
     name: 'Stelle',
     role: 'Communication & journaliste tech',
     body: "Prépare et présente la revue de presse, assure la veille tech et gère les réseaux sociaux.",
+    photo: null,
     linkedin: '#',
   },
   {
     name: 'Honorine',
     role: 'Relations extérieures',
     body: "Coordonne les intervenants, gère les relations partenaires et la communication externe.",
+    photo: null,
     linkedin: '#',
   },
 ];
@@ -48,9 +56,13 @@ const membres = [
     <div class="tm-grid reveal">
       {membres.map((m) => (
         <article class="tm card-hover">
-          <div class="tm__photo" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-          </div>
+          {m.photo ? (
+            <img class="tm__photo tm__photo--img" src={m.photo} alt={m.name} loading="lazy" width="56" height="56" />
+          ) : (
+            <div class="tm__photo" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+            </div>
+          )}
           <div class="tm__info">
             <h3 class="tm__name">{m.name}</h3>
             <p class="tm__role">{m.role}</p>
@@ -91,10 +103,11 @@ const membres = [
     display: flex; align-items: center; justify-content: center;
     color: var(--sable-d);
   }
+  .tm__photo--img { object-fit: cover; }
   .tm__info { min-width: 0; }
   .tm__name { font-family: var(--display); font-weight: 700; font-size: 1.04rem; letter-spacing: -.01em; margin-bottom: 2px; }
   .tm__role { font-family: var(--mono); font-size: .64rem; letter-spacing: .04em; color: var(--indigo); margin-bottom: 8px; text-transform: uppercase; }
-  .tm__body { color: #4a433b; font-size: .85rem; line-height: 1.5; margin-bottom: 10px; }
+  .tm__body { color: var(--muted); font-size: .85rem; line-height: 1.5; margin-bottom: 10px; }
   .tm__linkedin {
     display: inline-flex; align-items: center; gap: 5px;
     font-family: var(--mono); font-size: .66rem; color: #0A66C2;

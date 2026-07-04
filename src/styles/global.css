@@ -1,22 +1,39 @@
 /* =============================================================
    Y'TILIKAN · Design tokens & base — site vitrine
-   Charte v1.0 — Indigo & or du Sahel · thème clair
+   Charte graphique officielle — Three CM, 2025
+   Noir / Charbon / Ivoire + Orange · typographie Sora
    ============================================================= */
 
 :root {
-  --encre:   #161311;
-  --indigo:  #242E58;
-  --indigo-d:#1A2143;
-  --ocre:    #E4A62B;
-  --ocre-d:  #C88A16;
-  --kola:    #B5522E;
-  --ivoire:  #F5EFE1;
-  --sable:   #EAE0CC;
-  --sable-d: #D8C8A6;
+  /* —— Couleurs de la charte —— */
+  --noir:         #0A0806;  /* Noir intense — fond sombre, texte principal */
+  --charbon:      #2B2B2B;  /* Gris charbon — blocs neutres, sobriété */
+  --ivoire:       #FAF9F6;  /* Ivoire doux — fond clair, respiration */
+  --orange:       #FFA726;  /* Orange vif — boutons, hover, action */
+  --orange-clair: #F9A03F;  /* Orange clair — accent, actions clés */
+  --orange-d:     #F08A00;  /* Hover dérivé (assombrissement de l'orange vif) */
 
-  --display: 'Bricolage Grotesque', sans-serif;
-  --body:    'Hanken Grotesk', sans-serif;
-  --mono:    'Space Mono', monospace;
+  /* —— Neutres dérivés —— */
+  --surface:        #FFFFFF;
+  --surface-2:      #F2EFEA;
+  --line:           #E6E2DC;
+  --muted:          #5B5854;              /* texte secondaire sur fond clair */
+  --on-dark:        #FAF9F6;
+  --on-dark-muted:  rgba(250, 249, 246, .72);
+
+  /* —— Alias hérités → mappés sur la charte —— */
+  --encre:    var(--noir);
+  --indigo:   var(--noir);
+  --indigo-d: #050302;
+  --ocre:     var(--orange);
+  --ocre-d:   var(--orange-d);
+  --kola:     var(--charbon);
+  --sable:    var(--surface-2);
+  --sable-d:  var(--line);
+
+  --display: 'Sora', sans-serif;
+  --body:    'Sora', sans-serif;
+  --mono:    'Sora', sans-serif;
 
   --sp-xs: 8px;
   --sp-sm: 14px;
@@ -101,8 +118,8 @@ button:focus-visible {
   transition: transform .2s, background .2s, border-color .2s, color .2s, box-shadow .2s;
   white-space: nowrap;
 }
-.btn--gold { background: var(--ocre); color: var(--encre); }
-.btn--gold:hover { background: var(--ocre-d); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(228,166,43,.28); }
+.btn--gold { background: var(--ocre); color: var(--noir); }
+.btn--gold:hover { background: var(--ocre-d); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,167,38,.32); }
 .btn--ghost { border-color: rgba(255,255,255,.35); color: var(--ivoire); background: rgba(255,255,255,.06); }
 .btn--ghost:hover { border-color: var(--ocre); color: var(--ocre); background: rgba(255,255,255,.1); }
 .btn--indigo { background: var(--indigo); color: var(--ivoire); }
@@ -131,7 +148,7 @@ h2.sec-title {
 .lead {
   font-size: 1.15rem;
   max-width: 60ch;
-  color: #3a332d;
+  color: var(--charbon);
   line-height: 1.65;
 }
 

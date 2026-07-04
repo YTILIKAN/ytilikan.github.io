@@ -1,10 +1,11 @@
 ---
 const values = [
-  { h: 'Résilience', p: "Se relever, s'adapter, bâtir un projet durable." },
-  { h: 'Passion', p: 'Comprendre, apprendre, transmettre. Notre moteur.' },
-  { h: 'Innovation', p: "Faire différent, utile et humain. Depuis l'Afrique." },
-  { h: 'Engagement', p: 'Informer avec honnêteté, former avec rigueur.' },
-  { h: 'Culture', p: 'Ancrés dans nos racines, ouverts sur le monde.' },
+  { h: 'Accessible', p: "La tech pour tous, sans prérequis ni jargon." },
+  { h: 'Innovant', p: 'Explorer les nouveaux outils, les tester, les partager.' },
+  { h: 'Créatif', p: "Des formats vivants pour rendre l'IA concrète." },
+  { h: 'Pédagogique', p: "Expliquer étape par étape, jusqu'à ce que ce soit clair." },
+  { h: 'Engagé', p: 'Informer avec honnêteté, former avec rigueur.' },
+  { h: 'Fier', p: 'Ancrés dans nos racines, ouverts sur le monde.' },
 ];
 ---
 <section class="section" id="essence">
@@ -47,7 +48,7 @@ const values = [
   }
   .mission {
     font-size: 1.15rem;
-    color: #332d27;
+    color: var(--charbon);
     line-height: 1.65;
     max-width: 52ch;
   }
@@ -82,16 +83,17 @@ const values = [
     margin-bottom: 10px;
   }
   .essence-card .apos { color: var(--ocre); }
-  .essence-card__def { font-size: .92rem; color: #a9a294; line-height: 1.55; }
+  .essence-card__def { font-size: .92rem; color: rgba(250,249,246,.62); line-height: 1.55; }
 
-  .values { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--sp-sm); }
+  .values { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-sm); }
   .value { background: var(--sable); border-radius: var(--r-md); padding: var(--sp-md); border-bottom: 3px solid var(--ocre); }
   .value h3 { font-family: var(--display); font-weight: 700; font-size: 1.1rem; margin-bottom: 8px; }
-  .value p { font-size: .84rem; color: #4a433b; line-height: 1.45; }
+  .value p { font-size: .84rem; color: var(--muted); line-height: 1.45; }
 
   @media (max-width: 860px) {
     .essence-grid { grid-template-columns: 1fr; }
     .values { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 500px) { .values { grid-template-columns: 1fr; } }
+
 </style>
