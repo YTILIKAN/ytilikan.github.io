@@ -38,9 +38,22 @@ const {
               }
             });
           },
-          { threshold: 0.12, rootMargin: '0px 0px -6% 0px' }
+          { threshold: 0.1, rootMargin: '0px 0px -4% 0px' }
         );
-        document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+        document.querySelectorAll('.reveal').forEach((el) => {
+          if (el.dataset.delay) { io.observe(el); return; }
+          const children = el.querySelectorAll(':scope > *');
+          if (children.length > 1) {
+            children.forEach((child, i) => {
+              (child as HTMLElement).style.transitionDelay = (i * 60) + 'ms';
+              child.classList.add('reveal');
+              io.observe(child);
+            });
+            el.classList.add('in');
+          } else {
+            io.observe(el);
+          }
+        });
       } else {
         document.querySelectorAll('.reveal').forEach((el) => el.classList.add('in'));
       }

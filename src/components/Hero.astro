@@ -30,13 +30,17 @@
 <style>
   .cover {
     background: var(--indigo);
+    background-size: cover;
+    background-position: center;
     color: var(--ivoire);
     position: relative;
     overflow: hidden;
     min-height: 92vh;
     display: flex;
     align-items: center;
+    animation: hero-drift 14s ease-in-out infinite alternate;
   }
+  @keyframes hero-drift { 0% { background-position: center top; } 100% { background-position: center bottom; } }
   .cover__overlay { position: absolute; inset: 0; background: linear-gradient(135deg, var(--indigo-d) 0%, transparent 60%, var(--indigo) 100%); z-index: 1; }
   .cover__pattern { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
   .cover__inner { position: relative; z-index: 3; padding: 100px 0 80px; width: 100%; }
