@@ -1,0 +1,60 @@
+---
+const values = [
+  { n: '01', h: 'Résilience', p: "Se relever, s'adapter, bâtir un projet durable." },
+  { n: '02', h: 'Passion', p: 'Comprendre, apprendre, transmettre. Notre moteur.' },
+  { n: '03', h: 'Innovation', p: "Faire différent, utile et humain — depuis l'Afrique." },
+  { n: '04', h: 'Engagement', p: 'Informer avec honnêteté, former avec rigueur.' },
+  { n: '05', h: 'Culture', p: 'Ancrés dans nos racines, ouverts sur le monde.' },
+];
+---
+<section class="section" id="essence">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">01 — L'essence</span>
+      <h2 class="sec-title">Tout est dans le nom.</h2>
+      <p class="lead">Y'tilikan est né d'une conviction simple : la tech n'est pas réservée aux spécialistes. Elle se comprend, se débat, se partage — parce qu'on y participe pleinement.</p>
+    </div>
+
+    <div class="name-story reveal">
+      <div class="mission-block">
+        <p>Notre mission : <span class="big">démystifier la technologie</span> et l'IA pour les rendre compréhensibles, accessibles et utiles aux populations africaines et francophones — sans simplisme, avec pédagogie et respect du contexte.</p>
+      </div>
+      <div class="name-card">
+        <div class="glyph">Y'</div>
+        <div class="moore">Expression en mooré</div>
+        <div class="meaning">« Ce n'est pas sorcier »</div>
+      </div>
+    </div>
+
+    <div class="values reveal">
+      {values.map((v) => (
+        <div class="value"><div class="n">{v.n}</div><h4>{v.h}</h4><p>{v.p}</p></div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .name-story { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; }
+  .name-card {
+    background: var(--encre); color: var(--ivoire); border-radius: 20px; padding: 44px;
+    position: relative; overflow: hidden;
+  }
+  .name-card .glyph { font-family: var(--display); font-weight: 800; font-size: 9rem; line-height: .8; color: var(--ocre); }
+  .name-card .moore { font-family: var(--mono); letter-spacing: .14em; text-transform: uppercase; font-size: .75rem; color: var(--sable-d); margin-top: 18px; }
+  .name-card .meaning { font-family: var(--display); font-weight: 700; font-size: 1.9rem; margin-top: 6px; letter-spacing: -.01em; }
+  .mission-block p { font-size: 1.28rem; color: #332d27; max-width: 44ch; }
+  .mission-block .big { font-family: var(--display); font-weight: 700; color: var(--kola); }
+
+  .values { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-top: 64px; }
+  .value { background: var(--sable); border-radius: 14px; padding: 22px 20px; border-bottom: 3px solid var(--ocre); }
+  .value .n { font-family: var(--mono); font-size: .72rem; color: var(--kola); letter-spacing: .1em; }
+  .value h4 { font-family: var(--display); font-weight: 700; font-size: 1.15rem; margin: 6px 0; }
+  .value p { font-size: .86rem; color: #4a433b; line-height: 1.45; }
+
+  @media (max-width: 860px) {
+    .name-story { grid-template-columns: 1fr; }
+    .values { grid-template-columns: repeat(2, 1fr); }
+    .name-card .glyph { font-size: 6rem; }
+  }
+</style>

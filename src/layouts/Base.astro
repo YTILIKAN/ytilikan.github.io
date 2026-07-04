@@ -1,8 +1,8 @@
 ---
 import '../styles/global.css';
 const {
-  title = "Y'TILIKAN — Démocratiser l'IA en Afrique",
-  description = "Y'TILIKAN est une communauté de partage qui vulgarise et facilite l'accès à l'intelligence artificielle pour l'Afrique et sa diaspora francophone.",
+  title = "Y'TILIKAN — Ce n'est pas sorcier",
+  description = "Y'TILIKAN est une communauté de partage qui vulgarise et rend accessible la technologie — et surtout l'IA — pour l'Afrique et sa diaspora.",
 } = Astro.props;
 ---
 
@@ -11,37 +11,39 @@ const {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/mark.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
     <meta name="description" content={description} />
 
-    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="/lockup-h.svg" />
-    <meta name="theme-color" content="#050810" />
+    <meta name="theme-color" content="#242E58" />
   </head>
-  <body class="noise">
+  <body>
     <slot />
 
     <script>
-      // Reveal on scroll
-      const io = new IntersectionObserver(
-        (entries) => {
-          for (const e of entries) {
-            if (e.isIntersecting) {
-              const el = e.target as HTMLElement;
-              const delay = el.dataset.delay || '0';
-              el.style.animationDelay = delay + 'ms';
-              el.classList.add('is-visible');
-              io.unobserve(el);
-            }
-          }
-        },
-        { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
-      );
-      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!reduce && 'IntersectionObserver' in window) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                const el = e.target as HTMLElement;
+                const delay = el.dataset.delay;
+                if (delay) el.style.transitionDelay = delay + 'ms';
+                el.classList.add('in');
+                io.unobserve(el);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: '0px 0px -6% 0px' }
+        );
+        document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+      } else {
+        document.querySelectorAll('.reveal').forEach((el) => el.classList.add('in'));
+      }
     </script>
   </body>
 </html>
