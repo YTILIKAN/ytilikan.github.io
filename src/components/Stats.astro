@@ -1,0 +1,35 @@
+---
+const stats = [
+  { n: '8', label: 'Émissions', sub: "Débats, formations, interviews" },
+  { n: '5', label: 'Projets open-source', sub: 'AfriBench, AfroLang, Dira...' },
+  { n: '5', label: "Membres d'équipe", sub: 'Experts tech et média' },
+  { n: '100%', label: 'Gratuit', sub: 'Formations et outils libres' },
+];
+---
+<section class="section stats-band">
+  <div class="wrap">
+    <div class="stats-grid reveal">
+      {stats.map((s) => (
+        <div class="stat">
+          <span class="stat__n">{s.n}</span>
+          <span class="stat__label">{s.label}</span>
+          <span class="stat__sub">{s.sub}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .stats-band { padding: 48px 0; background: #fff; border-top: 1px solid var(--sable-d); border-bottom: 1px solid var(--sable-d); }
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; text-align: center; }
+  .stat { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .stat__n { font-family: var(--display); font-weight: 800; font-size: 2.6rem; color: var(--indigo); line-height: 1; }
+  .stat__label { font-family: var(--display); font-weight: 700; font-size: .95rem; color: var(--encre); }
+  .stat__sub { font-size: .78rem; color: #6a6156; }
+
+  @media (max-width: 860px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  }
+  @media (max-width: 500px) { .stats-grid { grid-template-columns: 1fr; } }
+</style>

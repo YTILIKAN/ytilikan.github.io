@@ -6,7 +6,8 @@ const projetlist = [
     desc: "Le premier benchmark d'évaluation des grands modèles de langage sur des connaissances africaines francophones. QCM multi-catégories, reproductible, ouvert aux contributions.",
     link: 'https://github.com/YTILIKAN/AfriBench',
     linkLabel: 'github.com/YTILIKAN/AfriBench',
-    status: '★1 · Public',
+    status: '★1',
+    size: 'lg',
   },
   {
     name: 'AfroLang-Library',
@@ -15,6 +16,7 @@ const projetlist = [
     link: 'https://github.com/YTILIKAN/AfroLang-Library',
     linkLabel: 'github.com/YTILIKAN/AfroLang-Library',
     status: 'Public',
+    size: 'sm',
   },
   {
     name: 'AfroTech-Pulse',
@@ -23,6 +25,7 @@ const projetlist = [
     link: 'https://github.com/YTILIKAN/AfroTech-Pulse',
     linkLabel: 'github.com/YTILIKAN/AfroTech-Pulse',
     status: 'Public',
+    size: 'sm',
   },
   {
     name: 'Dira Browser',
@@ -30,7 +33,8 @@ const projetlist = [
     desc: "Un navigateur web axé sur la souveraineté et le respect de la vie privée, basé sur Chromium. Dira, la boussole en swahili. Fork de Brave, en rebranding actif.",
     link: 'https://github.com/YTILIKAN/brave-core',
     linkLabel: 'github.com/YTILIKAN/brave-core',
-    status: 'Fork · En développement',
+    status: 'En dev',
+    size: 'md',
   },
 ];
 ---
@@ -42,52 +46,57 @@ const projetlist = [
       <p class="lead">Tous nos projets sont ouverts, documentés et prêts aux contributions. De l'évaluation des LLMs aux datasets de langues africaines en passant par un navigateur souverain : l'infrastructure d'une IA africaine se construit ici.</p>
     </div>
 
-    <div class="pj-grid reveal">
+    <div class="bento reveal">
       {projetlist.map((p) => (
-        <article class="pj">
-          <div class="pj__top">
-            <span class="pj__tag mono">{p.tag}</span>
-            <span class="pj__status">{p.status}</span>
+        <a class={`bento__item bento__item--${p.size}`} href={p.link} target="_blank" rel="noopener">
+          <div class="bento__top">
+            <span class="bento__tag">{p.tag}</span>
+            <span class="bento__status">{p.status}</span>
           </div>
-          <h3 class="pj__name">{p.name}</h3>
-          <p class="pj__body">{p.desc}</p>
-          <a class="pj__link" href={p.link} target="_blank" rel="noopener">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="flex:none"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.73.083-.73 1.205.085 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.418-1.305.762-1.604-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/></svg>
-            {p.linkLabel}
-          </a>
-        </article>
+          <h3 class="bento__name">{p.name}</h3>
+          <p class="bento__desc">{p.desc}</p>
+          <span class="bento__link">{p.linkLabel} →</span>
+        </a>
       ))}
     </div>
   </div>
 </section>
 
 <style>
-  .pj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .pj {
-    background: var(--ivoire);
+  .bento { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; grid-auto-rows: 200px; gap: 14px; }
+  .bento__item {
+    background: #fff;
     border: 1px solid var(--sable-d);
-    border-radius: 14px;
-    padding: 24px;
+    border-radius: 16px;
+    padding: 22px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     transition: transform .22s, box-shadow .22s;
+    cursor: pointer;
   }
-  .pj:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(22,19,17,.08); }
-  .pj__top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-  .pj__tag {
-    font-family: var(--mono); font-size: .62rem; letter-spacing: .12em; text-transform: uppercase; color: var(--kola);
-    background: color-mix(in srgb, var(--kola) 10%, transparent);
-    padding: 3px 8px; border-radius: 4px;
-  }
-  .pj__status { font-family: var(--mono); font-size: .62rem; letter-spacing: .04em; color: #6a6156; }
-  .pj__name { font-family: var(--display); font-weight: 800; font-size: 1.35rem; margin-bottom: 10px; letter-spacing: -.01em; }
-  .pj__body { color: #4a433b; font-size: .9rem; line-height: 1.55; flex: 1; margin-bottom: 16px; }
-  .pj__link {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-family: var(--mono); font-size: .72rem; color: var(--indigo);
-    transition: color .2s;
-  }
-  .pj__link:hover { color: var(--ocre); }
+  .bento__item:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(22,19,17,.08); border-color: var(--ocre); }
+  .bento__item--lg { grid-column: span 2; grid-row: span 2; }
+  .bento__item--md { grid-column: span 2; }
+  .bento__item--sm { }
 
-  @media (max-width: 860px) { .pj-grid { grid-template-columns: 1fr; } }
+  .bento__top { display: flex; justify-content: space-between; align-items: center; }
+  .bento__tag {
+    font-family: var(--mono); font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; color: var(--kola);
+    background: color-mix(in srgb, var(--kola) 8%, transparent); padding: 2px 7px; border-radius: 4px;
+  }
+  .bento__status { font-family: var(--mono); font-size: .6rem; color: #8a8175; }
+  .bento__name { font-family: var(--display); font-weight: 800; font-size: 1.35rem; letter-spacing: -.01em; margin-top: 4px; }
+  .bento__desc { color: #4a433b; font-size: .86rem; line-height: 1.5; flex: 1; margin-top: 8px; }
+  .bento__link { font-family: var(--mono); font-size: .66rem; color: var(--indigo); margin-top: 10px; }
+  .bento__item:hover .bento__link { color: var(--ocre); }
+
+  @media (max-width: 860px) {
+    .bento { grid-template-columns: 1fr 1fr; grid-auto-rows: auto; }
+    .bento__item--lg, .bento__item--md, .bento__item--sm { grid-column: span 2; }
+  }
+  @media (max-width: 500px) {
+    .bento { grid-template-columns: 1fr; }
+    .bento__item--lg, .bento__item--md, .bento__item--sm { grid-column: span 1; }
+  }
 </style>
