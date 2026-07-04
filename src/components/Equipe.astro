@@ -54,12 +54,12 @@ const membres = [
 </section>
 
 <style>
-  .tm-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .tm-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-sm); }
   .tm {
-    background: #fff;
+    background: var(--ivoire);
     border: 1px solid var(--sable-d);
-    border-radius: 14px;
-    padding: 26px 24px;
+    border-radius: var(--r-md);
+    padding: var(--sp-md);
     transition: transform .22s, box-shadow .22s;
   }
   .tm:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(22,19,17,.08); }

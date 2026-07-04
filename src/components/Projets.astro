@@ -63,12 +63,12 @@ const projetlist = [
 </section>
 
 <style>
-  .bento { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; grid-auto-rows: 200px; gap: 14px; }
+  .bento { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; grid-auto-rows: 200px; gap: var(--sp-sm); }
   .bento__item {
-    background: #fff;
+    background: var(--ivoire);
     border: 1px solid var(--sable-d);
-    border-radius: 16px;
-    padding: 22px;
+    border-radius: var(--r-md);
+    padding: var(--sp-md);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -83,11 +83,11 @@ const projetlist = [
   .bento__top { display: flex; justify-content: space-between; align-items: center; }
   .bento__tag {
     font-family: var(--mono); font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; color: var(--kola);
-    background: color-mix(in srgb, var(--kola) 8%, transparent); padding: 2px 7px; border-radius: 4px;
+    background: color-mix(in srgb, var(--kola) 8%, transparent); padding: 2px 7px; border-radius: var(--r-sm);
   }
   .bento__status { font-family: var(--mono); font-size: .6rem; color: #8a8175; }
   .bento__name { font-family: var(--display); font-weight: 800; font-size: 1.35rem; letter-spacing: -.01em; margin-top: 4px; }
-  .bento__desc { color: #4a433b; font-size: .86rem; line-height: 1.5; flex: 1; margin-top: 8px; }
+  .bento__desc { color: #4a433b; font-size: .86rem; line-height: 1.5; flex: 1; margin-top: var(--sp-xs); }
   .bento__link { font-family: var(--mono); font-size: .66rem; color: var(--indigo); margin-top: 10px; }
   .bento__item:hover .bento__link { color: var(--ocre); }
 
