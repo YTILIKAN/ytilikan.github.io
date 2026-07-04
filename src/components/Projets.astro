@@ -2,54 +2,72 @@
 const projets = [
   {
     name: 'AfriBench',
-    tag: 'Benchmark IA',
-    body: "Le premier benchmark d'évaluation des modèles de langage sur des connaissances africaines francophones. QCM multi-catégories, ouvert et reproductible.",
-    link: 'https://ytilikan.github.io/AfriBench',
-    linkLabel: 'ytilikan.github.io/AfriBench',
-    status: 'Prototype v0.1',
+    tag: 'ML · Benchmark',
+    desc: "Le premier benchmark d'évaluation des grands modèles de langage sur des connaissances africaines francophones. QCM multi-catégories, Qdrant, reproduire ses propres évaluations, ouvert aux contributions.",
+    link: 'https://github.com/YTILIKAN/AfriBench',
+    linkLabel: 'github.com/YTILIKAN/AfriBench',
+    status: '★1 · Public',
+    bg: '#f5efe1',
   },
   {
-    name: 'Dira',
-    tag: 'Navigateur',
-    body: "Un navigateur web axé souveraineté et respect de la vie privée. « Dira » — la boussole, en swahili. Une brique de notre écosystème numérique africain.",
-    link: '',
-    linkLabel: 'Bientôt',
-    status: 'En développement',
+    name: 'AfroLang-Library',
+    tag: 'Data · NLP',
+    desc: "La plus grande bibliothèque organisée de datasets de langues africaines — navigable, filtrable, ouverte aux contributions. Infrastructure essentielle pour l'IA en langues africaines.",
+    link: 'https://github.com/YTILIKAN/AfroLang-Library',
+    linkLabel: 'github.com/YTILIKAN/AfroLang-Library',
+    status: 'Public',
+    bg: '#e8e0d2',
   },
   {
-    name: 'Formation Tech',
-    tag: 'Éducation',
-    body: "Notre programme pédagogique : IA, programmation, cybersécurité et cloud. Des vidéos courtes, gratuites, sans jargon, pour apprendre à son rythme.",
-    link: '#programmes',
-    linkLabel: 'Voir les programmes',
-    status: 'En ligne',
+    name: 'AfroTech-Pulse',
+    tag: 'Veille · Newsletter',
+    desc: "Dashboard de veille IA pour le continent africain + pipeline newsletter automatisée publiée chaque lundi. Python, scraping, curation.",
+    link: 'https://github.com/YTILIKAN/AfroTech-Pulse',
+    linkLabel: 'github.com/YTILIKAN/AfroTech-Pulse',
+    status: 'Public',
+    bg: '#e4d8c4',
+  },
+  {
+    name: 'Dira Browser',
+    tag: 'Navigateur · C++',
+    desc: "Un navigateur web axé sur la souveraineté et le respect de la vie privée, basé sur Chromium. « Dira » — la boussole, en swahili. Fork de Brave, en rebranding actif.",
+    link: 'https://github.com/YTILIKAN/brave-core',
+    linkLabel: 'github.com/YTILIKAN/brave-core',
+    status: 'Fork · En développement',
+    bg: '#ded2c0',
+  },
+  {
+    name: 'Brand Kit',
+    tag: 'Design · Templates',
+    desc: "Kit de marque officiel : logo, palette indigo/or, typographie Bricolage/Hanken/Space Mono, templates HTML + LaTeX, guidelines complètes. Tout ce qu'il faut pour produire du contenu Y'TILIKAN.",
+    link: 'https://github.com/YTILIKAN/brand-kit',
+    linkLabel: 'github.com/YTILIKAN/brand-kit',
+    status: 'Public',
+    bg: '#d8cbb6',
   },
 ];
 ---
 <section class="section" id="projets">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">05 — Initiatives &amp; projets</span>
-      <h2 class="sec-title">Au-delà des émissions.</h2>
-      <p class="lead">Y'TILIKAN construit un écosystème : outils ouverts, recherche et formation pour une Afrique qui participe pleinement au numérique.</p>
+      <span class="eyebrow">04 — Initiatives &amp; projets open-source</span>
+      <h2 class="sec-title">L'écosystème Y'TILIKAN.</h2>
+      <p class="lead">Tous nos projets sont ouverts, documentés et prêts aux contributions. De l'évaluation des LLMs aux datasets de langues africaines en passant par un navigateur souverain — l'infrastructure d'une IA africaine se construit ici.</p>
     </div>
 
     <div class="pj-grid reveal">
       {projets.map((p) => (
         <article class="pj">
           <div class="pj__top">
-            <span class="pj__tag">{p.tag}</span>
+            <span class="pj__tag mono">{p.tag}</span>
             <span class="pj__status">{p.status}</span>
           </div>
           <h3 class="pj__name">{p.name}</h3>
-          <p class="pj__body">{p.body}</p>
-          {p.link ? (
-            <a class="pj__link" href={p.link} target={p.link.startsWith('http') ? '_blank' : null} rel={p.link.startsWith('http') ? 'noopener' : null}>
-              {p.linkLabel}<span class="pj__arrow" aria-hidden="true">→</span>
-            </a>
-          ) : (
-            <span class="pj__link pj__link--soon">{p.linkLabel}</span>
-          )}
+          <p class="pj__body">{p.desc}</p>
+          <a class="pj__link" href={p.link} target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="flex:none"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.73.083-.73 1.205.085 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.418-1.305.762-1.604-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            {p.linkLabel}
+          </a>
         </article>
       ))}
     </div>
@@ -57,30 +75,32 @@ const projets = [
 </section>
 
 <style>
-  .pj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .pj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .pj {
-    background: var(--sable);
+    background: var(--ivoire);
     border: 1px solid var(--sable-d);
-    border-radius: 18px;
-    padding: 28px 26px 26px;
+    border-radius: 14px;
+    padding: 24px;
     display: flex;
     flex-direction: column;
-    border-bottom: 3px solid var(--ocre);
-    transition: transform .24s, box-shadow .24s;
+    transition: transform .22s, box-shadow .22s;
   }
-  .pj:hover { transform: translateY(-5px); box-shadow: 0 18px 40px rgba(22,19,17,.10); }
-  .pj__top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
-  .pj__tag { font-family: var(--mono); font-size: .66rem; letter-spacing: .14em; text-transform: uppercase; color: var(--kola); }
-  .pj__status {
-    font-family: var(--mono); font-size: .64rem; letter-spacing: .06em; color: #6a6156;
-    border: 1px solid var(--sable-d); background: #fff; padding: 3px 9px; border-radius: 40px;
+  .pj:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(22,19,17,.08); }
+  .pj__top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .pj__tag {
+    font-family: var(--mono); font-size: .62rem; letter-spacing: .12em; text-transform: uppercase; color: var(--kola);
+    background: color-mix(in srgb, var(--kola) 10%, transparent);
+    padding: 3px 8px; border-radius: 4px;
   }
-  .pj__name { font-family: var(--display); font-weight: 800; font-size: 1.5rem; margin-bottom: 12px; letter-spacing: -.01em; }
-  .pj__body { color: #4a433b; font-size: .92rem; line-height: 1.55; flex: 1; margin-bottom: 20px; }
-  .pj__link { display: inline-flex; align-items: center; gap: 8px; font-family: var(--display); font-weight: 700; font-size: .88rem; color: var(--indigo); }
-  .pj__arrow { transition: transform .2s; }
-  .pj__link:hover .pj__arrow { transform: translateX(4px); }
-  .pj__link--soon { color: #8a8175; }
+  .pj__status { font-family: var(--mono); font-size: .62rem; letter-spacing: .04em; color: #6a6156; }
+  .pj__name { font-family: var(--display); font-weight: 800; font-size: 1.35rem; margin-bottom: 10px; letter-spacing: -.01em; }
+  .pj__body { color: #4a433b; font-size: .9rem; line-height: 1.55; flex: 1; margin-bottom: 16px; }
+  .pj__link {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--mono); font-size: .72rem; color: var(--indigo);
+    transition: color .2s;
+  }
+  .pj__link:hover { color: var(--ocre); }
 
   @media (max-width: 860px) { .pj-grid { grid-template-columns: 1fr; } }
 </style>

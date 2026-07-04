@@ -1,47 +1,18 @@
 ---
-// Émissions réelles (d'après la chaîne YouTube). Remplacer `url` par les liens exacts si besoin.
-const CHANNEL = 'https://www.youtube.com/@ytilikan';
+const CHANNEL = 'https://www.youtube.com/@YTILIKAN';
 
 const videos = [
-  {
-    kick: 'Grand Débat Tech',
-    title: "Faut-il craindre l'intelligence artificielle en milieu scolaire ?",
-    meta: '1:16:07',
-    url: CHANNEL,
-  },
-  {
-    kick: 'Formation Tech',
-    title: 'Vibe Coding avec l\'IA — codez 10× plus vite',
-    meta: '1:35:04',
-    url: CHANNEL,
-  },
-  {
-    kick: 'Formation Tech',
-    title: 'Augmenter sa productivité avec l\'IA',
-    meta: '1:08:22',
-    url: CHANNEL,
-  },
-  {
-    kick: 'Face à Michel',
-    title: "L'IA change le monde… l'Afrique doit-elle suivre ?",
-    meta: '0:50',
-    url: CHANNEL,
-  },
-  {
-    kick: 'Analyse IA',
-    title: 'Présidentielle 2025 : ce que pensent vraiment les Camerounais',
-    meta: '8:47',
-    url: CHANNEL,
-  },
-  {
-    kick: 'Talent',
-    title: 'Tu as du talent… mais personne ne te voit (voici pourquoi)',
-    meta: '4:09',
-    url: CHANNEL,
-  },
+  { kick: 'Formation', title: 'Formation : Vibe Coding avec l\'IA', meta: '1:35:04', url: 'https://www.youtube.com/watch?v=4zQ-YN_SvlU' },
+  { kick: 'Grand Débat Tech', title: 'Faut-il craindre l\'intelligence artificielle en milieu scolaire ?', meta: '1:16:07', url: 'https://www.youtube.com/watch?v=nu59ufftqZ4' },
+  { kick: 'Formation', title: 'Augmenter sa productivité avec l\'IA', meta: '1:08:22', url: 'https://www.youtube.com/watch?v=i_7SlR1bUEk' },
+  { kick: 'Grand Débat Tech', title: 'L\'IA va-t-elle détruire nos emplois ou créer de nouvelles opportunités ?', meta: '35:00', url: 'https://www.youtube.com/watch?v=hbLpDjowqDo' },
+  { kick: 'Analyse IA', title: 'Présidentielle 2025 : ce que pensent vraiment les Camerounais (Analyse IA exclusive)', meta: '8:47', url: 'https://www.youtube.com/watch?v=wLXOB2W-s6Y' },
+  { kick: 'Face à Michel', title: 'Tu as du talent… mais personne ne te voit (voici pourquoi)', meta: '4:09', url: 'https://www.youtube.com/watch?v=wD2MPNcQDJg' },
+  { kick: 'Formation', title: 'Apprendre à coder avec l\'IA ? Voici la formation Vibe Coding', meta: '1:34', url: 'https://www.youtube.com/watch?v=hVGZZT45Qxs' },
+  { kick: 'Face à Michel', title: 'L\'IA change le monde… l\'Afrique doit-elle suivre ?', meta: '0:50', url: 'https://www.youtube.com/watch?v=doDXpVK7su8' },
 ];
 ---
-<section class="section emissions" id="emissions">
+<section class="section" id="emissions">
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow">03 — Nos émissions</span>
@@ -59,7 +30,7 @@ const videos = [
               <span class="em__wm">Y'TILIKAN</span>
             </div>
             <div class="em__play" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="26" height="26"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+              <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
             </div>
             <span class="em__dur">{v.meta}</span>
           </div>
@@ -74,80 +45,66 @@ const videos = [
     <div class="em-cta reveal">
       <a href={CHANNEL} target="_blank" rel="noopener" class="btn-yt">
         <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.3 3.6-6.3 3.6Z"/></svg>
-        Voir la chaîne YouTube
+        Voir la chaîne YouTube · 8 vidéos
       </a>
     </div>
   </div>
 </section>
 
 <style>
-  .em-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .em-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
   .em {
-    border-radius: 16px;
+    border-radius: 14px;
     overflow: hidden;
     border: 1px solid var(--sable-d);
     background: #fff;
     display: block;
-    transition: transform .24s, box-shadow .24s;
+    transition: transform .22s, box-shadow .22s;
   }
-  .em:hover { transform: translateY(-5px); box-shadow: 0 18px 40px rgba(22,19,17,.12); }
+  .em:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(22,19,17,.10); }
   .em__thumb {
     aspect-ratio: 16/9;
     background: linear-gradient(135deg, var(--indigo), var(--indigo-d));
     position: relative;
     overflow: hidden;
-    padding: 16px;
+    padding: 12px;
     display: flex;
     align-items: flex-start;
   }
-  .em__pat { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .1; }
-  .em__top { position: relative; z-index: 2; display: flex; align-items: center; gap: 9px; }
-  .em__mark { width: 30px; height: 30px; color: var(--ocre); }
-  .em__wm { font-family: var(--display); font-weight: 800; color: var(--ivoire); font-size: .95rem; letter-spacing: .02em; }
+  .em__pat { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .08; }
+  .em__top { position: relative; z-index: 2; display: flex; align-items: center; gap: 7px; }
+  .em__mark { width: 24px; height: 24px; color: var(--ocre); }
+  .em__wm { font-family: var(--display); font-weight: 800; color: var(--ivoire); font-size: .8rem; letter-spacing: .02em; }
   .em__play {
-    position: absolute;
-    z-index: 2;
-    top: 50%; left: 50%;
+    position: absolute; z-index: 2; top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    width: 56px; height: 56px;
-    border-radius: 50%;
-    background: var(--ocre);
-    color: var(--encre);
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--ocre); color: var(--encre);
     display: flex; align-items: center; justify-content: center;
-    transition: transform .24s, background .24s;
+    transition: transform .22s;
   }
-  .em:hover .em__play { transform: translate(-50%, -50%) scale(1.08); }
+  .em:hover .em__play { transform: translate(-50%, -50%) scale(1.06); }
   .em__dur {
-    position: absolute;
-    z-index: 2;
-    bottom: 12px; right: 12px;
-    font-family: var(--mono);
-    font-size: .72rem;
-    background: rgba(0,0,0,.55);
-    color: #fff;
-    padding: 3px 8px;
-    border-radius: 6px;
+    position: absolute; z-index: 2; bottom: 8px; right: 8px;
+    font-family: var(--mono); font-size: .66rem;
+    background: rgba(0,0,0,.55); color: #fff;
+    padding: 2px 6px; border-radius: 5px;
   }
-  .em__body { padding: 18px 20px 22px; }
-  .em__kick { font-family: var(--mono); font-size: .66rem; letter-spacing: .14em; text-transform: uppercase; color: var(--kola); }
-  .em__title { font-family: var(--display); font-weight: 700; font-size: 1.08rem; margin-top: 8px; line-height: 1.2; letter-spacing: -.01em; color: var(--encre); }
+  .em__body { padding: 12px 14px 16px; }
+  .em__kick { font-family: var(--mono); font-size: .6rem; letter-spacing: .12em; text-transform: uppercase; color: var(--kola); }
+  .em__title { font-family: var(--display); font-weight: 700; font-size: .88rem; margin-top: 6px; line-height: 1.2; letter-spacing: -.01em; color: var(--encre); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
-  .em-cta { margin-top: 40px; }
+  .em-cta { margin-top: 36px; }
   .btn-yt {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    font-family: var(--display);
-    font-weight: 700;
-    font-size: .95rem;
-    padding: 13px 24px;
-    border-radius: 40px;
-    background: var(--indigo);
-    color: var(--ivoire);
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--display); font-weight: 700;
+    font-size: .9rem; padding: 12px 22px; border-radius: 40px;
+    background: var(--indigo); color: var(--ivoire);
     transition: background .2s, transform .2s;
   }
   .btn-yt:hover { background: var(--indigo-d); transform: translateY(-2px); }
-  .btn-yt svg { color: var(--ocre); }
+  .btn-yt svg { color: var(--ocre); flex: none; }
 
-  @media (max-width: 860px) { .em-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 1000px) { .em-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 540px) { .em-grid { grid-template-columns: 1fr; } }
 </style>
