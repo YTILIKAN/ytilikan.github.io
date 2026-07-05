@@ -2,65 +2,104 @@
 const missionAxes = [
   { title: 'Informer', body: "Émissions, interviews et débats sur ce que la tech change dans nos vies." },
   { title: 'Former', body: 'Des contenus concrets, pratiques et gratuits, pour débutants comme initiés.' },
+  { title: 'Partager', body: "Diffuser librement le savoir : outils open-source, code et données ouverts à tous." },
   { title: 'Valoriser', body: "Donner la parole aux talents tech du continent : l'Afrique innove." },
-  { title: 'Questionner', body: 'Regarder aussi les impacts sociaux et culturels de la technologie.' },
 ];
 
 const values = [
   { title: 'Résilience', body: "Transformer chaque obstacle en tremplin et bâtir sur le long terme." },
-  { title: 'Passion', body: "L'envie sincère de comprendre, d'apprendre et de transmettre le savoir." },
-  { title: 'Innovation', body: 'Concevoir des solutions locales, créatives et taillées pour nos réalités.' },
+  { title: 'Passion', body: "L'envie sincère de comprendre, d'apprendre et de transmettre." },
+  { title: 'Innovation', body: 'Des solutions locales, créatives et taillées pour nos réalités.' },
   { title: 'Engagement', body: 'Informer avec honnêteté, former avec rigueur, dialoguer avec respect.' },
-  { title: 'Culture', body: 'Enracinés dans nos identités africaines, résolument ouverts sur le monde.' },
+  { title: 'Culture', body: 'Enracinés dans nos identités africaines, ouverts sur le monde.' },
 ];
+
+const R = 38;
+const petals = values.map((v, i) => {
+  const angle = ((-90 + i * 72) * Math.PI) / 180;
+  return {
+    ...v,
+    x: +(50 + R * Math.cos(angle)).toFixed(2),
+    y: +(50 + R * Math.sin(angle)).toFixed(2),
+    delay: i * 110,
+  };
+});
+const polygonPoints = petals.map((p) => `${p.x},${p.y}`).join(' ');
 ---
 <section class="section" id="essence">
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow">01 / Qui sommes-nous</span>
-      <h2 class="sec-title">La tech n'est pas réservée aux spécialistes.</h2>
+      <h2 class="sec-title">Rendre l'Afrique souveraine, par le savoir.</h2>
       <p class="lead">
-        Y'TILIKAN démystifie la technologie et l'IA pour les rendre accessibles en Afrique francophone.
-        On vulgarise sans simplisme : avec pédagogie, respect du contexte et ouverture au dialogue.
+        Notre objectif : donner aux Africains les moyens de rendre le continent
+        technologiquement souverain, sur le long terme. Cela commence par comprendre,
+        apprendre et partager.
       </p>
     </div>
 
     <div class="essence-grid reveal">
-      <ul class="axes">
-        {missionAxes.map((a) => (
-          <li class="axis">
-            <h3 class="axis__title">{a.title}</h3>
-            <p class="axis__body">{a.body}</p>
-          </li>
-        ))}
-      </ul>
+      <div class="mission">
+        <span class="eyebrow mission__label">Notre mission</span>
+        <ul class="axes">
+          {missionAxes.map((a) => (
+            <li class="axis">
+              <h3 class="axis__title">{a.title}</h3>
+              <p class="axis__body">{a.body}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
       <aside class="essence-card" aria-label="Étymologie du nom">
         <span class="essence-card__label">Le nom</span>
         <p class="essence-card__word">Y<span class="apos">'</span>tilikan</p>
         <p class="essence-card__def">
-          En mooré (Burkina Faso) : « ce n'est pas sorcier ». Toute notre volonté tient dans ce mot.
+          Une expression de l'Ouest camerounais qui signifie « ce n'est pas sorcier ».
+          Toute notre conviction tient dans ce mot : la tech est à la portée de tous.
         </p>
       </aside>
     </div>
 
     <div class="vision reveal">
-      <p class="vision-conviction">
-        Notre vision : devenir un média de référence de la vulgarisation tech en Afrique francophone.
-        Le futur numérique ne doit pas être subi, il doit être compris, préparé et co-construit.
+      <span class="eyebrow vision__label">Notre vision</span>
+      <p class="vision-lead">
+        Une Afrique qui ne subit plus la technologie : elle la comprend, la maîtrise
+        et la crée. C'est notre définition de la souveraineté numérique.
       </p>
+      <figure class="vision-quote-wrap">
+        <blockquote class="vision-quote">
+          Le savoir, c'est le pouvoir.
+        </blockquote>
+        <figcaption class="vision-quote__author">Francis Bacon</figcaption>
+      </figure>
     </div>
 
-    <div class="values-block reveal">
+    <div class="values-block">
       <span class="eyebrow values-block__label">Nos valeurs</span>
-      <ul class="values">
-        {values.map((v, i) => (
-          <li class="value">
-            <span class="value__index">{String(i + 1).padStart(2, '0')}</span>
-            <h3 class="value__title">{v.title}</h3>
-            <p class="value__body">{v.body}</p>
-          </li>
-        ))}
-      </ul>
+      <div class="constellation" id="values-constellation">
+        <div class="constellation__ring">
+          <svg class="constellation__svg" viewBox="0 0 100 100" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+            <polygon points={polygonPoints} fill="none" stroke="#E6E2DC" stroke-width="0.4" stroke-linejoin="round" />
+            {petals.map((p) => (
+              <line x1="50" y1="50" x2={p.x} y2={p.y} stroke="#E6E2DC" stroke-width="0.3" />
+            ))}
+          </svg>
+          <div class="constellation__center">
+            <span class="constellation__play" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+            </span>
+            <span>5 valeurs, 1 cap</span>
+          </div>
+          {petals.map((p) => (
+            <div class="petal" style={`left:${p.x}%;top:${p.y}%;--d:${p.delay}ms`}>
+              <div class="petal__card">
+                <h3 class="petal__title">{p.title}</h3>
+                <p class="petal__body">{p.body}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -70,9 +109,13 @@ const values = [
     display: grid;
     grid-template-columns: 1.5fr 1fr;
     gap: var(--sp-sm);
-    margin-bottom: var(--sp-lg);
+    margin-bottom: var(--sp-xl);
     align-items: start;
   }
+
+  .mission__label,
+  .vision__label,
+  .values-block__label { display: block; margin-bottom: var(--sp-md); }
 
   .axes {
     list-style: none;
@@ -140,10 +183,12 @@ const values = [
   }
 
   .vision {
-    margin-bottom: var(--sp-lg);
+    margin-bottom: var(--sp-xl);
+    padding-top: var(--sp-lg);
+    border-top: 1px solid var(--sable-d);
   }
 
-  .vision-conviction {
+  .vision-lead {
     font-family: var(--display);
     font-weight: 600;
     font-size: clamp(1.15rem, 2.4vw, 1.5rem);
@@ -151,74 +196,147 @@ const values = [
     max-width: 60ch;
     line-height: 1.4;
     letter-spacing: -.01em;
-    border-left: 3px solid var(--ocre);
-    padding-left: 20px;
-  }
-
-  .values-block__label {
     margin-bottom: var(--sp-md);
   }
 
-  .values {
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 1px;
-    margin-top: 12px;
-    background: var(--sable-d);
-    border: 1px solid var(--sable-d);
-    border-radius: var(--r-lg);
-    overflow: hidden;
-  }
-
-  .value {
+  .vision-quote-wrap {
     position: relative;
-    background: var(--surface);
-    padding: 28px 22px 26px;
-    display: flex;
-    flex-direction: column;
-    transition: background .25s;
+    margin: 0;
+    padding-left: 28px;
+    border-left: 3px solid var(--ocre);
+    max-width: 26ch;
   }
-
-  .value::after {
-    content: "";
+  .vision-quote-wrap::before {
+    content: "\201C";
     position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 2px;
-    width: 0;
-    background: var(--ocre);
-    transition: width .3s cubic-bezier(.22,1,.36,1);
-  }
-
-  .value:hover { background: var(--ivoire); }
-  .value:hover::after { width: 100%; }
-
-  .value__index {
-    font-family: var(--mono);
-    font-size: .68rem;
-    font-weight: 600;
-    letter-spacing: .1em;
+    left: 18px;
+    top: -.35em;
+    font-size: 2.4em;
     color: var(--ocre);
-    margin-bottom: 16px;
+    opacity: .28;
+    line-height: 1;
+    pointer-events: none;
   }
-
-  .value__title {
+  .vision-quote {
     font-family: var(--display);
     font-weight: 700;
-    font-size: 1.08rem;
-    letter-spacing: -.01em;
-    margin-bottom: 8px;
+    font-size: clamp(1.35rem, 3.4vw, 2.1rem);
+    letter-spacing: -.02em;
+    line-height: 1.2;
+    color: var(--encre);
+    margin: 0;
+  }
+  .vision-quote__author {
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: .72rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ocre);
+  }
+  .vision-quote__author::before { content: "— "; }
+
+  .values-block { padding-top: var(--sp-lg); border-top: 1px solid var(--sable-d); }
+
+  /* —— Constellation pentagonale des valeurs —— */
+  .constellation {
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    margin: var(--sp-md) auto 0;
+    aspect-ratio: 1 / 1;
+    overflow: visible;
+  }
+  .constellation__ring { position: absolute; inset: 0; }
+  .constellation__svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+
+  .constellation__center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    background: var(--encre);
+    color: var(--ivoire);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-align: center;
+  }
+  .constellation__play {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--ocre);
+    color: var(--encre);
+    padding-left: 2px;
+  }
+  .constellation__center span {
+    font-family: var(--mono);
+    font-size: .58rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: rgba(250, 249, 246, .72);
   }
 
-  .value__body {
-    font-size: .82rem;
-    color: var(--muted);
-    line-height: 1.5;
+  .petal {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: min(42%, 208px);
+  }
+  .petal__card {
+    background: var(--surface);
+    border: 1px solid var(--sable-d);
+    border-radius: var(--r-md);
+    padding: 18px 18px 16px;
+    text-align: center;
+    transition: transform .22s, box-shadow .22s, border-color .22s;
+  }
+  .petal__card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 28px rgba(22, 19, 17, .1);
+    border-color: var(--ocre);
+  }
+  .petal__title {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 1.02rem;
+    letter-spacing: -.01em;
+    margin-bottom: 6px;
+  }
+  .petal__body { font-size: .78rem; color: var(--muted); line-height: 1.45; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .constellation:not(.is-visible) .constellation__ring { opacity: 0; }
+    .constellation:not(.is-visible) .petal { opacity: 0; }
+    .constellation.is-visible .constellation__ring {
+      animation: ring-in .9s cubic-bezier(.22, 1, .36, 1) both;
+    }
+    .constellation.is-visible .petal {
+      animation: petal-in .5s ease both;
+      animation-delay: var(--d);
+    }
+  }
+
+  @keyframes ring-in {
+    0% { opacity: 0; transform: rotate(-16deg) scale(.9); }
+    100% { opacity: 1; transform: rotate(0) scale(1); }
+  }
+  @keyframes petal-in {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
   }
 
   @media (max-width: 960px) {
-    .values { grid-template-columns: repeat(3, 1fr); }
+    .constellation { max-width: 560px; }
+    .petal { width: min(44%, 190px); }
   }
 
   @media (max-width: 860px) {
@@ -226,8 +344,46 @@ const values = [
     .axes { grid-template-columns: 1fr 1fr; }
   }
 
+  @media (max-width: 760px) {
+    .constellation { aspect-ratio: auto; max-width: none; }
+    .constellation__ring {
+      position: static;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-sm);
+    }
+    .constellation__svg,
+    .constellation__center { display: none; }
+    .petal {
+      position: static !important;
+      transform: none !important;
+      left: auto !important;
+      top: auto !important;
+      width: 100%;
+      opacity: 1 !important;
+      animation: none !important;
+    }
+    .constellation:not(.is-visible) .constellation__ring { opacity: 1; }
+  }
+
   @media (max-width: 560px) {
     .axes { grid-template-columns: 1fr; }
-    .values { grid-template-columns: 1fr 1fr; }
+    .constellation__ring { grid-template-columns: 1fr; }
   }
 </style>
+
+<script>
+  const constellation = document.getElementById('values-constellation');
+  if (constellation) {
+    const io = new IntersectionObserver(
+      ([entry], obs) => {
+        if (entry.isIntersecting) {
+          constellation.classList.add('is-visible');
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+    io.observe(constellation);
+  }
+</script>

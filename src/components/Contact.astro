@@ -37,6 +37,7 @@ const footLinks = [
   { href: '#programmes', label: 'Programmes' },
   { href: '#projets', label: 'Projets' },
   { href: '#equipe', label: 'Équipe' },
+  { href: '#faq', label: 'FAQ' },
 ];
 ---
 <section class="contact" id="contact" aria-labelledby="contact-title">
@@ -48,7 +49,7 @@ const footLinks = [
       la technologie <em>parce qu'on y participe pleinement.</em>
     </h2>
     <p class="contact__lead reveal" data-delay="160">
-      Pas de formulaire d'inscription, pas de promesse en l'air : Y'TILIKAN avance
+      Pas de formulaire d'inscription, pas de promesse en l'air : on avance
       avec ceux qui participent. Trois façons concrètes de le faire, dès aujourd'hui.
     </p>
 
@@ -65,6 +66,52 @@ const footLinks = [
           <span class="pt__cta">{p.cta}</span>
         </a>
       ))}
+    </div>
+
+    <div class="cform-block reveal">
+      <h3 class="cform-block__title">Une question, une idée ? Écris-nous.</h3>
+      <p class="cform-block__sub">On répond à chaque message. Réponse sous quelques jours.</p>
+
+      <form class="cform" id="contact-form" data-key={SITE.web3formsKey}>
+        <input type="hidden" name="access_key" value={SITE.web3formsKey} />
+        <input type="hidden" name="from_name" value="Formulaire Y'TILIKAN" />
+        <input type="checkbox" name="botcheck" class="cform__hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+        <div class="cform__grid">
+          <div class="cform__field">
+            <label for="cf-name">Nom</label>
+            <input id="cf-name" name="name" type="text" required autocomplete="name" placeholder="Ton nom" />
+          </div>
+          <div class="cform__field">
+            <label for="cf-email">Email</label>
+            <input id="cf-email" name="email" type="email" required autocomplete="email" placeholder="toi@exemple.com" />
+          </div>
+        </div>
+
+        <div class="cform__field">
+          <label for="cf-subject">Sujet</label>
+          <select id="cf-subject" name="subject" required>
+            <option value="" disabled selected>Choisis un sujet</option>
+            <option>Devenir invité ou intervenant</option>
+            <option>Partenariat</option>
+            <option>École ou institution</option>
+            <option>Contribuer aux projets</option>
+            <option>Autre</option>
+          </select>
+        </div>
+
+        <div class="cform__field">
+          <label for="cf-message">Message</label>
+          <textarea id="cf-message" name="message" rows="4" required placeholder="Dis-nous tout…"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn--gold cform__submit">Envoyer le message</button>
+        <p class="cform__status" role="status" aria-live="polite"></p>
+      </form>
+
+      <p class="cform-block__fallback">
+        Ou directement par email : <a href={EMAIL}>{SITE.emailAddress}</a>
+      </p>
     </div>
   </div>
 </section>
@@ -86,7 +133,7 @@ const footLinks = [
   </div>
   <div class="wrap foot__row">
     <span class="foot__meta">© {year} Y'TILIKAN · Tous droits réservés</span>
-    <span class="foot__meta foot__meta--gold">Ce n'est pas sorcier.</span>
+    <span class="foot__meta foot__meta--gold">La connaissance, c'est le pouvoir.</span>
   </div>
 </footer>
 
@@ -147,6 +194,88 @@ const footLinks = [
     .participate { grid-template-columns: 1fr; }
   }
 
+  /* —— Formulaire de contact —— */
+  .cform-block {
+    margin-top: var(--sp-xl);
+    max-width: 620px;
+    margin-inline: auto;
+    text-align: left;
+  }
+  .cform-block__title {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    letter-spacing: -.02em;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .cform-block__sub {
+    text-align: center;
+    color: var(--on-dark-muted);
+    font-size: .95rem;
+    margin-bottom: var(--sp-lg);
+  }
+
+  .cform { display: flex; flex-direction: column; gap: 18px; }
+  .cform__hp { position: absolute; left: -9999px; opacity: 0; height: 0; width: 0; }
+  .cform__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+
+  .cform__field { display: flex; flex-direction: column; gap: 8px; }
+  .cform__field label {
+    font-family: var(--mono);
+    font-size: .66rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--on-dark-muted);
+  }
+  .cform__field input,
+  .cform__field select,
+  .cform__field textarea {
+    font-family: var(--body);
+    font-size: .95rem;
+    color: var(--ivoire);
+    background: rgba(250, 249, 246, .05);
+    border: 1px solid rgba(250, 249, 246, .16);
+    border-radius: var(--r-md);
+    padding: 13px 15px;
+    transition: border-color .2s, background .2s;
+  }
+  .cform__field textarea { resize: vertical; min-height: 110px; }
+  .cform__field input::placeholder,
+  .cform__field textarea::placeholder { color: rgba(250, 249, 246, .38); }
+  .cform__field select { appearance: none; cursor: pointer; }
+  .cform__field select option { color: #1a1a1a; }
+  .cform__field input:focus,
+  .cform__field select:focus,
+  .cform__field textarea:focus {
+    outline: none;
+    border-color: var(--ocre);
+    background: rgba(250, 249, 246, .08);
+  }
+
+  .cform__submit { align-self: flex-start; margin-top: 4px; }
+
+  .cform__status {
+    font-size: .9rem;
+    line-height: 1.5;
+    min-height: 1.2em;
+  }
+  .cform__status.is-success { color: var(--orange-clair); }
+  .cform__status.is-error { color: #ff8a80; }
+
+  .cform-block__fallback {
+    text-align: center;
+    margin-top: 20px;
+    font-size: .9rem;
+    color: var(--on-dark-muted);
+  }
+  .cform-block__fallback a { color: var(--ocre); border-bottom: 1px solid transparent; transition: border-color .2s; }
+  .cform-block__fallback a:hover { border-bottom-color: var(--ocre); }
+
+  @media (max-width: 560px) {
+    .cform__grid { grid-template-columns: 1fr; }
+  }
+
   .foot { background: var(--encre); color: var(--ivoire); padding: 70px 0 40px; }
   .foot__grid {
     display: grid;
@@ -180,3 +309,51 @@ const footLinks = [
     .foot__nav { flex-flow: row wrap; gap: 12px 20px; }
   }
 </style>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  if (form) {
+    const status = form.querySelector('.cform__status') as HTMLElement | null;
+    const submit = form.querySelector('.cform__submit') as HTMLButtonElement | null;
+    const key = form.dataset.key ?? '';
+
+    const setStatus = (msg: string, state: '' | 'is-success' | 'is-error') => {
+      if (!status) return;
+      status.textContent = msg;
+      status.classList.remove('is-success', 'is-error');
+      if (state) status.classList.add(state);
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      if (!key || key === 'YOUR_WEB3FORMS_ACCESS_KEY') {
+        setStatus("Le formulaire n'est pas encore activé. Écris-nous par email en attendant.", 'is-error');
+        return;
+      }
+
+      const data = Object.fromEntries(new FormData(form).entries());
+      if (submit) { submit.disabled = true; submit.textContent = 'Envoi…'; }
+      setStatus('', '');
+
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(data),
+        });
+        const result = await res.json();
+        if (res.ok && result.success) {
+          form.reset();
+          setStatus('Message envoyé, merci. On revient vers toi rapidement.', 'is-success');
+        } else {
+          setStatus("L'envoi a échoué. Réessaie ou écris-nous par email.", 'is-error');
+        }
+      } catch {
+        setStatus("Problème de connexion. Réessaie ou écris-nous par email.", 'is-error');
+      } finally {
+        if (submit) { submit.disabled = false; submit.textContent = 'Envoyer le message'; }
+      }
+    });
+  }
+</script>

@@ -10,9 +10,16 @@ const programmes = [
   {
     kick: 'Pédagogie',
     title: 'Formation Tech',
-    duration: '5 – 15 min',
+    duration: '5 à 15 min',
     body: "Courtes vidéos pour apprendre outils, concepts et pratiques : IA, programmation, cybersécurité, cloud, et outils collaboratifs.",
     points: ['IA & Python', 'Cybersécurité', 'Cloud & productivité'],
+  },
+  {
+    kick: 'Accompagnement',
+    title: 'Mentorat',
+    duration: 'Programme continu',
+    body: "Un accompagnement personnalisé : des mentors expérimentés guident étudiants et jeunes talents dans leur montée en compétences tech.",
+    points: ['Binôme mentor et mentoré', 'Objectifs concrets', 'Suivi dans la durée'],
   },
 ];
 ---
@@ -20,7 +27,7 @@ const programmes = [
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow">03 / Nos programmes</span>
-      <h2 class="sec-title">Informer, débattre, former, inspirer.</h2>
+      <h2 class="sec-title">Informer, former, accompagner.</h2>
       <p class="lead">Des formats complémentaires pour toucher tous les publics, du simple curieux au professionnel du numérique.</p>
     </div>
 
@@ -45,7 +52,7 @@ const programmes = [
 </section>
 
 <style>
-  .prog-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sp-sm); }
+  .prog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-sm); }
   .pcard {
     background: #fff;
     border: 1px solid var(--sable-d);
@@ -63,5 +70,6 @@ const programmes = [
   .pcard__points li { display: flex; align-items: center; gap: 12px; font-size: .9rem; color: var(--encre); font-weight: 500; }
   .pcard__eye { width: 22px; height: 14px; flex: none; color: var(--ocre); fill: currentColor; }
 
-  @media (max-width: 860px) { .prog-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 960px) { .prog-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 620px) { .prog-grid { grid-template-columns: 1fr; } }
 </style>

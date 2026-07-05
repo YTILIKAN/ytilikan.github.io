@@ -7,13 +7,8 @@ import { SITE, formatCount } from '../data/site';
 
   <div class="wrap cover__inner">
     <div class="cover__content">
-      <div class="cover__brand-row reveal">
-        <p class="cover__brand">Y<span class="apos">'</span>TILIKAN</p>
-        <span class="cover__pill">Gratuit · open-source</span>
-      </div>
-
       <h1 class="cover__headline reveal" data-delay="80">
-        La tech et l'IA expliquées, pour l'Afrique francophone
+        La tech et l'IA, à la portée de l'Afrique francophone
       </h1>
 
       <p class="cover__hook reveal" data-delay="160">
@@ -21,8 +16,8 @@ import { SITE, formatCount } from '../data/site';
       </p>
 
       <p class="cover__sub reveal" data-delay="240">
-        Formations gratuites, émissions en français et outils open-source,
-        du Burkina Faso au Cameroun, pour que chacun comprenne et participe à la révolution numérique.
+        Des émissions en français et des formations concrètes pour comprendre,
+        maîtriser et créer la technologie.
       </p>
 
       <p class="cover__proof reveal" data-delay="320">
@@ -36,8 +31,6 @@ import { SITE, formatCount } from '../data/site';
         <a href="#emissions" class="btn btn--gold">Voir les émissions</a>
         <a href="#participer" class="cover__cta-secondary">Comment participer</a>
       </div>
-
-      <p class="cover__translate reveal" data-delay="480">Du mooré (Burkina Faso) · « ce n'est pas sorcier »</p>
     </div>
   </div>
 
@@ -79,38 +72,6 @@ import { SITE, formatCount } from '../data/site';
     width: 100%;
   }
   .cover__content { max-width: 660px; }
-
-  .cover__brand-row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 12px 16px;
-    margin-bottom: 20px;
-  }
-
-  .cover__brand {
-    font-family: var(--display);
-    font-weight: 800;
-    font-size: clamp(1.1rem, 2.5vw, 1.35rem);
-    letter-spacing: .04em;
-    text-transform: uppercase;
-    color: var(--ivoire);
-    margin: 0;
-  }
-  .cover .apos { color: var(--ocre); }
-
-  .cover__pill {
-    font-family: var(--mono);
-    font-size: .62rem;
-    font-weight: 700;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    color: var(--encre);
-    background: var(--ocre);
-    padding: 6px 14px;
-    border-radius: var(--r-full);
-    white-space: nowrap;
-  }
 
   .cover__headline {
     font-family: var(--display);
@@ -178,16 +139,6 @@ import { SITE, formatCount } from '../data/site';
   .cover__cta-secondary:hover {
     color: var(--ocre);
     border-bottom-color: var(--ocre);
-  }
-
-  .cover__translate {
-    font-family: var(--mono);
-    font-size: .68rem;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: rgba(250,249,246,.6);
-    border-left: 2px solid var(--ocre);
-    padding-left: 14px;
   }
 
   .cover__scroll {
