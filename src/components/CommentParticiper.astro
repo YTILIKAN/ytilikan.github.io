@@ -5,7 +5,7 @@ const steps = [
   {
     n: '01',
     title: 'Regarder & apprendre',
-    body: 'Émissions, débats et formations gratuites publiés sur notre chaîne YouTube — en français, sans prérequis.',
+    body: 'Émissions, débats et formations gratuites publiés sur notre chaîne YouTube, en français et sans prérequis.',
     cta: 'Voir la chaîne',
     href: SITE.youtube.url,
     external: true,
@@ -48,7 +48,7 @@ const steps = [
             target={s.external ? '_blank' : undefined}
             rel={s.external ? 'noopener noreferrer' : undefined}
           >
-            {s.cta} <span aria-hidden="true">→</span>
+            {s.cta}
           </a>
         </li>
       ))}

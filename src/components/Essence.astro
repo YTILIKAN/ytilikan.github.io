@@ -1,39 +1,66 @@
 ---
+const missionAxes = [
+  { title: 'Informer', body: "Émissions, interviews et débats sur ce que la tech change dans nos vies." },
+  { title: 'Former', body: 'Des contenus concrets, pratiques et gratuits, pour débutants comme initiés.' },
+  { title: 'Valoriser', body: "Donner la parole aux talents tech du continent : l'Afrique innove." },
+  { title: 'Questionner', body: 'Regarder aussi les impacts sociaux et culturels de la technologie.' },
+];
+
 const values = [
-  { h: 'Accessible', p: "La tech pour tous, sans prérequis ni jargon." },
-  { h: 'Innovant', p: 'Explorer les nouveaux outils, les tester, les partager.' },
-  { h: 'Créatif', p: "Des formats vivants pour rendre l'IA concrète." },
-  { h: 'Pédagogique', p: "Expliquer étape par étape, jusqu'à ce que ce soit clair." },
-  { h: 'Engagé', p: 'Informer avec honnêteté, former avec rigueur.' },
-  { h: 'Fier', p: 'Ancrés dans nos racines, ouverts sur le monde.' },
+  { title: 'Résilience', body: "Transformer chaque obstacle en tremplin et bâtir sur le long terme." },
+  { title: 'Passion', body: "L'envie sincère de comprendre, d'apprendre et de transmettre le savoir." },
+  { title: 'Innovation', body: 'Concevoir des solutions locales, créatives et taillées pour nos réalités.' },
+  { title: 'Engagement', body: 'Informer avec honnêteté, former avec rigueur, dialoguer avec respect.' },
+  { title: 'Culture', body: 'Enracinés dans nos identités africaines, résolument ouverts sur le monde.' },
 ];
 ---
 <section class="section" id="essence">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow">01 — L'essence</span>
-      <h2 class="sec-title">La tech expliquée, pas compliquée.</h2>
-      <p class="lead">Y'TILIKAN est né d'un constat : pendant que l'intelligence artificielle redessine le monde, l'Afrique francophone regarde de loin — par manque d'accès, pas de talent. On change la donne.</p>
+      <span class="eyebrow">01 / Qui sommes-nous</span>
+      <h2 class="sec-title">La tech n'est pas réservée aux spécialistes.</h2>
+      <p class="lead">
+        Y'TILIKAN démystifie la technologie et l'IA pour les rendre accessibles en Afrique francophone.
+        On vulgarise sans simplisme : avec pédagogie, respect du contexte et ouverture au dialogue.
+      </p>
     </div>
 
     <div class="essence-grid reveal">
-      <div class="essence-main">
-        <p class="mission">
-          <strong>Former, informer, outiller.</strong>
-          Des émissions qui décryptent l'actualité tech. Des formations concrètes pour apprendre à coder, automatiser, comprendre. Des outils open-source que chacun peut utiliser, modifier, améliorer — en français, ancré dans les réalités du continent.
-        </p>
-      </div>
+      <ul class="axes">
+        {missionAxes.map((a) => (
+          <li class="axis">
+            <h3 class="axis__title">{a.title}</h3>
+            <p class="axis__body">{a.body}</p>
+          </li>
+        ))}
+      </ul>
       <aside class="essence-card" aria-label="Étymologie du nom">
         <span class="essence-card__label">Le nom</span>
         <p class="essence-card__word">Y<span class="apos">'</span>tilikan</p>
-        <p class="essence-card__def">En mooré (Burkina Faso) : « ce n'est pas sorcier » — la technologie n'est pas réservée à une élite.</p>
+        <p class="essence-card__def">
+          En mooré (Burkina Faso) : « ce n'est pas sorcier ». Toute notre volonté tient dans ce mot.
+        </p>
       </aside>
     </div>
 
-    <div class="values reveal">
-      {values.map((v) => (
-        <div class="value"><h3>{v.h}</h3><p>{v.p}</p></div>
-      ))}
+    <div class="vision reveal">
+      <p class="vision-conviction">
+        Notre vision : devenir un média de référence de la vulgarisation tech en Afrique francophone.
+        Le futur numérique ne doit pas être subi, il doit être compris, préparé et co-construit.
+      </p>
+    </div>
+
+    <div class="values-block reveal">
+      <span class="eyebrow values-block__label">Nos valeurs</span>
+      <ul class="values">
+        {values.map((v, i) => (
+          <li class="value">
+            <span class="value__index">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="value__title">{v.title}</h3>
+            <p class="value__body">{v.body}</p>
+          </li>
+        ))}
+      </ul>
     </div>
   </div>
 </section>
@@ -41,31 +68,51 @@ const values = [
 <style>
   .essence-grid {
     display: grid;
-    grid-template-columns: 1.4fr 1fr;
+    grid-template-columns: 1.5fr 1fr;
     gap: var(--sp-sm);
     margin-bottom: var(--sp-lg);
-    align-items: stretch;
+    align-items: start;
   }
-  .mission {
-    font-size: 1.15rem;
-    color: var(--charbon);
-    line-height: 1.65;
-    max-width: 52ch;
+
+  .axes {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--sp-sm);
   }
-  .mission strong {
+
+  .axis {
+    background: var(--sable);
+    border-radius: var(--r-md);
+    padding: 22px 20px;
+    border-left: 3px solid var(--ocre);
+  }
+
+  .axis__title {
     font-family: var(--display);
     font-weight: 700;
-    color: var(--kola);
-    display: block;
-    margin-bottom: 10px;
-    font-size: 1.22rem;
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+    letter-spacing: -.01em;
   }
+
+  .axis__body {
+    font-size: .86rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
   .essence-card {
     background: var(--encre);
     color: var(--ivoire);
     border-radius: var(--r-lg);
     padding: 32px 28px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
+
   .essence-card__label {
     font-family: var(--mono);
     font-size: .68rem;
@@ -75,6 +122,7 @@ const values = [
     display: block;
     margin-bottom: 12px;
   }
+
   .essence-card__word {
     font-family: var(--display);
     font-weight: 800;
@@ -82,18 +130,104 @@ const values = [
     letter-spacing: -.02em;
     margin-bottom: 10px;
   }
-  .essence-card .apos { color: var(--ocre); }
-  .essence-card__def { font-size: .92rem; color: rgba(250,249,246,.62); line-height: 1.55; }
 
-  .values { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-sm); }
-  .value { background: var(--sable); border-radius: var(--r-md); padding: var(--sp-md); border-bottom: 3px solid var(--ocre); }
-  .value h3 { font-family: var(--display); font-weight: 700; font-size: 1.1rem; margin-bottom: 8px; }
-  .value p { font-size: .84rem; color: var(--muted); line-height: 1.45; }
+  .essence-card .apos { color: var(--ocre); }
+
+  .essence-card__def {
+    font-size: .92rem;
+    color: rgba(250, 249, 246, .62);
+    line-height: 1.55;
+  }
+
+  .vision {
+    margin-bottom: var(--sp-lg);
+  }
+
+  .vision-conviction {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(1.15rem, 2.4vw, 1.5rem);
+    color: var(--kola);
+    max-width: 60ch;
+    line-height: 1.4;
+    letter-spacing: -.01em;
+    border-left: 3px solid var(--ocre);
+    padding-left: 20px;
+  }
+
+  .values-block__label {
+    margin-bottom: var(--sp-md);
+  }
+
+  .values {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    margin-top: 12px;
+    background: var(--sable-d);
+    border: 1px solid var(--sable-d);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+  }
+
+  .value {
+    position: relative;
+    background: var(--surface);
+    padding: 28px 22px 26px;
+    display: flex;
+    flex-direction: column;
+    transition: background .25s;
+  }
+
+  .value::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 0;
+    background: var(--ocre);
+    transition: width .3s cubic-bezier(.22,1,.36,1);
+  }
+
+  .value:hover { background: var(--ivoire); }
+  .value:hover::after { width: 100%; }
+
+  .value__index {
+    font-family: var(--mono);
+    font-size: .68rem;
+    font-weight: 600;
+    letter-spacing: .1em;
+    color: var(--ocre);
+    margin-bottom: 16px;
+  }
+
+  .value__title {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 1.08rem;
+    letter-spacing: -.01em;
+    margin-bottom: 8px;
+  }
+
+  .value__body {
+    font-size: .82rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 960px) {
+    .values { grid-template-columns: repeat(3, 1fr); }
+  }
 
   @media (max-width: 860px) {
     .essence-grid { grid-template-columns: 1fr; }
-    .values { grid-template-columns: repeat(2, 1fr); }
+    .axes { grid-template-columns: 1fr 1fr; }
   }
-  @media (max-width: 500px) { .values { grid-template-columns: 1fr; } }
 
+  @media (max-width: 560px) {
+    .axes { grid-template-columns: 1fr; }
+    .values { grid-template-columns: 1fr 1fr; }
+  }
 </style>
