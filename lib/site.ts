@@ -13,6 +13,10 @@ export const SITE = {
   web3formsKey: '9fb72e4f-6797-44a5-9e15-bef9b54475cd',
 } as const;
 
+/** URL canonique du site — configurable via NEXT_PUBLIC_SITE_URL sur Vercel. */
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? 'https://ytilikan.vercel.app';
+
 export function formatCount(n: number): string {
   return n.toLocaleString('fr-FR');
 }

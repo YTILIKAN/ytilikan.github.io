@@ -6,38 +6,62 @@ Site officiel de Y'TILIKAN — communauté de vulgarisation de l'IA pour l'Afriq
 
 ## Stack
 
-- [Astro](https://astro.build) — site statique
-- Design system maison (dark premium, palette or/ink) — voir `YTILIKAN/brand-kit`
-- Polices : Inter, JetBrains Mono, Playfair Display (Google Fonts)
+- [Next.js](https://nextjs.org) (App Router) + React + TypeScript
+- Design system maison (palette noir / charbon / ivoire + orange) — CSS global (`app/globals.css`)
+- Police : Sora (Google Fonts)
 
 ## Développement
 
 ```bash
 npm install
-npm run dev      # http://localhost:4321
-npm run build    # génère dist/
-npm run preview  # prévisualise le build
+npm run dev      # http://localhost:3000
+npm run build    # build de production
+npm run start    # sert le build de production
 ```
 
-## Déploiement
+## Déploiement (Vercel)
 
-Push sur `main` → GitHub Actions build et déploie sur GitHub Pages
-(`.github/workflows/deploy.yml`). URL : https://ytilikan.github.io
+Le projet est prêt pour [Vercel](https://vercel.com), qui détecte Next.js automatiquement
+(aucune configuration nécessaire).
+
+1. Pousser le dépôt sur GitHub.
+2. Sur Vercel : **New Project → Import** le dépôt.
+3. Framework Preset : **Next.js** (auto-détecté), puis **Deploy**.
+
+Variable d'environnement optionnelle :
+
+- `NEXT_PUBLIC_SITE_URL` — URL canonique du site (ex. `https://ytilikan.com`),
+  utilisée pour les balises SEO / Open Graph. Valeur par défaut : `https://ytilikan.vercel.app`.
+
+## Assets images
+
+Déposer les fichiers suivants dans `public/` (référencés par le site) :
+
+- `public/logo.jpeg` — logo (fond clair)
+- `public/logo-white.jpg` — logo (fond sombre)
+- `public/hero-bg.jpg` — image de fond du hero
 
 ## Structure
 
 ```
-src/
-├── layouts/Base.astro       Layout + reveal on scroll
-├── components/
-│   ├── Nav.astro            Navigation sticky
-│   ├── Hero.astro           Titre + stats
-│   ├── Mission.astro        4 axes de mission
-│   ├── Vision.astro         Ambitions + valeurs
-│   ├── Programmes.astro     3 formats d'émission
-│   ├── Equipe.astro         Fondateurs + équipe élargie
-│   ├── Projets.astro        AfriBench, Dira, Formation
-│   └── Contact.astro        CTA + footer
-├── pages/index.astro
-└── styles/global.css        Design tokens
+app/
+├── layout.tsx              Layout racine (SEO, polices, JSON-LD)
+├── page.tsx                Assemble toutes les sections
+├── globals.css            Design tokens + styles
+└── components/
+    ├── Symbols.tsx         Défs SVG (masque / œil / motif)
+    ├── Nav.tsx             Navigation sticky
+    ├── Hero.tsx            Titre + preuve sociale
+    ├── Essence.tsx         Mission, vision, valeurs
+    ├── CommentParticiper.tsx
+    ├── Stats.tsx           Compteurs animés
+    ├── Emissions.tsx       Vidéos YouTube
+    ├── Programmes.tsx      Formats d'émission
+    ├── Projets.tsx         Projets open-source
+    ├── Equipe.tsx          Équipe
+    ├── FAQ.tsx             Questions fréquentes
+    ├── Contact.tsx         Formulaire + footer
+    └── ClientScripts.tsx   Interactions (reveal, nav, compteurs, formulaire)
+lib/
+└── site.ts                 Constantes partagées
 ```
