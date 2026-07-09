@@ -96,24 +96,29 @@ export default function ClientScripts() {
       const glyphs = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#%&*<>/{}[]';
       const isStatic = (ch: string) => /[\s'’.,!?:;—–-]/.test(ch);
 
+      /* Decode léger : seuls ~35 % des lettres « glitchent », durée courte. */
       const scramble = (el: HTMLElement) => {
         const text = el.dataset.text ?? el.textContent ?? '';
         el.dataset.text = text;
         const chars = Array.from(text);
-        const duration = 1000;
+        const duration = 620;
         const start = performance.now();
+        const scrambleIdx = new Set<number>();
+        chars.forEach((ch, i) => {
+          if (!isStatic(ch) && Math.random() < 0.35) scrambleIdx.add(i);
+        });
 
         const tick = (now: number) => {
           const elapsed = now - start;
           let out = '';
           let settled = true;
           chars.forEach((ch, i) => {
-            if (isStatic(ch)) {
+            if (isStatic(ch) || !scrambleIdx.has(i)) {
               out += ch;
               return;
             }
-            const revealAt = (i / chars.length) * duration * 0.72;
-            if (elapsed >= revealAt + 180) {
+            const revealAt = (i / chars.length) * duration * 0.55;
+            if (elapsed >= revealAt + 90) {
               out += ch;
             } else {
               out += glyphs[(Math.random() * glyphs.length) | 0];
@@ -134,7 +139,7 @@ export default function ClientScripts() {
       if (!reduce) {
         targets.forEach((el) => {
           const delay = parseInt(el.dataset.delay ?? '0', 10);
-          const timer = window.setTimeout(() => scramble(el), delay + 120);
+          const timer = window.setTimeout(() => scramble(el), delay + 80);
           cleanups.push(() => window.clearTimeout(timer));
         });
       }

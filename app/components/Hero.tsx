@@ -42,10 +42,10 @@ export default function Hero() {
           </p>
 
           <div className="cover__cta reveal" data-delay="400">
-            <a href="#emissions" className="btn btn--gold">
+            <a href="/emissions" className="btn btn--gold">
               Voir les émissions
             </a>
-            <a href="#participer" className="cover__cta-secondary">
+            <a href="/participer" className="cover__cta-secondary">
               Comment participer
             </a>
           </div>
