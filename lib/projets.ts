@@ -29,7 +29,7 @@ export const PROJETS: Projet[] = [
     stack: ['Python', 'LLM eval', 'Francophonie'],
     authors: 'Christian NEBOT (Lead) · Michel NIPBIEBA',
     github: 'https://github.com/YTILIKAN/AfriBench',
-    site: 'https://ytilikan.github.io/AfriBench',
+    site: 'https://afribench.vercel.app',
   },
   {
     slug: 'afrolang-library',
