@@ -33,6 +33,9 @@ export default function Programmes() {
             Des formats complémentaires pour toucher tous les publics, du simple curieux au
             professionnel du numérique.
           </p>
+          <a href="/programmes" className="section-more">
+            Détail des programmes →
+          </a>
         </div>
 
         <div className="prog-grid reveal">

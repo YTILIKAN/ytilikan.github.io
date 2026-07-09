@@ -57,6 +57,9 @@ export default function Projets() {
             des LLMs aux datasets de langues africaines : l&apos;infrastructure d&apos;une IA
             africaine se construit ici.
           </p>
+          <a href="/projets" className="section-more">
+            Voir tous les projets →
+          </a>
         </div>
 
         <div className="pj-grid reveal">

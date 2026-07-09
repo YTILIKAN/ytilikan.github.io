@@ -10,7 +10,7 @@ export default function Hero() {
 
       <div className="wrap cover__inner">
         <div className="cover__content">
-          <h1 className="cover__headline reveal" data-delay="80">
+          <h1 className="cover__headline reveal" data-delay="80" data-scramble>
             La tech et l&apos;IA, à la portée de l&apos;Afrique francophone
           </h1>
 

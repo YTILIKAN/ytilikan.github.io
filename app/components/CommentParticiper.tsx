@@ -40,6 +40,9 @@ export default function CommentParticiper() {
             Pas de formulaire d&apos;inscription : regarde, contribue ou écris-nous. Chaque voie est
             concrète et gratuite.
           </p>
+          <a href="/participer" className="section-more section-more--center">
+            Guide complet →
+          </a>
         </div>
 
         <ol className="steps-grid reveal">

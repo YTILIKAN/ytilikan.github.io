@@ -1,18 +1,19 @@
-const links = [
-  { href: '#essence', label: 'Essence', id: 'essence' },
-  { href: '#participer', label: 'Participer', id: 'participer' },
-  { href: '#emissions', label: 'Émissions', id: 'emissions' },
-  { href: '#programmes', label: 'Programmes', id: 'programmes' },
-  { href: '#projets', label: 'Projets', id: 'projets' },
-  { href: '#equipe', label: 'Équipe', id: 'equipe' },
-  { href: '#faq', label: 'FAQ', id: 'faq' },
-];
+import { NAV_LINKS } from '@/lib/nav';
 
-export default function Nav() {
+type NavProps = {
+  /** Page d'accueil avec hero sombre ; sinon nav claire pour les sous-pages. */
+  variant?: 'home' | 'page';
+  /** Section active sur les sous-pages. */
+  active?: string;
+};
+
+export default function Nav({ variant = 'home', active }: NavProps) {
+  const isHome = variant === 'home';
+
   return (
-    <header className="nav nav--hero" id="nav">
+    <header className={`nav${isHome ? ' nav--hero' : ''}`} id="nav">
       <div className="wrap nav__inner">
-        <a href="#top" className="nav__brand" aria-label="Y'TILIKAN, accueil">
+        <a href="/" className="nav__brand" aria-label="Y'TILIKAN, accueil">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logo-white.jpg" alt="" className="nav__logo nav__logo--light" width={34} height={34} />
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -23,14 +24,20 @@ export default function Nav() {
         </a>
 
         <nav className="nav__links" aria-label="Navigation principale">
-          {links.map((l) => (
-            <a key={l.id} href={l.href} data-section={l.id}>
+          {NAV_LINKS.map((l) => (
+            <a
+              key={l.id}
+              href={l.href}
+              data-section={l.id}
+              className={!isHome && active === l.id ? 'is-active' : undefined}
+              aria-current={!isHome && active === l.id ? 'page' : undefined}
+            >
               {l.label}
             </a>
           ))}
         </nav>
 
-        <a href="#contact" className="nav__cta">
+        <a href={isHome ? '#contact' : '/#contact'} className="nav__cta">
           Participer
         </a>
 
@@ -47,12 +54,18 @@ export default function Nav() {
       </div>
 
       <div className="nav__mobile" id="mobile-menu" hidden>
-        {links.map((l) => (
-          <a key={l.id} href={l.href} className="nav__mobile-link" data-section={l.id}>
+        {NAV_LINKS.map((l) => (
+          <a
+            key={l.id}
+            href={l.href}
+            className={`nav__mobile-link${!isHome && active === l.id ? ' is-active' : ''}`}
+            data-section={l.id}
+            aria-current={!isHome && active === l.id ? 'page' : undefined}
+          >
             {l.label}
           </a>
         ))}
-        <a href="#contact" className="nav__mobile-link nav__mobile-cta">
+        <a href={isHome ? '#contact' : '/#contact'} className="nav__mobile-link nav__mobile-cta">
           Participer
         </a>
       </div>

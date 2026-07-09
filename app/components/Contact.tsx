@@ -29,13 +29,13 @@ const participate = [
 ];
 
 const footLinks = [
-  { href: '#essence', label: 'Essence' },
-  { href: '#participer', label: 'Participer' },
-  { href: '#emissions', label: 'Émissions' },
-  { href: '#programmes', label: 'Programmes' },
-  { href: '#projets', label: 'Projets' },
-  { href: '#equipe', label: 'Équipe' },
-  { href: '#faq', label: 'FAQ' },
+  { href: '/essence', label: 'Essence' },
+  { href: '/participer', label: 'Participer' },
+  { href: '/emissions', label: 'Émissions' },
+  { href: '/programmes', label: 'Programmes' },
+  { href: '/projets', label: 'Projets' },
+  { href: '/equipe', label: 'Équipe' },
+  { href: '/faq', label: 'FAQ' },
 ];
 
 export default function Contact() {

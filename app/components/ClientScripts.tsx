@@ -1,10 +1,53 @@
 'use client';
 
 import { useEffect } from 'react';
+import Lenis from 'lenis';
 
 export default function ClientScripts() {
   useEffect(() => {
     const cleanups: Array<() => void> = [];
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    /* —————————————————————— Smooth scroll (Lenis) —————————————————————— */
+    let lenis: Lenis | null = null;
+    if (!prefersReduced) {
+      lenis = new Lenis({
+        duration: 1.1,
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+      });
+
+      let rafId = 0;
+      const raf = (time: number) => {
+        lenis?.raf(time);
+        rafId = requestAnimationFrame(raf);
+      };
+      rafId = requestAnimationFrame(raf);
+
+      const navH =
+        parseInt(
+          getComputedStyle(document.documentElement).getPropertyValue('--nav-h'),
+          10
+        ) || 68;
+
+      const onAnchorClick = (e: MouseEvent) => {
+        const link = (e.target as HTMLElement).closest('a[href^="#"]') as HTMLAnchorElement | null;
+        if (!link) return;
+        const hash = link.getAttribute('href');
+        if (!hash || hash === '#') return;
+        const target = document.querySelector(hash);
+        if (!target) return;
+        e.preventDefault();
+        lenis?.scrollTo(target as HTMLElement, { offset: -(navH + 12) });
+      };
+      document.addEventListener('click', onAnchorClick);
+
+      cleanups.push(() => {
+        cancelAnimationFrame(rafId);
+        document.removeEventListener('click', onAnchorClick);
+        lenis?.destroy();
+      });
+    }
 
     /* —————————————————————— Reveal on scroll —————————————————————— */
     {
@@ -47,6 +90,56 @@ export default function ClientScripts() {
       }
     }
 
+    /* —————————————————————— Text scramble / decode —————————————————————— */
+    {
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const glyphs = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#%&*<>/{}[]';
+      const isStatic = (ch: string) => /[\s'’.,!?:;—–-]/.test(ch);
+
+      const scramble = (el: HTMLElement) => {
+        const text = el.dataset.text ?? el.textContent ?? '';
+        el.dataset.text = text;
+        const chars = Array.from(text);
+        const duration = 1000;
+        const start = performance.now();
+
+        const tick = (now: number) => {
+          const elapsed = now - start;
+          let out = '';
+          let settled = true;
+          chars.forEach((ch, i) => {
+            if (isStatic(ch)) {
+              out += ch;
+              return;
+            }
+            const revealAt = (i / chars.length) * duration * 0.72;
+            if (elapsed >= revealAt + 180) {
+              out += ch;
+            } else {
+              out += glyphs[(Math.random() * glyphs.length) | 0];
+              settled = false;
+            }
+          });
+          el.textContent = out;
+          if (!settled) {
+            requestAnimationFrame(tick);
+          } else {
+            el.textContent = text;
+          }
+        };
+        requestAnimationFrame(tick);
+      };
+
+      const targets = document.querySelectorAll<HTMLElement>('[data-scramble]');
+      if (!reduce) {
+        targets.forEach((el) => {
+          const delay = parseInt(el.dataset.delay ?? '0', 10);
+          const timer = window.setTimeout(() => scramble(el), delay + 120);
+          cleanups.push(() => window.clearTimeout(timer));
+        });
+      }
+    }
+
     /* —————————————————————— Nav —————————————————————— */
     {
       const nav = document.getElementById('nav');
@@ -68,37 +161,42 @@ export default function ClientScripts() {
         );
         heroObserver.observe(hero);
         cleanups.push(() => heroObserver.disconnect());
+      } else if (nav && !hero) {
+        nav.classList.remove('nav--hero');
       }
 
-      const sectionIds = [
-        'essence',
-        'participer',
-        'programmes',
-        'emissions',
-        'projets',
-        'equipe',
-        'faq',
-        'contact',
-      ];
-      const navLinks = document.querySelectorAll('[data-section]');
+      /* Scroll-spy uniquement sur l'accueil (ancres #section). */
+      if (hero) {
+        const sectionIds = [
+          'essence',
+          'participer',
+          'programmes',
+          'emissions',
+          'projets',
+          'equipe',
+          'faq',
+          'contact',
+        ];
+        const navLinks = document.querySelectorAll('[data-section]');
 
-      const sectionObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-            const id = entry.target.id;
-            navLinks.forEach((link) => {
-              link.classList.toggle('is-active', link.getAttribute('data-section') === id);
+        const sectionObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              const id = entry.target.id;
+              navLinks.forEach((link) => {
+                link.classList.toggle('is-active', link.getAttribute('data-section') === id);
+              });
             });
-          });
-        },
-        { rootMargin: '-40% 0px -55% 0px', threshold: 0 }
-      );
-      sectionIds.forEach((id) => {
-        const el = document.getElementById(id);
-        if (el) sectionObserver.observe(el);
-      });
-      cleanups.push(() => sectionObserver.disconnect());
+          },
+          { rootMargin: '-40% 0px -55% 0px', threshold: 0 }
+        );
+        sectionIds.forEach((id) => {
+          const el = document.getElementById(id);
+          if (el) sectionObserver.observe(el);
+        });
+        cleanups.push(() => sectionObserver.disconnect());
+      }
 
       const burger = document.getElementById('burger');
       const menu = document.getElementById('mobile-menu');

@@ -1,13 +1,26 @@
 import type { CSSProperties } from 'react';
 
 const missionAxes = [
-  { title: 'Informer', body: 'Émissions, interviews et débats sur ce que la tech change dans nos vies.' },
-  { title: 'Former', body: 'Des contenus concrets, pratiques et gratuits, pour débutants comme initiés.' },
+  {
+    title: 'Informer',
+    body: 'Émissions, interviews et débats sur ce que la tech change dans nos vies.',
+    href: '/emissions',
+  },
+  {
+    title: 'Former',
+    body: 'Des contenus concrets, pratiques et gratuits, pour débutants comme initiés.',
+    href: '/programmes',
+  },
   {
     title: 'Partager',
     body: 'Diffuser librement le savoir : outils open-source, code et données ouverts à tous.',
+    href: '/projets',
   },
-  { title: 'Valoriser', body: "Donner la parole aux talents tech du continent : l'Afrique innove." },
+  {
+    title: 'Valoriser',
+    body: "Donner la parole aux talents tech du continent : l'Afrique innove.",
+    href: '/equipe',
+  },
 ];
 
 const values = [
@@ -49,9 +62,12 @@ export default function Essence() {
             <span className="eyebrow mission__label">Notre mission</span>
             <ul className="axes">
               {missionAxes.map((a) => (
-                <li className="axis" key={a.title}>
-                  <h3 className="axis__title">{a.title}</h3>
-                  <p className="axis__body">{a.body}</p>
+                <li key={a.title}>
+                  <a className="axis axis--link" href={a.href}>
+                    <h3 className="axis__title">{a.title}</h3>
+                    <p className="axis__body">{a.body}</p>
+                    <span className="axis__more">En savoir plus →</span>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -65,6 +81,9 @@ export default function Essence() {
               Une expression de l&apos;Ouest camerounais qui signifie « ce n&apos;est pas sorcier ».
               Toute notre conviction tient dans ce mot : la tech est à la portée de tous.
             </p>
+            <a href="/essence" className="essence-card__link">
+              Notre histoire →
+            </a>
           </aside>
         </div>
 
@@ -81,7 +100,12 @@ export default function Essence() {
         </div>
 
         <div className="values-block">
-          <span className="eyebrow values-block__label">Nos valeurs</span>
+          <div className="values-block__head">
+            <span className="eyebrow values-block__label">Nos valeurs</span>
+            <a href="/essence" className="section-more">
+              Tout sur qui nous sommes →
+            </a>
+          </div>
           <div className="constellation" id="values-constellation">
             <div className="constellation__ring">
               <svg
@@ -91,14 +115,17 @@ export default function Essence() {
                 preserveAspectRatio="xMidYMid meet"
               >
                 <polygon
+                  className="constellation__poly"
                   points={polygonPoints}
                   fill="none"
                   stroke="#E6E2DC"
                   strokeWidth="0.4"
                   strokeLinejoin="round"
+                  pathLength={1}
                 />
-                {petals.map((p) => (
+                {petals.map((p, i) => (
                   <line
+                    className="constellation__line"
                     key={p.title}
                     x1="50"
                     y1="50"
@@ -106,6 +133,8 @@ export default function Essence() {
                     y2={p.y}
                     stroke="#E6E2DC"
                     strokeWidth="0.3"
+                    pathLength={1}
+                    style={{ animationDelay: `${0.35 + i * 0.1}s` } as CSSProperties}
                   />
                 ))}
               </svg>

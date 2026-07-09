@@ -87,6 +87,9 @@ export default function Equipe() {
             Une structure agile où chacun tient un rôle défini, du plateau à la formation. Ensemble,
             une même mission : rendre la tech claire pour tous.
           </p>
+          <a href="/equipe" className="section-more">
+            Présentation complète →
+          </a>
         </div>
 
         <div className="tm-grid reveal">

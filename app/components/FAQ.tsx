@@ -38,6 +38,9 @@ export default function FAQ() {
             Les réponses aux questions qu&apos;on nous pose le plus souvent. Une autre en tête ?
             Écris-nous.
           </p>
+          <a href="/faq" className="section-more">
+            FAQ complète →
+          </a>
         </div>
 
         <ul className="faq-list reveal">

@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import Essence from './components/Essence';
 import CommentParticiper from './components/CommentParticiper';
 import Stats from './components/Stats';
+import Marquee from './components/Marquee';
 import Emissions from './components/Emissions';
 import Programmes from './components/Programmes';
 import Projets from './components/Projets';
@@ -22,6 +23,7 @@ export default function Home() {
         <Essence />
         <CommentParticiper />
         <Stats />
+        <Marquee />
         <Emissions />
         <Programmes />
         <Projets />
