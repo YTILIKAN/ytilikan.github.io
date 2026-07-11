@@ -52,7 +52,7 @@ const membres: {
   {
     name: 'Balla Moussa',
     role: 'Compétitions & hackathons',
-    body: 'Conçoit et anime les compétitions et hackathons pour faire grandir les talents tech du continent.',
+    body: 'Recherche et coordonne nos participations aux challenges externes, et organisera nos hackathons internes à venir.',
     tag: 'Compétitions',
     photo: '/team/balla-moussa.png',
     linkedin: '#',
