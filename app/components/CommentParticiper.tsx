@@ -37,8 +37,7 @@ export default function CommentParticiper() {
             Trois étapes, dès aujourd&apos;hui.
           </h2>
           <p className="lead">
-            Pas de formulaire d&apos;inscription : regarde, contribue ou écris-nous. Chaque voie est
-            concrète et gratuite.
+            Regarde, contribue ou écris-nous. Chaque voie est concrète et gratuite.
           </p>
           <a href="/participer" className="section-more section-more--center">
             Guide complet →

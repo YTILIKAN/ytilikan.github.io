@@ -93,7 +93,7 @@ export default function Equipe() {
         </div>
 
         <div className="tm-grid reveal">
-          {membres.map((m) => (
+          {membres.slice(0, 6).map((m) => (
             <article className="tm card-hover" key={m.name}>
               <div className="tm__media">
                 {m.photo ? (

@@ -5,21 +5,25 @@ const missionAxes = [
     title: 'Informer',
     body: 'Émissions, interviews et débats sur ce que la tech change dans nos vies.',
     href: '/emissions',
+    more: 'Voir les émissions →',
   },
   {
     title: 'Former',
-    body: 'Des contenus concrets, pratiques et gratuits, pour débutants comme initiés.',
+    body: "Contenus concrets et gratuits, du débutant à l'initié.",
     href: '/programmes',
+    more: 'Voir les programmes →',
   },
   {
     title: 'Partager',
-    body: 'Diffuser librement le savoir : outils open-source, code et données ouverts à tous.',
+    body: 'Outils open-source, code et données ouverts à tous.',
     href: '/projets',
+    more: 'Voir les projets →',
   },
   {
     title: 'Valoriser',
-    body: "Donner la parole aux talents tech du continent : l'Afrique innove.",
+    body: "La parole aux talents tech du continent : l'Afrique innove.",
     href: '/equipe',
+    more: "Voir l'équipe →",
   },
 ];
 
@@ -51,9 +55,8 @@ export default function Essence() {
           <span className="eyebrow">01 / Qui sommes-nous</span>
           <h2 className="sec-title">Rendre l&apos;Afrique souveraine, par le savoir.</h2>
           <p className="lead">
-            Notre objectif : donner aux Africains les moyens de rendre le continent
-            technologiquement souverain, sur le long terme. Cela commence par comprendre, apprendre
-            et partager.
+            Donner aux Africains les moyens d&apos;une souveraineté technologique durable. Tout
+            commence par comprendre, apprendre et partager.
           </p>
         </div>
 
@@ -66,7 +69,7 @@ export default function Essence() {
                   <a className="axis axis--link" href={a.href}>
                     <h3 className="axis__title">{a.title}</h3>
                     <p className="axis__body">{a.body}</p>
-                    <span className="axis__more">En savoir plus →</span>
+                    <span className="axis__more">{a.more}</span>
                   </a>
                 </li>
               ))}
@@ -78,8 +81,8 @@ export default function Essence() {
               Y<span className="apos">&apos;</span>tilikan
             </p>
             <p className="essence-card__def">
-              Une expression de l&apos;Ouest camerounais qui signifie « ce n&apos;est pas sorcier ».
-              Toute notre conviction tient dans ce mot : la tech est à la portée de tous.
+              Du mooré, langue du Burkina Faso : une expression qui signifie « ce n&apos;est pas
+              sorcier ». Toute notre conviction tient dans ce mot : la tech est à la portée de tous.
             </p>
             <a href="/essence" className="essence-card__link">
               Notre histoire →

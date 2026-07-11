@@ -37,7 +37,7 @@ export default function Nav({ variant = 'home', active }: NavProps) {
           ))}
         </nav>
 
-        <a href={isHome ? '#contact' : '/#contact'} className="nav__cta">
+        <a href={isHome ? '#participer' : '/#participer'} className="nav__cta">
           Participer
         </a>
 
@@ -65,7 +65,7 @@ export default function Nav({ variant = 'home', active }: NavProps) {
             {l.label}
           </a>
         ))}
-        <a href={isHome ? '#contact' : '/#contact'} className="nav__mobile-link nav__mobile-cta">
+        <a href={isHome ? '#participer' : '/#participer'} className="nav__mobile-link nav__mobile-cta">
           Participer
         </a>
       </div>

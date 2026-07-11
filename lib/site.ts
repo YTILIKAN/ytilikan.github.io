@@ -15,7 +15,7 @@ export const SITE = {
 
 /** URL canonique du site — configurable via NEXT_PUBLIC_SITE_URL sur Vercel. */
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? 'https://ytilikan.vercel.app';
+  process.env.NEXT_PUBLIC_SITE_URL ?? 'https://ytilikan-site.vercel.app';
 
 export function formatCount(n: number): string {
   return n.toLocaleString('fr-FR');

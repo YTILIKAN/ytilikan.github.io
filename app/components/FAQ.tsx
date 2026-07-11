@@ -35,8 +35,11 @@ export default function FAQ() {
             Ce que vous nous demandez.
           </h2>
           <p className="lead">
-            Les réponses aux questions qu&apos;on nous pose le plus souvent. Une autre en tête ?
-            Écris-nous.
+            Les réponses aux questions qu&apos;on nous pose le plus souvent. Une autre en tête ?{' '}
+            <a href="#contact" className="lead__link">
+              Écris-nous
+            </a>
+            .
           </p>
           <a href="/faq" className="section-more">
             FAQ complète →

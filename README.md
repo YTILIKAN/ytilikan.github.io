@@ -31,7 +31,7 @@ Le projet est prêt pour [Vercel](https://vercel.com), qui détecte Next.js auto
 Variable d'environnement optionnelle :
 
 - `NEXT_PUBLIC_SITE_URL` — URL canonique du site (ex. `https://ytilikan.com`),
-  utilisée pour les balises SEO / Open Graph. Valeur par défaut : `https://ytilikan.vercel.app`.
+  utilisée pour les balises SEO / Open Graph. Valeur par défaut : `https://ytilikan-site.vercel.app`.
 
 ## Assets images
 

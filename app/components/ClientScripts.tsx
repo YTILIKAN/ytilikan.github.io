@@ -38,7 +38,8 @@ export default function ClientScripts() {
         const target = document.querySelector(hash);
         if (!target) return;
         e.preventDefault();
-        lenis?.scrollTo(target as HTMLElement, { offset: -(navH + 12) });
+        const pad = window.matchMedia('(max-width: 860px)').matches ? 20 : 12;
+        lenis?.scrollTo(target as HTMLElement, { offset: -(navH + pad) });
       };
       document.addEventListener('click', onAnchorClick);
 
@@ -277,17 +278,22 @@ export default function ClientScripts() {
     {
       const constellation = document.getElementById('values-constellation');
       if (constellation) {
+        const reveal = () => constellation.classList.add('is-visible');
         const io = new IntersectionObserver(
           ([entry], obs) => {
             if (entry.isIntersecting) {
-              constellation.classList.add('is-visible');
+              reveal();
               obs.disconnect();
             }
           },
           { threshold: 0.3 }
         );
         io.observe(constellation);
-        cleanups.push(() => io.disconnect());
+        const fallback = window.setTimeout(reveal, 3000);
+        cleanups.push(() => {
+          io.disconnect();
+          window.clearTimeout(fallback);
+        });
       }
     }
 

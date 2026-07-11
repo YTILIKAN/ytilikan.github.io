@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { SITE_URL } from '@/lib/site';
+import StructuredData from './components/StructuredData';
 
 const title = "Y'TILIKAN · La tech et l'IA à la portée de l'Afrique francophone";
 const description =
@@ -33,16 +34,6 @@ export const viewport: Viewport = {
   themeColor: '#0A0806',
 };
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: "Y'TILIKAN",
-  url: SITE_URL,
-  logo: new URL('/logo.jpeg', SITE_URL).href,
-  description,
-  sameAs: ['https://www.youtube.com/@YTILIKAN'],
-};
-
 export default function RootLayout({
   children,
 }: {
@@ -55,13 +46,10 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap&subset=latin"
         />
         <link rel="preload" as="image" href="/hero-bg.jpg" fetchPriority="high" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <StructuredData />
       </head>
       <body>
         <a className="skip-link" href="#main">

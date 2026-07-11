@@ -37,7 +37,7 @@ export default function Emissions() {
       <div className="wrap">
         <div className="section-head reveal">
           <span className="eyebrow">02 / Nos émissions</span>
-          <h2 className="sec-title">La marque, en action.</h2>
+          <h2 className="sec-title">Du concret, en vidéo.</h2>
           <p className="lead">
             Débats et formations, déjà en ligne sur notre chaîne. L&apos;IA à l&apos;école, le vibe
             coding, la productivité, la place de l&apos;Afrique dans la tech.

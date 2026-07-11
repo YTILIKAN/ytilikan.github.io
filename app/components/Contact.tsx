@@ -1,32 +1,7 @@
 import { SITE } from '@/lib/site';
 
 const CHANNEL = SITE.youtube.url;
-const GITHUB = SITE.github;
 const EMAIL = SITE.email;
-
-const participate = [
-  {
-    kick: 'Regarder & apprendre',
-    body: 'Émissions, débats et formations gratuites, publiés régulièrement sur la chaîne.',
-    cta: 'Voir la chaîne',
-    href: CHANNEL,
-    external: true,
-  },
-  {
-    kick: 'Contribuer au code',
-    body: 'Nos projets sont ouverts. Issues, pull requests et datasets : les contributions sont les bienvenues.',
-    cta: 'Ouvrir GitHub',
-    href: GITHUB,
-    external: true,
-  },
-  {
-    kick: 'Collaborer',
-    body: 'Intervenant, invité, partenaire ou école : écris-nous pour construire quelque chose ensemble.',
-    cta: 'Nous écrire',
-    href: EMAIL,
-    external: false,
-  },
-];
 
 const footLinks = [
   { href: '/essence', label: 'Essence' },
@@ -64,31 +39,13 @@ export default function Contact() {
             la technologie <em>parce qu&apos;on y participe pleinement.</em>
           </h2>
           <p className="contact__lead reveal" data-delay="160">
-            Pas de formulaire d&apos;inscription, pas de promesse en l&apos;air : on avance avec ceux
-            qui participent. Trois façons concrètes de le faire, dès aujourd&apos;hui.
+            Une question, une idée, une proposition de collaboration : le formulaire ci-dessous nous
+            arrive directement.
           </p>
-
-          <div className="participate reveal">
-            {participate.map((p) => (
-              <a
-                className="pt card-hover"
-                key={p.kick}
-                href={p.href}
-                target={p.external ? '_blank' : undefined}
-                rel={p.external ? 'noopener noreferrer' : undefined}
-              >
-                <span className="pt__kick">{p.kick}</span>
-                <p className="pt__body">{p.body}</p>
-                <span className="pt__cta">{p.cta}</span>
-              </a>
-            ))}
-          </div>
 
           <div className="cform-block reveal">
             <h3 className="cform-block__title">Une question, une idée ? Écris-nous.</h3>
-            <p className="cform-block__sub">
-              On répond à chaque message. Réponse sous quelques jours.
-            </p>
+            <p className="cform-block__sub">On répond à chaque message, toujours.</p>
 
             <form className="cform" id="contact-form" data-key={SITE.web3formsKey}>
               <input type="hidden" name="access_key" defaultValue={SITE.web3formsKey} />
@@ -133,11 +90,11 @@ export default function Contact() {
                   <option value="" disabled>
                     Choisis un sujet
                   </option>
-                  <option>Devenir invité ou intervenant</option>
-                  <option>Partenariat</option>
-                  <option>École ou institution</option>
-                  <option>Contribuer aux projets</option>
-                  <option>Autre</option>
+                  <option value="invite">Devenir invité ou intervenant</option>
+                  <option value="partenariat">Partenariat</option>
+                  <option value="ecole">École ou institution</option>
+                  <option value="contribuer">Contribuer aux projets</option>
+                  <option value="autre">Autre</option>
                 </select>
               </div>
 
@@ -182,8 +139,8 @@ export default function Contact() {
               <span className="foot__wm">Y&apos;TILIKAN</span>
             </div>
             <p className="foot__desc">
-              Communauté de vulgarisation de l&apos;IA pour l&apos;Afrique francophone et sa diaspora.
-              Formations, émissions et outils open-source, gratuits et en français.
+              Y&apos;TILIKAN rend la tech et l&apos;IA accessibles à l&apos;Afrique francophone.
+              Émissions, formations et projets open-source, gratuits et en français.
             </p>
           </div>
           <nav className="foot__nav" aria-label="Liens du pied de page">

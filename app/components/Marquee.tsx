@@ -6,7 +6,7 @@ const items = [
   'Souveraineté numérique',
   'Vibe coding',
   'Afrique francophone',
-  'Le savoir, c’est le pouvoir',
+  "Le savoir, c'est le pouvoir",
 ];
 
 export default function Marquee() {

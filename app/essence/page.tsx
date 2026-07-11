@@ -71,9 +71,9 @@ export default function EssencePage() {
                 Y<span className="apos">&apos;</span>tilikan
               </h2>
               <p className="page-prose">
-                Une expression de l&apos;Ouest camerounais qui signifie « ce n&apos;est pas
+                Du mooré, langue du Burkina Faso : une expression qui signifie « ce n&apos;est pas
                 sorcier ». Toute notre conviction tient dans ce mot : la tech est à la portée de
-                tous. Pas de magie, pas d&apos;élite fermée — seulement du savoir partagé, en
+                tous. Pas de magie, pas d&apos;élite fermée, seulement du savoir partagé, en
                 français, pour l&apos;Afrique francophone et sa diaspora.
               </p>
             </div>
