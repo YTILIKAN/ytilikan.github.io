@@ -62,7 +62,7 @@ const membres: {
     role: 'Veille & contenus',
     body: "Pilote la veille IA du continent et la newsletter hebdomadaire de l'écosystème.",
     tag: 'Veille',
-    photo: null,
+    photo: '/team/hilary-madjou.jpg',
     linkedin: '#',
   },
 ];
@@ -87,13 +87,10 @@ export default function Equipe() {
             Une structure agile où chacun tient un rôle défini, du plateau à la formation. Ensemble,
             une même mission : rendre la tech claire pour tous.
           </p>
-          <a href="/equipe" className="section-more">
-            Présentation complète →
-          </a>
         </div>
 
         <div className="tm-grid reveal">
-          {membres.slice(0, 6).map((m) => (
+          {membres.map((m) => (
             <article className="tm card-hover" key={m.name}>
               <div className="tm__media">
                 {m.photo ? (

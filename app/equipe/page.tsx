@@ -85,7 +85,7 @@ const membres: {
     detail:
       "Derrière AfroTech-Pulse : une veille claire, régulière, utile. Pour que l'écosystème reste informé sans se perdre dans le bruit.",
     tag: 'Veille',
-    photo: null,
+    photo: '/team/hilary-madjou.jpg',
     linkedin: '#',
   },
 ];
