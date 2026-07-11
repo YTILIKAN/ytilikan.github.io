@@ -30,7 +30,7 @@ const membres: {
     role: 'Responsable pédagogique',
     body: 'Garant de la validité scientifique et technique des contenus, élabore la ligne de formation tech.',
     tag: 'Formation',
-    photo: null,
+    photo: '/team/christian-nebot.png',
     linkedin: '#',
   },
   {
@@ -54,7 +54,7 @@ const membres: {
     role: 'Données & langues',
     body: 'Contribue aux jeux de données de langues africaines et à leur organisation pour la recherche.',
     tag: 'Données',
-    photo: null,
+    photo: '/team/balla-moussa.png',
     linkedin: '#',
   },
   {

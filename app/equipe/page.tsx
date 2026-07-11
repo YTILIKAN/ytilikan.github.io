@@ -45,7 +45,7 @@ const membres: {
     detail:
       "Conçoit les parcours de formation et veille à la rigueur des contenus. Lead sur AfriBench et Dira Browser.",
     tag: 'Formation',
-    photo: null,
+    photo: '/team/christian-nebot.png',
     linkedin: '#',
   },
   {
@@ -73,9 +73,9 @@ const membres: {
     role: 'Données & langues',
     body: 'Contribue aux jeux de données de langues africaines et à leur organisation pour la recherche.',
     detail:
-      "Travaille à rendre les langues africaines utilisables par les modèles et les chercheurs — brique essentielle de la souveraineté numérique.",
+      "Travaille à rendre les langues africaines utilisables par les modèles et les chercheurs, brique essentielle de la souveraineté numérique.",
     tag: 'Données',
-    photo: null,
+    photo: '/team/balla-moussa.png',
     linkedin: '#',
   },
   {
