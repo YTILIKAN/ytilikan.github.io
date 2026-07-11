@@ -18,11 +18,11 @@ const membres: {
     linkedin: '#',
   },
   {
-    name: 'Michel NIPBIEBA',
+    name: 'Michel Azarias',
     role: 'Responsable technique',
     body: 'Supervise la technique des tournages : image, son, lumière. Intervenant permanent, expertise terrain.',
     tag: 'Production',
-    photo: null,
+    photo: '/team/michel-azarias.png',
     linkedin: '#',
   },
   {
@@ -38,7 +38,7 @@ const membres: {
     role: 'Communication & journalisme',
     body: 'Prépare et présente la revue de presse, assure la veille tech et gère les réseaux sociaux.',
     tag: 'Médias',
-    photo: null,
+    photo: '/team/stelle-matha.png',
     linkedin: '#',
   },
   {

@@ -27,7 +27,7 @@ export const PROJETS: Projet[] = [
       'Résultats publics et comparables',
     ],
     stack: ['Python', 'LLM eval', 'Francophonie'],
-    authors: 'Christian NEBOT (Lead) · Michel NIPBIEBA',
+    authors: 'Christian NEBOT (Lead) · Michel Azarias',
     github: 'https://github.com/YTILIKAN/AfriBench',
     site: 'https://afribench.vercel.app',
   },

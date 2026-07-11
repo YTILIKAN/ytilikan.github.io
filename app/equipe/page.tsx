@@ -29,13 +29,13 @@ const membres: {
     linkedin: '#',
   },
   {
-    name: 'Michel NIPBIEBA',
+    name: 'Michel Azarias',
     role: 'Responsable technique',
     body: 'Supervise la technique des tournages : image, son, lumière. Intervenant permanent, expertise terrain.',
     detail:
       "De la captation à la qualité d'écoute : il rend possible le plateau. Aussi contributeur technique sur les projets open-source.",
     tag: 'Production',
-    photo: null,
+    photo: '/team/michel-azarias.png',
     linkedin: '#',
   },
   {
@@ -55,7 +55,7 @@ const membres: {
     detail:
       "La voix de l'actualité tech sur le plateau. Lead sur AfroLang-Library : données et langues africaines.",
     tag: 'Médias',
-    photo: null,
+    photo: '/team/stelle-matha.png',
     linkedin: '#',
   },
   {
