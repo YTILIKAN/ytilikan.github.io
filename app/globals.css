@@ -599,10 +599,24 @@ h2.sec-title {
 }
 
 .axis {
+  position: relative;
   background: var(--sable);
-  border-radius: var(--r-md);
-  padding: 22px 20px;
-  border-left: 3px solid var(--ocre);
+  /* Forme play : plus arrondi à droite (sens de lecture / lecture vidéo) */
+  border-radius: 12px 28px 28px 12px;
+  padding: 22px 22px 22px 40px;
+  border-left: none;
+}
+.axis::before {
+  content: '';
+  position: absolute;
+  left: 16px;
+  top: 26px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 7px 0 7px 11px;
+  border-color: transparent transparent transparent var(--ocre);
+  pointer-events: none;
 }
 
 .axis__title {
@@ -623,7 +637,7 @@ h2.sec-title {
   background: var(--encre);
   color: var(--ivoire);
   border-radius: var(--r-lg);
-  padding: 32px 28px;
+  padding: 36px 30px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -637,23 +651,34 @@ h2.sec-title {
   text-transform: uppercase;
   color: var(--ocre);
   display: block;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .essence-card__word {
   font-family: var(--display);
   font-weight: 800;
-  font-size: 2rem;
+  font-size: clamp(2.1rem, 3.2vw, 2.6rem);
   letter-spacing: -.02em;
-  margin-bottom: 10px;
+  line-height: 1.05;
+  margin-bottom: 18px;
 }
 
 .essence-card .apos { color: var(--ocre); }
 
+.essence-card__line {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: -.01em;
+  color: var(--ivoire);
+  margin-bottom: 8px;
+}
+
 .essence-card__def {
-  font-size: .92rem;
+  font-size: .95rem;
   color: rgba(250, 249, 246, .62);
   line-height: 1.55;
+  max-width: 22ch;
 }
 
 .vision {
@@ -1937,11 +1962,15 @@ h2.sec-title {
 .axis--link {
   display: block;
   height: 100%;
+  cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
 }
 .axis--link:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 24px rgba(22, 19, 17, 0.08);
+}
+.axis--link:hover::before {
+  border-color: transparent transparent transparent var(--orange-d);
 }
 .axis__more {
   display: inline-block;
@@ -1956,16 +1985,33 @@ h2.sec-title {
 
 .essence-card__link {
   display: inline-block;
-  margin-top: 18px;
+  margin-top: 22px;
   font-family: var(--mono);
   font-size: 0.68rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ocre);
   font-weight: 600;
+  cursor: pointer;
   transition: color 0.2s;
 }
 .essence-card__link:hover { color: var(--ivoire); }
+
+/* Curseurs sur surfaces cliquables */
+.em,
+.pcard,
+.card-hover,
+.section-more,
+.lead__link,
+.cover__proof-link,
+.cover__cta-secondary,
+.tm__join-cta,
+.step__cta,
+.detail-card__link,
+.proj-card,
+.faq-q {
+  cursor: pointer;
+}
 
 .nav__mobile-link.is-active { color: var(--ocre); font-weight: 600; }
 

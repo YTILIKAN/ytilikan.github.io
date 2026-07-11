@@ -75,15 +75,13 @@ export default function Essence() {
               ))}
             </ul>
           </div>
-          <aside className="essence-card" aria-label="Étymologie du nom">
+          <aside className="essence-card" aria-label="Le nom Y'TILIKAN">
             <span className="essence-card__label">Le nom</span>
             <p className="essence-card__word">
               Y<span className="apos">&apos;</span>tilikan
             </p>
-            <p className="essence-card__def">
-              Du mooré, langue du Burkina Faso : une expression qui signifie « ce n&apos;est pas
-              sorcier ». Toute notre conviction tient dans ce mot : la tech est à la portée de tous.
-            </p>
+            <p className="essence-card__line">Un mot. Une conviction.</p>
+            <p className="essence-card__def">La tech est à la portée de tous.</p>
             <a href="/essence" className="essence-card__link">
               Notre histoire →
             </a>

@@ -2,7 +2,7 @@
 
 Site officiel de Y'TILIKAN — communauté de vulgarisation de l'IA pour l'Afrique francophone et sa diaspora.
 
-**« Y'tilikan »**, en mooré : *ce n'est pas sorcier.*
+**« Ce n'est pas sorcier. »**
 
 ## Stack
 

@@ -71,17 +71,16 @@ export default function EssencePage() {
                 Y<span className="apos">&apos;</span>tilikan
               </h2>
               <p className="page-prose">
-                Du mooré, langue du Burkina Faso : une expression qui signifie « ce n&apos;est pas
-                sorcier ». Toute notre conviction tient dans ce mot : la tech est à la portée de
-                tous. Pas de magie, pas d&apos;élite fermée, seulement du savoir partagé, en
-                français, pour l&apos;Afrique francophone et sa diaspora.
+                Y<span className="apos">&apos;</span>tilikan porte toute notre conviction : la tech
+                est à la portée de tous. Du savoir partagé, en français, pour l&apos;Afrique
+                francophone et sa diaspora.
               </p>
             </div>
-            <aside className="page-callout" aria-label="Étymologie">
+            <aside className="page-callout" aria-label="Conviction">
               <span className="page-callout__label">Conviction</span>
               <p className="page-callout__text">
                 La technologie n&apos;est pas réservée à quelques-uns. Elle se comprend, se
-                maîtrise, et se crée — ici, maintenant.
+                maîtrise, et se crée, ici, maintenant.
               </p>
             </aside>
           </div>

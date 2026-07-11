@@ -52,7 +52,7 @@ spacing:
 ---
 ## Overview
 
-Y'TILIKAN est une communauté de vulgarisation de la tech et de l'IA pour l'Afrique francophone. Le nom signifie « ce n'est pas sorcier » en mooré (Burkina Faso). L'identité visuelle, définie par Three CM (2025), est **pédagogique avant d'être spectaculaire** : clarté, sobriété, chaleur maîtrisée. On explique, on ne cherche pas à impressionner.
+Y'TILIKAN est une communauté de vulgarisation de la tech et de l'IA pour l'Afrique francophone. L'identité visuelle, définie par Three CM (2025), est **pédagogique avant d'être spectaculaire** : clarté, sobriété, chaleur maîtrisée. On explique, on ne cherche pas à impressionner.
 
 La marque repose sur une palette réduite — noir, charbon, ivoire — rehaussée d'un orange chaud utilisé avec parcimonie pour l'action. Une seule typographie, Sora, porte toutes les voix : titres, corps et étiquettes techniques.
 
