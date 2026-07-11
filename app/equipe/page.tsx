@@ -5,7 +5,7 @@ import PageHero from '@/app/components/PageHero';
 export const metadata: Metadata = {
   title: "Équipe · Y'TILIKAN",
   description:
-    "Les visages derrière Y'TILIKAN : opérations, technique, pédagogie, médias, partenariats et données.",
+    "Les visages derrière Y'TILIKAN : opérations, technique, pédagogie, médias, partenariats, compétitions et team building.",
   alternates: { canonical: '/equipe' },
 };
 
@@ -70,21 +70,21 @@ const membres: {
   },
   {
     name: 'Balla Moussa',
-    role: 'Données & langues',
-    body: 'Contribue aux jeux de données de langues africaines et à leur organisation pour la recherche.',
+    role: 'Compétitions & hackathons',
+    body: 'Conçoit et anime les compétitions et hackathons pour faire grandir les talents tech du continent.',
     detail:
-      "Travaille à rendre les langues africaines utilisables par les modèles et les chercheurs, brique essentielle de la souveraineté numérique.",
-    tag: 'Données',
+      "Des challenges concrets pour apprendre en équipe, mesurer ses progrès et rencontrer d'autres passionnés de tech.",
+    tag: 'Compétitions',
     photo: '/team/balla-moussa.png',
     linkedin: '#',
   },
   {
     name: 'Hilary Madjou',
-    role: 'Veille & contenus',
-    body: "Pilote la veille IA du continent et la newsletter hebdomadaire de l'écosystème.",
+    role: 'Team Building',
+    body: "Pilote le team building : cohésion de l'équipe, rituels collectifs et dynamique de groupe.",
     detail:
-      "Derrière AfroTech-Pulse : une veille claire, régulière, utile. Pour que l'écosystème reste informé sans se perdre dans le bruit.",
-    tag: 'Veille',
+      "Elle tisse le lien entre les membres : moments partagés, énergie collective et une équipe qui avance ensemble.",
+    tag: 'Team Building',
     photo: '/team/hilary-madjou.jpg',
     linkedin: '#',
   },
