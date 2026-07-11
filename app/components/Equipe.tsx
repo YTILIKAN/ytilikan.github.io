@@ -10,11 +10,11 @@ const membres: {
   linkedin: string;
 }[] = [
   {
-    name: 'Hammel Tagakou',
+    name: 'Hamel Brayan',
     role: 'Opérations & éditorial',
     body: 'Anime les émissions comme modérateur, supervise la ligne éditoriale et coordonne les équipes.',
     tag: 'Modérateur',
-    photo: null,
+    photo: '/team/hamel-brayan.png',
     linkedin: '#',
   },
   {

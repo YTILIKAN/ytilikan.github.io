@@ -19,13 +19,13 @@ const membres: {
   linkedin: string;
 }[] = [
   {
-    name: 'Hammel Tagakou',
+    name: 'Hamel Brayan',
     role: 'Opérations & éditorial',
     body: 'Anime les émissions comme modérateur, supervise la ligne éditoriale et coordonne les équipes.',
     detail:
       "Garant du rythme du plateau et de la cohérence éditoriale. Il s'assure que chaque émission sert la mission : clarifier la tech pour tous.",
     tag: 'Modérateur',
-    photo: null,
+    photo: '/team/hamel-brayan.png',
     linkedin: '#',
   },
   {

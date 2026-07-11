@@ -63,7 +63,7 @@ export const PROJETS: Projet[] = [
       'Pipeline automatisé',
     ],
     stack: ['Veille', 'Automation', 'Newsletter'],
-    authors: 'Hilary Cynthia (Lead) · Brayan Tagakou · Steeve Junix',
+    authors: 'Hilary Cynthia (Lead) · Hamel Brayan · Steeve Junix',
     github: 'https://github.com/YTILIKAN/AfroTech-Pulse',
     site: null,
   },
