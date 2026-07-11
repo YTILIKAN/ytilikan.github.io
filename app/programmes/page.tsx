@@ -65,8 +65,8 @@ export default function ProgrammesPage() {
                 <ul className="pcard__points">
                   {p.points.map((pt) => (
                     <li key={pt}>
-                      <svg className="pcard__eye" viewBox="0 0 100 60">
-                        <use href="#eye" />
+                      <svg className="pcard__play" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#play" />
                       </svg>
                       {pt}
                     </li>

@@ -32,6 +32,10 @@ export default function Symbols() {
         <path fill="currentColor" d="M6,30 Q50,4 94,30 Q50,56 6,30 Z" />
       </symbol>
 
+      <symbol id="play" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M8 5.14v13.72L19.27 12 8 5.14z" />
+      </symbol>
+
       <pattern id="maskpat" x="0" y="0" width="120" height="120" patternUnits="userSpaceOnUse">
         <use href="#eye" x="10" y="18" width="44" height="26" style={{ color: 'var(--ivoire)' }} />
         <use href="#eye" x="66" y="18" width="44" height="26" style={{ color: 'var(--ocre)' }} />
