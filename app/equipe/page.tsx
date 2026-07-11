@@ -65,7 +65,7 @@ const membres: {
     detail:
       "Le lien avec les invités, les écoles et les partenaires. Elle ouvre les portes pour que la mission rayonne au-delà du plateau.",
     tag: 'Partenariats',
-    photo: null,
+    photo: '/team/honorine-guehara.png',
     linkedin: '#',
   },
   {
