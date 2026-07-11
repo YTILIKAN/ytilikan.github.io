@@ -28,20 +28,16 @@ export default function Symbols() {
         <rect fill="currentColor" x="72" y="139" width="56" height="16" rx="8" />
       </symbol>
 
-      <symbol id="eye" viewBox="0 0 100 60">
-        <path fill="currentColor" d="M6,30 Q50,4 94,30 Q50,56 6,30 Z" />
-      </symbol>
-
       <symbol id="play" viewBox="0 0 24 24">
         <path fill="currentColor" d="M8 5.14v13.72L19.27 12 8 5.14z" />
       </symbol>
 
       <pattern id="maskpat" x="0" y="0" width="120" height="120" patternUnits="userSpaceOnUse">
-        <use href="#eye" x="10" y="18" width="44" height="26" style={{ color: 'var(--ivoire)' }} />
-        <use href="#eye" x="66" y="18" width="44" height="26" style={{ color: 'var(--ocre)' }} />
-        <use href="#eye" x="38" y="72" width="44" height="26" style={{ color: 'var(--ocre)' }} />
-        <use href="#eye" x="-16" y="72" width="44" height="26" style={{ color: 'var(--ivoire)' }} />
-        <use href="#eye" x="94" y="72" width="44" height="26" style={{ color: 'var(--ivoire)' }} />
+        <use href="#play" x="14" y="16" width="28" height="28" style={{ color: 'var(--ivoire)' }} />
+        <use href="#play" x="70" y="16" width="28" height="28" style={{ color: 'var(--ocre)' }} />
+        <use href="#play" x="42" y="70" width="28" height="28" style={{ color: 'var(--ocre)' }} />
+        <use href="#play" x="-14" y="70" width="28" height="28" style={{ color: 'var(--ivoire)' }} />
+        <use href="#play" x="98" y="70" width="28" height="28" style={{ color: 'var(--ivoire)' }} />
       </pattern>
     </svg>
   );
