@@ -46,7 +46,7 @@ const membres: {
     role: 'Relations extérieures',
     body: 'Coordonne les intervenants, gère les relations partenaires et la communication externe.',
     tag: 'Partenariats',
-    photo: '/team/honorine-guehara.png',
+    photo: '/team/honorine-guehara.jpg',
     linkedin: '#',
   },
   {
