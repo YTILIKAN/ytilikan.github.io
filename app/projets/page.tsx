@@ -27,7 +27,13 @@ export default function ProjetsPage() {
               <article className="proj-detail reveal" id={p.slug} key={p.slug}>
                 <div className="proj-detail__top">
                   <span className="pj__tag">{p.tag}</span>
-                  <span className="pj__status">{p.status}</span>
+                  <span
+                    className={`pj__status ${
+                      p.status.toLowerCase().includes('dev') ? 'pj__status--wip' : 'pj__status--live'
+                    }`}
+                  >
+                    {p.status}
+                  </span>
                 </div>
                 <h2 className="proj-detail__name">{p.name}</h2>
                 <p className="proj-detail__detail">{p.detail}</p>
