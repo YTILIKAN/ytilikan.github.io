@@ -6,7 +6,7 @@ const items = [
   'Souveraineté numérique',
   'Vibe coding',
   'Afrique francophone',
-  "Le savoir, c'est le pouvoir",
+  'Le savoir, c’est le pouvoir',
 ];
 
 export default function Marquee() {
@@ -17,7 +17,7 @@ export default function Marquee() {
         {track.map((item, i) => (
           <span className="marquee__item" key={i}>
             {item}
-            <span className="marquee__dot">◆</span>
+            <span className="marquee__dot">▸</span>
           </span>
         ))}
       </div>

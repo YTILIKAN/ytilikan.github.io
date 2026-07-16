@@ -1,36 +1,33 @@
 import type { CSSProperties } from 'react';
+import WorldGlobe from './WorldGlobe';
 
 const missionAxes = [
   {
     title: 'Informer',
-    body: 'Émissions, interviews et débats sur ce que la tech change dans nos vies.',
+    body: 'Émissions et débats sur ce que la tech change, ici et sur le continent.',
     href: '/emissions',
-    more: 'Voir les émissions →',
   },
   {
     title: 'Former',
-    body: "Contenus concrets et gratuits, du débutant à l'initié.",
+    body: 'Contenus concrets et gratuits, du débutant à l’initié.',
     href: '/programmes',
-    more: 'Voir les programmes →',
   },
   {
     title: 'Partager',
-    body: 'Outils open-source, code et données ouverts à tous.',
+    body: 'Code et données ouverts, réutilisables par tous.',
     href: '/projets',
-    more: 'Voir les projets →',
   },
   {
     title: 'Valoriser',
-    body: "La parole aux talents tech du continent : l'Afrique innove.",
+    body: 'La parole aux talents tech du continent.',
     href: '/equipe',
-    more: "Voir l'équipe →",
   },
 ];
 
 const values = [
-  { title: 'Résilience', body: 'Transformer chaque obstacle en tremplin et bâtir sur le long terme.' },
-  { title: 'Passion', body: "L'envie sincère de comprendre, d'apprendre et de transmettre." },
-  { title: 'Innovation', body: 'Des solutions locales, créatives et taillées pour nos réalités.' },
+  { title: 'Résilience', body: 'Tenir dans la durée, obstacle après obstacle.' },
+  { title: 'Passion', body: "L'envie de comprendre, d'apprendre et de transmettre." },
+  { title: 'Innovation', body: 'Des solutions locales, pensées pour nos usages.' },
   { title: 'Engagement', body: 'Informer avec honnêteté, former avec rigueur, dialoguer avec respect.' },
   { title: 'Culture', body: 'Enracinés dans nos identités africaines, ouverts sur le monde.' },
 ];
@@ -45,45 +42,44 @@ const petals = values.map((v, i) => {
     delay: i * 110,
   };
 });
-const polygonPoints = petals.map((p) => `${p.x},${p.y}`).join(' ');
-
 export default function Essence() {
   return (
     <section className="section" id="essence">
       <div className="wrap">
         <div className="section-head reveal">
           <span className="eyebrow">01 / Qui sommes-nous</span>
-          <h2 className="sec-title">Rendre l&apos;Afrique souveraine, par le savoir.</h2>
+          <h2 className="sec-title">La tech, à la portée de l’Afrique.</h2>
           <p className="lead">
-            Donner aux Africains les moyens d&apos;une souveraineté technologique durable. Tout
-            commence par comprendre, apprendre et partager.
+            Émissions, débats, formations et code ouvert. Gratuit, en français.
           </p>
         </div>
 
-        <div className="essence-grid reveal">
+        <div className="essence-grid">
           <div className="mission">
             <span className="eyebrow mission__label">Notre mission</span>
-            <ul className="axes">
+            <ul className="axes reveal">
               {missionAxes.map((a) => (
                 <li key={a.title}>
                   <a className="axis axis--link" href={a.href}>
                     <h3 className="axis__title">{a.title}</h3>
                     <p className="axis__body">{a.body}</p>
-                    <span className="axis__more">{a.more}</span>
                   </a>
                 </li>
               ))}
             </ul>
           </div>
-          <aside className="essence-card" aria-label="Le nom Y'TILIKAN">
+          <aside className="essence-card reveal" data-delay="120" aria-label="Le nom Y'TILIKAN">
             <span className="essence-card__label">Le nom</span>
             <p className="essence-card__word">
-              Y<span className="apos">&apos;</span>tilikan
+              Y<span className="apos">’</span>TILIKAN
             </p>
-            <p className="essence-card__line">Un mot. Une conviction.</p>
-            <p className="essence-card__def">La tech est à la portée de tous.</p>
+            <p className="essence-card__mean">« Ce n’est pas sorcier. »</p>
+            <p className="essence-card__origin">Une expression de l’Ouest camerounais.</p>
+            <p className="essence-card__def">
+              Toute notre conviction tient là&nbsp;: la tech est à la portée de tous.
+            </p>
             <a href="/essence" className="essence-card__link">
-              Notre histoire →
+              Notre histoire <span className="arr" aria-hidden="true">→</span>
             </a>
           </aside>
         </div>
@@ -91,11 +87,11 @@ export default function Essence() {
         <div className="vision reveal">
           <span className="eyebrow vision__label">Notre vision</span>
           <p className="vision-lead">
-            Une Afrique qui ne subit plus la technologie : elle la comprend, la maîtrise et la crée.
-            C&apos;est notre définition de la souveraineté numérique.
+            Comprendre la technologie, la maîtriser, puis la créer. Pour que l’Afrique façonne la
+            tech au lieu de la subir.
           </p>
           <figure className="vision-quote-wrap">
-            <blockquote className="vision-quote">Le savoir, c&apos;est le pouvoir.</blockquote>
+            <blockquote className="vision-quote">Le savoir, c’est le pouvoir.</blockquote>
             <figcaption className="vision-quote__author">Francis Bacon</figcaption>
           </figure>
         </div>
@@ -104,7 +100,7 @@ export default function Essence() {
           <div className="values-block__head">
             <span className="eyebrow values-block__label">Nos valeurs</span>
             <a href="/essence" className="section-more">
-              Tout sur qui nous sommes →
+              Tout sur qui nous sommes
             </a>
           </div>
           <div className="constellation" id="values-constellation">
@@ -115,15 +111,6 @@ export default function Essence() {
                 aria-hidden="true"
                 preserveAspectRatio="xMidYMid meet"
               >
-                <polygon
-                  className="constellation__poly"
-                  points={polygonPoints}
-                  fill="none"
-                  stroke="#E6E2DC"
-                  strokeWidth="0.4"
-                  strokeLinejoin="round"
-                  pathLength={1}
-                />
                 {petals.map((p, i) => (
                   <line
                     className="constellation__line"
@@ -139,13 +126,8 @@ export default function Essence() {
                   />
                 ))}
               </svg>
-              <div className="constellation__center">
-                <span className="constellation__play" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" width="20" height="20">
-                    <path fill="currentColor" d="M8 5v14l11-7z" />
-                  </svg>
-                </span>
-                <span>5 valeurs, 1 cap</span>
+              <div className="constellation__globe" aria-label="Le monde, vue Afrique">
+                <WorldGlobe variant="light" />
               </div>
               {petals.map((p) => (
                 <div

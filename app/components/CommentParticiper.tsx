@@ -20,7 +20,7 @@ const steps = [
   {
     n: '03',
     title: 'Collaborer',
-    body: 'Intervenant, invité, partenaire ou école : écris-nous pour construire quelque chose ensemble.',
+    body: 'Intervenant, invité, partenaire ou école : écris-nous.',
     cta: 'Nous écrire',
     href: SITE.email,
     external: false,
@@ -34,13 +34,13 @@ export default function CommentParticiper() {
         <div className="section-head section-head--center reveal">
           <span className="eyebrow">Comment participer</span>
           <h2 className="sec-title" id="participer-title">
-            Trois étapes, dès aujourd&apos;hui.
+            Trois étapes, dès aujourd’hui.
           </h2>
           <p className="lead">
-            Regarde, contribue ou écris-nous. Chaque voie est concrète et gratuite.
+            Regarde, contribue, ou écris-nous. Tout est gratuit.
           </p>
           <a href="/participer" className="section-more section-more--center">
-            Guide complet →
+            Guide complet
           </a>
         </div>
 

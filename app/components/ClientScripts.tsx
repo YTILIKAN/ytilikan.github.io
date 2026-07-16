@@ -226,54 +226,6 @@ export default function ClientScripts() {
       );
     }
 
-    /* —————————————————————— Stats counters —————————————————————— */
-    {
-      const formatStatValue = (n: number, display?: string) => display ?? String(n);
-
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        document.querySelectorAll<HTMLElement>('.stat__n[data-target]').forEach((el) => {
-          const target = parseInt(el.dataset.target ?? '0', 10);
-          const display = el.dataset.display;
-          const isPct = el
-            .closest('.stat')
-            ?.querySelector('.stat__label')
-            ?.textContent?.includes('%');
-          el.textContent = isPct ? target + '%' : formatStatValue(target, display);
-        });
-      } else {
-        const counters = document.querySelectorAll<HTMLElement>('.stat__n[data-target]');
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (!entry.isIntersecting) return;
-              const el = entry.target as HTMLElement;
-              const target = parseInt(el.dataset.target ?? '0', 10);
-              const display = el.dataset.display;
-              const isPct = el.textContent?.includes('%') ?? false;
-              const duration = 1400;
-              const start = performance.now();
-              const tick = (now: number) => {
-                const progress = Math.min((now - start) / duration, 1);
-                const eased = 1 - Math.pow(1 - progress, 3);
-                const current = Math.round(target * eased);
-                el.textContent = isPct
-                  ? current + '%'
-                  : progress >= 1 && display
-                    ? display
-                    : String(current);
-                if (progress < 1) requestAnimationFrame(tick);
-              };
-              requestAnimationFrame(tick);
-              observer.unobserve(el);
-            });
-          },
-          { threshold: 0.4 }
-        );
-        counters.forEach((c) => observer.observe(c));
-        cleanups.push(() => observer.disconnect());
-      }
-    }
-
     /* —————————————————————— Essence constellation —————————————————————— */
     {
       const constellation = document.getElementById('values-constellation');

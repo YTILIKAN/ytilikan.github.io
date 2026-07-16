@@ -1,39 +1,29 @@
-import { SITE, formatCount } from '@/lib/site';
-import { PROJETS } from '@/lib/projets';
+import HeroNetwork from './HeroNetwork';
 
-const stats: { n: number; label: string; sub: string; display: string }[] = [
-  {
-    n: SITE.youtube.views,
-    label: 'Vues YouTube',
-    sub: 'Formations et débats en ligne',
-    display: formatCount(SITE.youtube.views),
-  },
-  {
-    n: SITE.emissionsCount,
-    label: 'Émissions',
-    sub: 'Débats et formations',
-    display: formatCount(SITE.emissionsCount),
-  },
-  {
-    n: PROJETS.length,
-    label: 'Projets open-source',
-    sub: 'AfriBench, AfroLang, AfroTech-Pulse, Dira',
-    display: formatCount(PROJETS.length),
-  },
+// Preuves concrètes, non chiffrées : tant que les compteurs sont petits, ils
+// jouent contre le projet. On met en avant ce qui existe déjà (émissions en
+// ligne, code ouvert, gratuité) plutôt que des nombres d'abonnés/vues.
+const proofs = [
+  { head: 'Déjà en ligne', sub: 'Émissions, débats et formations sur YouTube.' },
+  { head: 'Entièrement ouvert', sub: 'Code et projets open-source sur GitHub.' },
+  { head: '100 % gratuit', sub: 'Sans paiement ni abonnement, en français.' },
 ];
 
 export default function Stats() {
   return (
     <section className="section stats-band">
+      <HeroNetwork className="stats-band__net" variant="light" densityScale={0.5} />
       <div className="wrap">
         <div className="stats-grid reveal">
-          {stats.map((s) => (
-            <div className="stat" key={s.label}>
-              <span className="stat__n" data-target={s.n} data-display={s.display}>
-                {s.display ?? s.n}
+          {proofs.map((p) => (
+            <div className="stat" key={p.head}>
+              <span className="stat__mark" aria-hidden="true">
+                <svg viewBox="0 0 12 14" width="12" height="14">
+                  <path fill="currentColor" d="M0 0 12 7 0 14Z" />
+                </svg>
               </span>
-              <span className="stat__label">{s.label}</span>
-              <span className="stat__sub">{s.sub}</span>
+              <span className="stat__head">{p.head}</span>
+              <span className="stat__sub">{p.sub}</span>
             </div>
           ))}
         </div>

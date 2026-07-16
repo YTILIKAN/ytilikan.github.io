@@ -1,4 +1,5 @@
 import { SITE } from '@/lib/site';
+import HeroNetwork from './HeroNetwork';
 
 const CHANNEL = SITE.youtube.url;
 const EMAIL = SITE.email;
@@ -19,9 +20,7 @@ export default function Contact() {
   return (
     <>
       <section className="contact" id="contact" aria-labelledby="contact-title">
-        <svg className="contact__pattern" aria-hidden="true">
-          <rect width="100%" height="100%" fill="url(#maskpat)" />
-        </svg>
+        <HeroNetwork className="contact__net" densityScale={0.7} />
         <div className="wrap contact__inner">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -34,18 +33,16 @@ export default function Contact() {
             decoding="async"
           />
           <h2 className="contact__title reveal" id="contact-title" data-delay="80">
-            Construisons une Afrique qui comprend
-            <br />
-            la technologie <em>parce qu&apos;on y participe pleinement.</em>
+            Une question, une idée&nbsp;? <em>Écris-nous.</em>
           </h2>
           <p className="contact__lead reveal" data-delay="160">
-            Une question, une idée, une proposition de collaboration : le formulaire ci-dessous nous
-            arrive directement.
+            Le formulaire ci-dessous nous arrive directement. On répond à chaque message, sous
+            quelques jours.
           </p>
 
           <div className="cform-block reveal">
-            <h3 className="cform-block__title">Une question, une idée ? Écris-nous.</h3>
-            <p className="cform-block__sub">On répond à chaque message, toujours.</p>
+            <h3 className="cform-block__title">Ton message</h3>
+            <p className="cform-block__sub">Réponse à chaque envoi.</p>
 
             <form className="cform" id="contact-form" data-key={SITE.web3formsKey}>
               <input type="hidden" name="access_key" defaultValue={SITE.web3formsKey} />
@@ -136,10 +133,10 @@ export default function Contact() {
                 loading="lazy"
                 decoding="async"
               />
-              <span className="foot__wm">Y&apos;TILIKAN</span>
+              <span className="foot__wm">Y’TILIKAN</span>
             </div>
             <p className="foot__desc">
-              Y&apos;TILIKAN rend la tech et l&apos;IA accessibles à l&apos;Afrique francophone.
+              Y’TILIKAN rend la tech et l’IA accessibles à l’Afrique francophone.
               Émissions, formations et projets open-source, gratuits et en français.
             </p>
           </div>
@@ -156,8 +153,8 @@ export default function Contact() {
           </nav>
         </div>
         <div className="wrap foot__row">
-          <span className="foot__meta">© {year} Y&apos;TILIKAN · Tous droits réservés</span>
-          <span className="foot__meta foot__meta--gold">La connaissance, c&apos;est le pouvoir.</span>
+          <span className="foot__meta">© {year} Y’TILIKAN · Tous droits réservés</span>
+          <span className="foot__meta foot__meta--gold">La connaissance, c’est le pouvoir.</span>
         </div>
       </footer>
     </>
