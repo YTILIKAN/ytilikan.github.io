@@ -1,19 +1,19 @@
 const faqs = [
   {
     q: 'Est-ce vraiment gratuit ?',
-    a: 'Oui, entièrement. Émissions, formations et outils sont accessibles sans paiement ni abonnement. Notre modèle repose sur le partage, pas sur la vente.',
+    a: 'Oui, entièrement. Émissions, formations et outils, sans paiement ni abonnement.',
   },
   {
     q: 'Faut-il des connaissances en informatique pour suivre ?',
-    a: "Non. Nos contenus partent de zéro et expliquent étape par étape, sans jargon. « Ce n'est pas sorcier » n'est pas qu'un slogan : c'est notre méthode.",
+    a: 'Non. On part de zéro, étape par étape, sans jargon. « Ce n’est pas sorcier » n’est pas qu’un slogan : c’est notre méthode.',
   },
   {
     q: 'Que veut dire « open-source » concrètement ?',
     a: 'Notre code et nos jeux de données sont publics sur GitHub. Chacun peut les consulter, les réutiliser et les améliorer librement.',
   },
   {
-    q: "À qui s'adresse Y'TILIKAN ?",
-    a: 'À toute l\'Afrique francophone et sa diaspora : étudiants, professionnels, curieux. Nos contenus sont en français et pensés pour les réalités du continent, du Cameroun au Sénégal.',
+    q: 'À qui s’adresse Y’TILIKAN ?',
+    a: 'À toute l’Afrique francophone et sa diaspora : étudiants, professionnels, curieux. En français, du Cameroun au Sénégal.',
   },
   {
     q: 'Comment participer à une émission ou proposer un sujet ?',
@@ -35,14 +35,14 @@ export default function FAQ() {
             Ce que vous nous demandez.
           </h2>
           <p className="lead">
-            Les réponses aux questions qu&apos;on nous pose le plus souvent. Une autre en tête ?{' '}
+            Les réponses aux questions qu’on nous pose le plus souvent. Une autre en tête ?{' '}
             <a href="#contact" className="lead__link">
               Écris-nous
             </a>
             .
           </p>
           <a href="/faq" className="section-more">
-            FAQ complète →
+            FAQ complète
           </a>
         </div>
 

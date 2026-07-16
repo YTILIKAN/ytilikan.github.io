@@ -19,7 +19,7 @@ export default function PageShell({ active, children }: PageShellProps) {
       <footer className="page-footer">
         <div className="wrap page-footer__inner">
           <a href="/" className="page-footer__brand">
-            Y<span className="apos">&apos;</span>TILIKAN
+            Y<span className="apos">’</span>TILIKAN
           </a>
           <a href="/#contact" className="page-footer__cta">
             Nous écrire

@@ -6,11 +6,10 @@ export default function Projets() {
       <div className="wrap">
         <div className="section-head reveal">
           <span className="eyebrow">04 / Initiatives &amp; projets open-source</span>
-          <h2 className="sec-title">Notre écosystème open-source.</h2>
+          <h2 className="sec-title">Nos projets open-source.</h2>
           <p className="lead">
-            Tous nos projets sont ouverts, documentés et prêts aux contributions. De l&apos;évaluation
-            des LLMs aux datasets de langues africaines : l&apos;infrastructure d&apos;une IA
-            africaine se construit ici.
+            Nos projets sont ouverts et documentés. Évaluation de LLMs, datasets de langues
+            africaines, outils de veille.
           </p>
         </div>
 
@@ -60,7 +59,7 @@ export default function Projets() {
                     </a>
                   )}
                   <a href={`/projets#${p.slug}`} className="pj__link pj__link--more">
-                    Détails →
+                    Détails
                   </a>
                 </div>
               </div>
@@ -70,7 +69,7 @@ export default function Projets() {
 
         <div className="pj-cta reveal">
           <a href="/projets" className="section-more">
-            Fiches projets complètes →
+            Fiches projets complètes
           </a>
         </div>
       </div>

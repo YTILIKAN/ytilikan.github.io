@@ -19,7 +19,7 @@ export default function Nav({ variant = 'home', active }: NavProps) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/logo.jpeg" alt="" className="nav__logo nav__logo--dark" width={34} height={34} />
           <span className="nav__word">
-            Y<span className="apos">&apos;</span>TILIKAN
+            Y<span className="apos">’</span>TILIKAN
           </span>
         </a>
 

@@ -3,17 +3,17 @@ import { SITE } from '@/lib/site';
 const CHANNEL = SITE.youtube.url;
 
 const videos = [
-  { kick: 'Formation', title: "Formation : Vibe Coding avec l'IA", meta: '1:35:04', id: '4zQ-YN_SvlU' },
+  { kick: 'Formation', title: 'Formation : Vibe Coding avec l’IA', meta: '1:35:04', id: '4zQ-YN_SvlU' },
   {
     kick: 'Grand Débat Tech',
-    title: "Faut-il craindre l'intelligence artificielle en milieu scolaire ?",
+    title: 'Faut-il craindre l’intelligence artificielle en milieu scolaire ?',
     meta: '1:16:07',
     id: 'nu59ufftqZ4',
   },
-  { kick: 'Formation', title: "Augmenter sa productivité avec l'IA", meta: '1:08:22', id: 'i_7SlR1bUEk' },
+  { kick: 'Formation', title: 'Augmenter sa productivité avec l’IA', meta: '1:08:22', id: 'i_7SlR1bUEk' },
   {
     kick: 'Grand Débat Tech',
-    title: "L'IA va-t-elle détruire nos emplois ou créer de nouvelles opportunités ?",
+    title: 'L’IA va-t-elle détruire nos emplois ou créer de nouvelles opportunités ?',
     meta: '35:00',
     id: 'hbLpDjowqDo',
   },
@@ -25,7 +25,7 @@ const videos = [
   },
   {
     kick: 'Formation',
-    title: 'Apprendre à coder avec l\'IA ? Voici la formation Vibe Coding',
+    title: 'Apprendre à coder avec l’IA ? Voici la formation Vibe Coding',
     meta: '1:34',
     id: 'hVGZZT45Qxs',
   },
@@ -37,10 +37,10 @@ export default function Emissions() {
       <div className="wrap">
         <div className="section-head reveal">
           <span className="eyebrow">02 / Nos émissions</span>
-          <h2 className="sec-title">Du concret, en vidéo.</h2>
+          <h2 className="sec-title">Nos émissions, déjà en ligne.</h2>
           <p className="lead">
-            Débats et formations, déjà en ligne sur notre chaîne. L&apos;IA à l&apos;école, le vibe
-            coding, la productivité, la place de l&apos;Afrique dans la tech.
+            Débats et formations, déjà en ligne sur notre chaîne. L’IA à l’école, le vibe
+            coding, la productivité, la place de l’Afrique dans la tech.
           </p>
         </div>
 

@@ -20,7 +20,7 @@ export const PROJETS: Projet[] = [
     status: 'Open-source',
     desc: 'Évaluer les LLM sur des connaissances africaines francophones — QCM multi-catégories, protocole reproductible.',
     detail:
-      "Les LLM sont souvent évalués sur des corpus occidentaux. AfriBench mesure ce qu'ils savent vraiment du continent francophone : histoire, culture, institutions, réalités locales. Résultats publics, protocole reproductible.",
+      'Les LLM sont souvent évalués sur des corpus occidentaux. AfriBench mesure ce qu’ils savent vraiment du continent francophone : histoire, culture, institutions, réalités locales. Résultats publics, protocole reproductible.',
     highlights: [
       'QCM multi-catégories (culture, histoire, institutions…)',
       'Protocole d’évaluation reproductible',
@@ -56,7 +56,7 @@ export const PROJETS: Projet[] = [
     status: 'Public',
     desc: 'Dashboard de veille IA Afrique + newsletter automatisée chaque lundi.',
     detail:
-      "Une veille structurée sur l'IA en Afrique : signaux, acteurs, annonces. Dashboard + newsletter du lundi pour rester informé sans noyer sous le bruit.",
+      'Une veille structurée sur l’IA en Afrique : signaux, acteurs, annonces. Dashboard + newsletter du lundi pour rester informé sans noyer sous le bruit.',
     highlights: [
       'Dashboard de signaux IA continentaux',
       'Newsletter hebdomadaire (lundi)',
@@ -72,11 +72,11 @@ export const PROJETS: Projet[] = [
     name: 'Dira Browser',
     tag: 'Navigateur · Apprentissage',
     status: 'En dev',
-    desc: 'Laboratoire Chromium pour comprendre un navigateur, avec un focus confidentialité. Dira = boussole en swahili.',
+    desc: 'Laboratoire de navigateur basé sur Brave (moteur Chromium), avec un focus confidentialité. Dira = boussole en swahili.',
     detail:
-      "Dira n'est pas un produit fini : c'est un laboratoire. En partant de Chromium, on apprend l'architecture d'un navigateur et on explore la confidentialité. Ouvert à ceux qui veulent comprendre « sous le capot ».",
+      'Dira n’est pas un produit fini : c’est un laboratoire. En partant de Brave (basé sur Chromium), on apprend l’architecture d’un navigateur et on explore la confidentialité. Ouvert à ceux qui veulent comprendre « sous le capot ».',
     highlights: [
-      'Fork pédagogique basé sur Chromium',
+      'Fork pédagogique basé sur Brave (Chromium)',
       'Focus confidentialité',
       'Apprentissage « sous le capot »',
     ],

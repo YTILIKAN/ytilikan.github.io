@@ -20,7 +20,7 @@ const membres: {
   {
     name: 'Michel Azarias',
     role: 'Responsable technique',
-    body: 'Supervise la technique des tournages : image, son, lumière. Intervenant permanent, expertise terrain.',
+    body: 'Supervise l’image, le son et la lumière des tournages.',
     tag: 'Production',
     photo: '/team/michel-azarias.png',
     linkedin: '#',
@@ -52,7 +52,7 @@ const membres: {
   {
     name: 'Balla Moussa',
     role: 'Compétitions & hackathons',
-    body: 'Recherche et coordonne nos participations aux challenges externes, et organisera nos hackathons internes à venir.',
+    body: 'Coordonne nos participations aux challenges externes et nos hackathons internes.',
     tag: 'Compétitions',
     photo: '/team/balla-moussa.png',
     linkedin: '#',
@@ -60,7 +60,7 @@ const membres: {
   {
     name: 'Hilary Madjou',
     role: 'Team Building',
-    body: "Pilote le team building : cohésion de l'équipe, rituels collectifs et dynamique de groupe.",
+    body: 'Pilote le team building : cohésion de l’équipe, rituels collectifs et dynamique de groupe.',
     tag: 'Team Building',
     photo: '/team/hilary-madjou.jpg',
     linkedin: '#',
@@ -82,10 +82,9 @@ export default function Equipe() {
       <div className="wrap">
         <div className="section-head reveal">
           <span className="eyebrow">05 / Notre équipe</span>
-          <h2 className="sec-title">Les visages derrière Y&apos;TILIKAN.</h2>
+          <h2 className="sec-title">Les visages derrière Y’TILIKAN.</h2>
           <p className="lead">
-            Une structure agile où chacun tient un rôle défini, du plateau à la formation. Ensemble,
-            une même mission : rendre la tech claire pour tous.
+            Sept personnes, du plateau à la formation. Chacun un rôle.
           </p>
         </div>
 
@@ -127,8 +126,7 @@ export default function Equipe() {
             <div className="tm__info">
               <h3 className="tm__name">Envie de nous rejoindre&nbsp;?</h3>
               <p className="tm__body">
-                Intervenant, invité ou partenaire : l&apos;équipe s&apos;agrandit avec ceux qui
-                partagent la mission.
+                Intervenant, invité ou partenaire&nbsp;? Écris-nous.
               </p>
               <a href="#contact" className="tm__join-cta">
                 Nous écrire
