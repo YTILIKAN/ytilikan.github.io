@@ -1,4 +1,5 @@
 import { NAV_LINKS } from '@/lib/nav';
+import { SITE } from '@/lib/site';
 
 type NavProps = {
   /** Page d'accueil avec hero sombre ; sinon nav claire pour les sous-pages. */
@@ -37,8 +38,8 @@ export default function Nav({ variant = 'home', active }: NavProps) {
           ))}
         </nav>
 
-        <a href={isHome ? '#participer' : '/#participer'} className="nav__cta">
-          Participer
+        <a href={`${SITE.community}/connexion`} className="nav__cta">
+          Espace membre
         </a>
 
         <button
@@ -65,8 +66,8 @@ export default function Nav({ variant = 'home', active }: NavProps) {
             {l.label}
           </a>
         ))}
-        <a href={isHome ? '#participer' : '/#participer'} className="nav__mobile-link nav__mobile-cta">
-          Participer
+        <a href={`${SITE.community}/connexion`} className="nav__mobile-link nav__mobile-cta">
+          Espace membre
         </a>
       </div>
     </header>

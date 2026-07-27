@@ -39,8 +39,8 @@ export default function CommentParticiper() {
           <p className="lead">
             Regarde, contribue, ou écris-nous. Tout est gratuit.
           </p>
-          <a href="/participer" className="section-more section-more--center">
-            Guide complet
+          <a href="https://community.ytilikan.org/connexion" className="section-more section-more--center">
+            Rejoindre l&apos;espace membre
           </a>
         </div>
 

@@ -11,6 +11,7 @@ export const SITE = {
   emissionsCount: 6,
   // Clé d'accès Web3Forms : active l'envoi du formulaire de contact.
   web3formsKey: '9fb72e4f-6797-44a5-9e15-bef9b54475cd',
+  community: 'https://community.ytilikan.org',
 } as const;
 
 /** URL canonique du site — configurable via NEXT_PUBLIC_SITE_URL sur Vercel. */

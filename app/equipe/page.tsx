@@ -163,8 +163,8 @@ export default function EquipePage() {
             <a href="/#contact" className="btn btn--gold">
               Nous écrire
             </a>
-            <a href="/participer" className="btn btn--ghost page-cta-band__ghost">
-              Comment participer
+            <a href="https://community.ytilikan.org/connexion" className="btn btn--ghost page-cta-band__ghost">
+              Rejoindre l&apos;espace membre
             </a>
           </div>
         </div>

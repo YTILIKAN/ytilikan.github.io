@@ -88,8 +88,8 @@ export default function ProjetsPage() {
             <a href={SITE.github} target="_blank" rel="noopener noreferrer" className="btn btn--gold">
               Ouvrir GitHub
             </a>
-            <a href="/participer" className="btn btn--ghost page-cta-band__ghost">
-              Comment participer
+            <a href="https://community.ytilikan.org/connexion" className="btn btn--ghost page-cta-band__ghost">
+              Rejoindre l&apos;espace membre
             </a>
           </div>
         </div>

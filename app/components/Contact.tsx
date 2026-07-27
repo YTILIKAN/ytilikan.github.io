@@ -6,7 +6,7 @@ const EMAIL = SITE.email;
 
 const footLinks = [
   { href: '/essence', label: 'Essence' },
-  { href: '/participer', label: 'Participer' },
+  { href: 'https://community.ytilikan.org/connexion', label: 'Espace membre' },
   { href: '/emissions', label: 'Émissions' },
   { href: '/programmes', label: 'Programmes' },
   { href: '/projets', label: 'Projets' },

@@ -153,8 +153,8 @@ export default function EssencePage() {
             Regarde une émission, contribue à un projet, ou écris-nous pour collaborer.
           </p>
           <div className="page-cta-band__actions">
-            <a href="/participer" className="btn btn--gold">
-              Comment participer
+            <a href="https://community.ytilikan.org/connexion" className="btn btn--gold">
+              Rejoindre l&apos;espace membre
             </a>
             <a href={SITE.youtube.url} target="_blank" rel="noopener noreferrer" className="btn btn--ghost page-cta-band__ghost">
               Voir la chaîne
