@@ -1,8 +1,10 @@
 import { SITE } from '@/lib/site';
+import type { SiteEmission } from '@/lib/api';
 
 const CHANNEL = SITE.youtube.url;
 
-const videos = [
+// Filet : contenu affiché tant que l'API ne renvoie rien (CMS vide ou API indisponible).
+const fallbackVideos = [
   { kick: 'Formation', title: 'Formation : Vibe Coding avec l’IA', meta: '1:35:04', id: '4zQ-YN_SvlU' },
   {
     kick: 'Grand Débat Tech',
@@ -31,7 +33,31 @@ const videos = [
   },
 ];
 
-export default function Emissions() {
+function formatDuration(min: number): string {
+  if (!min) return '';
+  const h = Math.floor(min / 60);
+  const m = min % 60;
+  if (h > 0) return `${h}:${String(m).padStart(2, '0')}:00`;
+  return `${m}:00`;
+}
+
+function extractYoutubeId(url: string): string | null {
+  const m = url.match(/(?:v=|youtu\.be\/|\/embed\/)([A-Za-z0-9_-]{6,})/);
+  return m ? m[1] : null;
+}
+
+export default function Emissions({ items }: { items?: SiteEmission[] }) {
+  const videos = items && items.length > 0
+    ? items
+        .filter((e) => extractYoutubeId(e.youtube_url) || e.youtube_id)
+        .map((e) => ({
+          kick: e.format,
+          title: e.title,
+          meta: formatDuration(e.duration_minutes),
+          id: e.youtube_id || extractYoutubeId(e.youtube_url) || '',
+        }))
+    : fallbackVideos;
+
   return (
     <section className="section" id="emissions">
       <div className="wrap">

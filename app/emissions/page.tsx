@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import PageShell from '@/app/components/PageShell';
 import PageHero from '@/app/components/PageHero';
 import { SITE } from '@/lib/site';
+import { fetchPublicSite, formatDuration, extractYoutubeId } from '@/lib/api';
+import type { SiteEmission } from '@/lib/api';
 
 export const metadata: Metadata = {
   title: "Émissions · Y'TILIKAN",
@@ -27,7 +29,8 @@ const formats = [
   },
 ];
 
-const videos = [
+// Filet : contenu affiché tant que l'API ne renvoie rien.
+const fallbackVideos = [
   { kick: 'Formation', title: "Formation : Vibe Coding avec l'IA", meta: '1:35:04', id: '4zQ-YN_SvlU' },
   {
     kick: 'Grand Débat Tech',
@@ -56,7 +59,21 @@ const videos = [
   },
 ];
 
-export default function EmissionsPage() {
+function mapEmissions(emissions: SiteEmission[]) {
+  return emissions
+    .filter((e) => extractYoutubeId(e.youtube_url) || e.youtube_id)
+    .map((e) => ({
+      kick: e.format,
+      title: e.title,
+      meta: formatDuration(e.duration_minutes),
+      id: e.youtube_id || extractYoutubeId(e.youtube_url) || '',
+    }));
+}
+
+export default async function EmissionsPage() {
+  const site = await fetchPublicSite();
+  const videos = site.emissions.length > 0 ? mapEmissions(site.emissions) : fallbackVideos;
+
   return (
     <PageShell active="emissions">
       <PageHero

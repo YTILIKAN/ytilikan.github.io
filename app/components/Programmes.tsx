@@ -1,4 +1,7 @@
-const programmes = [
+import type { SiteProgramme } from '@/lib/api';
+
+// Filet : contenu affiché tant que l'API ne renvoie rien.
+const fallbackProgrammes = [
   {
     kick: 'Émission principale',
     title: "Y'TILIKAN",
@@ -25,7 +28,18 @@ const programmes = [
   },
 ];
 
-export default function Programmes() {
+export default function Programmes({ items }: { items?: SiteProgramme[] }) {
+  const programmes = items && items.length > 0
+    ? items.map((p) => ({
+        kick: p.kick,
+        title: p.title,
+        duration: p.duration,
+        body: p.body,
+        points: p.points,
+        soon: p.coming_soon,
+      }))
+    : fallbackProgrammes;
+
   return (
     <section className="section" id="programmes">
       <div className="wrap">

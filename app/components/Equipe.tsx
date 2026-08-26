@@ -1,7 +1,9 @@
+import type { SiteTeamMember } from '@/lib/api';
+
+// Filet : contenu affiché tant que l'API ne renvoie rien.
 // Pour afficher une vraie photo : dépose le fichier dans /public/team/
 // puis renseigne le chemin dans `photo` (ex. '/team/brayan.jpg').
-// Tant que `photo` est null, la silhouette par défaut s'affiche.
-const membres: {
+const fallbackMembres: {
   name: string;
   role: string;
   body: string;
@@ -76,7 +78,18 @@ function initials(name: string): string {
     .join('');
 }
 
-export default function Equipe() {
+export default function Equipe({ members }: { members?: SiteTeamMember[] }) {
+  const membres = members && members.length > 0
+    ? members.map((m) => ({
+        name: m.name,
+        role: m.role,
+        body: m.bio,
+        tag: m.tag,
+        photo: m.photo_url,
+        linkedin: m.linkedin_url || '#',
+      }))
+    : fallbackMembres;
+
   return (
     <section className="section team" id="equipe">
       <div className="wrap">

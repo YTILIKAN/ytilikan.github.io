@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import PageShell from '@/app/components/PageShell';
 import PageHero from '@/app/components/PageHero';
 import { SITE } from '@/lib/site';
+import { fetchPublicSite } from '@/lib/api';
+import type { SiteProgramme } from '@/lib/api';
 
 export const metadata: Metadata = {
   title: "Programmes · Y'TILIKAN",
@@ -10,7 +12,8 @@ export const metadata: Metadata = {
   alternates: { canonical: '/programmes' },
 };
 
-const programmes = [
+// Filet : contenu affiché tant que l'API ne renvoie rien.
+const fallbackProgrammes = [
   {
     kick: 'Émission principale',
     title: "Y'TILIKAN",
@@ -40,7 +43,21 @@ const programmes = [
   },
 ];
 
-export default function ProgrammesPage() {
+function mapProgrammes(programmes: SiteProgramme[]) {
+  return programmes.map((p) => ({
+    kick: p.kick,
+    title: p.title,
+    duration: p.duration,
+    body: p.body,
+    points: p.points,
+    detail: p.body,
+  }));
+}
+
+export default async function ProgrammesPage() {
+  const site = await fetchPublicSite();
+  const programmes = site.programmes.length > 0 ? mapProgrammes(site.programmes) : fallbackProgrammes;
+
   return (
     <PageShell active="programmes">
       <PageHero

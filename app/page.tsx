@@ -7,27 +7,20 @@ import Stats from './components/Stats';
 import Marquee from './components/Marquee';
 import Emissions from './components/Emissions';
 import Programmes from './components/Programmes';
-import Projets from './components/Projets';
 import Evenements from './components/Evenements';
+import Projets from './components/Projets';
 import Equipe from './components/Equipe';
 import FAQ from './components/FAQ';
 import Contact from './components/Contact';
 import ClientScripts from './components/ClientScripts';
-import { fetchShowcaseProjects, fetchPublicEvents } from '@/lib/api';
-import type { ShowcaseProject, PublicEvent } from '@/lib/api';
+import { fetchPublicSite, fetchShowcaseProjects, fetchPublicEvents } from '@/lib/api';
 
 export default async function Home() {
-  let projects: ShowcaseProject[] = [];
-  let events: PublicEvent[] = [];
-
-  try {
-    [projects, events] = await Promise.all([
-      fetchShowcaseProjects(),
-      fetchPublicEvents(),
-    ]);
-  } catch {
-    // Fallback sur donnees hardcodees dans les composants
-  }
+  const [site, projects, events] = await Promise.all([
+    fetchPublicSite(),
+    fetchShowcaseProjects(),
+    fetchPublicEvents(),
+  ]);
 
   return (
     <>
@@ -39,12 +32,12 @@ export default async function Home() {
         <CommentParticiper />
         <Stats />
         <Marquee />
-        <Emissions />
-        <Programmes />
+        <Emissions items={site.emissions} />
+        <Programmes items={site.programmes} />
         <Evenements events={events} />
         <Projets apiProjects={projects} />
-        <Equipe />
-        <FAQ />
+        <Equipe members={site.team} />
+        <FAQ items={site.faq} />
         <Contact />
       </main>
       <ClientScripts />

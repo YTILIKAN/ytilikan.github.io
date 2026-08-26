@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import PageShell from '@/app/components/PageShell';
 import PageHero from '@/app/components/PageHero';
+import { fetchPublicSite } from '@/lib/api';
+import type { SiteTeamMember } from '@/lib/api';
 
 export const metadata: Metadata = {
   title: "Équipe · Y'TILIKAN",
@@ -9,7 +11,8 @@ export const metadata: Metadata = {
   alternates: { canonical: '/equipe' },
 };
 
-const membres: {
+// Filet : contenu affiché tant que l'API ne renvoie rien.
+const fallbackMembres: {
   name: string;
   role: string;
   body: string;
@@ -99,7 +102,22 @@ function initials(name: string): string {
     .join('');
 }
 
-export default function EquipePage() {
+function mapMembers(members: SiteTeamMember[]) {
+  return members.map((m) => ({
+    name: m.name,
+    role: m.role,
+    body: m.bio,
+    detail: m.bio,
+    tag: m.tag,
+    photo: m.photo_url,
+    linkedin: m.linkedin_url || '#',
+  }));
+}
+
+export default async function EquipePage() {
+  const site = await fetchPublicSite();
+  const membres = site.team.length > 0 ? mapMembers(site.team) : fallbackMembres;
+
   return (
     <PageShell active="equipe">
       <PageHero

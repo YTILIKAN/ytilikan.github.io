@@ -1,4 +1,7 @@
-const faqs = [
+import type { SiteFaqItem } from '@/lib/api';
+
+// Filet : contenu affiché tant que l'API ne renvoie rien.
+const fallbackFaqs = [
   {
     q: 'Est-ce vraiment gratuit ?',
     a: 'Oui, entièrement. Émissions, formations et outils, sans paiement ni abonnement.',
@@ -25,7 +28,11 @@ const faqs = [
   },
 ];
 
-export default function FAQ() {
+export default function FAQ({ items }: { items?: SiteFaqItem[] }) {
+  const faqs = items && items.length > 0
+    ? items.map((i) => ({ q: i.question, a: i.answer }))
+    : fallbackFaqs;
+
   return (
     <section className="section faq" id="faq" aria-labelledby="faq-title">
       <div className="wrap">
