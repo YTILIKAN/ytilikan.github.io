@@ -98,7 +98,7 @@ export type PublicSiteContent = {
 async function fetchJSON<T>(path: string): Promise<T | null> {
   try {
     const res = await fetch(`${API}${path}`, {
-      next: { revalidate: 300 },
+      next: { revalidate: 300, tags: ["site-content"] },
       headers: { Accept: "application/json" },
     });
     if (!res.ok) return null;
