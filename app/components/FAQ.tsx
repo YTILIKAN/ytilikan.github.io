@@ -1,4 +1,6 @@
-const faqs = [
+import { withCmsFallback, type PublicFaqItem } from '@/lib/api';
+
+const FALLBACK_FAQS = [
   {
     q: 'Est-ce vraiment gratuit ?',
     a: 'Oui, entièrement. Émissions, formations et outils, sans paiement ni abonnement.',
@@ -25,7 +27,12 @@ const faqs = [
   },
 ];
 
-export default function FAQ() {
+export default function FAQ({ items }: { items?: PublicFaqItem[] }) {
+  const faqs = withCmsFallback(
+    (items ?? []).map((item) => ({ q: item.question, a: item.answer })),
+    FALLBACK_FAQS,
+  );
+
   return (
     <section className="section faq" id="faq" aria-labelledby="faq-title">
       <div className="wrap">

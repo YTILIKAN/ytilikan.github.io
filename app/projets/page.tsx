@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import PageShell from '@/app/components/PageShell';
 import PageHero from '@/app/components/PageHero';
 import { SITE } from '@/lib/site';
-import { PROJETS } from '@/lib/projets';
+import { mergeShowcaseProjects } from '@/lib/projets';
+import { fetchShowcaseProjects } from '@/lib/api';
 
 export const metadata: Metadata = {
   title: "Projets open-source · Y'TILIKAN",
@@ -11,7 +12,9 @@ export const metadata: Metadata = {
   alternates: { canonical: '/projets' },
 };
 
-export default function ProjetsPage() {
+export default async function ProjetsPage() {
+  const apiProjects = await fetchShowcaseProjects();
+  const projects = mergeShowcaseProjects(apiProjects);
   return (
     <PageShell active="projets">
       <PageHero
@@ -23,7 +26,7 @@ export default function ProjetsPage() {
       <section className="page-section">
         <div className="wrap">
           <div className="proj-detail-list">
-            {PROJETS.map((p) => (
+            {projects.map((p) => (
               <article className="proj-detail reveal" id={p.slug} key={p.slug}>
                 <div className="proj-detail__top">
                   <span className="pj__tag">{p.tag}</span>

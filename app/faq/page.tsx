@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import PageShell from '@/app/components/PageShell';
 import PageHero from '@/app/components/PageHero';
 import { SITE } from '@/lib/site';
+import { fetchPublicFaq, withCmsFallback } from '@/lib/api';
 
 export const metadata: Metadata = {
   title: "FAQ · Y'TILIKAN",
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/faq' },
 };
 
-const faqs = [
+const FALLBACK_FAQS = [
   {
     q: 'Est-ce vraiment gratuit ?',
     a: 'Oui, entièrement. Émissions, formations et outils sont accessibles sans paiement ni abonnement. Notre modèle repose sur le partage, pas sur la vente.',
@@ -45,7 +46,12 @@ const faqs = [
   },
 ];
 
-export default function FaqPage() {
+export default async function FaqPage() {
+  const cms = await fetchPublicFaq();
+  const faqs = withCmsFallback(
+    cms.map((item) => ({ q: item.question, a: item.answer })),
+    FALLBACK_FAQS,
+  );
   return (
     <PageShell active="faq">
       <PageHero

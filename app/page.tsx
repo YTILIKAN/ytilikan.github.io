@@ -13,15 +13,22 @@ import Equipe from './components/Equipe';
 import FAQ from './components/FAQ';
 import Contact from './components/Contact';
 import ClientScripts from './components/ClientScripts';
-import { fetchShowcaseProjects, fetchPublicEvents } from '@/lib/api';
-import type { ShowcaseProject, PublicEvent } from '@/lib/api';
+import {
+  EMPTY_SITE,
+  fetchPublicEvents,
+  fetchPublicSite,
+  fetchShowcaseProjects,
+} from '@/lib/api';
+import type { PublicEvent, PublicSite, ShowcaseProject } from '@/lib/api';
 
 export default async function Home() {
+  let site: PublicSite = EMPTY_SITE;
   let projects: ShowcaseProject[] = [];
   let events: PublicEvent[] = [];
 
   try {
-    [projects, events] = await Promise.all([
+    [site, projects, events] = await Promise.all([
+      fetchPublicSite(),
       fetchShowcaseProjects(),
       fetchPublicEvents(),
     ]);
@@ -39,12 +46,12 @@ export default async function Home() {
         <CommentParticiper />
         <Stats />
         <Marquee />
-        <Emissions />
-        <Programmes />
+        <Emissions items={site.emissions} />
+        <Programmes items={site.programmes} />
         <Evenements events={events} />
         <Projets apiProjects={projects} />
-        <Equipe />
-        <FAQ />
+        <Equipe members={site.team} />
+        <FAQ items={site.faq} />
         <Contact />
       </main>
       <ClientScripts />

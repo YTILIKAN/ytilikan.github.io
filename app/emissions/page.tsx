@@ -2,6 +2,12 @@ import type { Metadata } from 'next';
 import PageShell from '@/app/components/PageShell';
 import PageHero from '@/app/components/PageHero';
 import { SITE } from '@/lib/site';
+import {
+  fetchPublicEmissions,
+  formatDurationMinutes,
+  withCmsFallback,
+  youtubeIdFrom,
+} from '@/lib/api';
 
 export const metadata: Metadata = {
   title: "Émissions · Y'TILIKAN",
@@ -27,7 +33,7 @@ const formats = [
   },
 ];
 
-const videos = [
+const FALLBACK_VIDEOS: { kick: string; title: string; meta: string; id: string; href?: string }[] = [
   { kick: 'Formation', title: "Formation : Vibe Coding avec l'IA", meta: '1:35:04', id: '4zQ-YN_SvlU' },
   {
     kick: 'Grand Débat Tech',
@@ -56,7 +62,22 @@ const videos = [
   },
 ];
 
-export default function EmissionsPage() {
+export default async function EmissionsPage() {
+  const cmsEmissions = await fetchPublicEmissions();
+  const mapped = cmsEmissions.flatMap((item) => {
+    const id = item.youtube_id ?? youtubeIdFrom(item.youtube_url);
+    if (!id && !item.youtube_url) return [];
+    return [
+      {
+        kick: item.format || 'Émission',
+        title: item.title,
+        meta: formatDurationMinutes(item.duration_minutes) || '',
+        id: id || String(item.id),
+        href: item.youtube_url || (id ? `https://www.youtube.com/watch?v=${id}` : undefined),
+      },
+    ];
+  });
+  const videos = withCmsFallback(mapped, FALLBACK_VIDEOS);
   return (
     <PageShell active="emissions">
       <PageHero
@@ -98,7 +119,7 @@ export default function EmissionsPage() {
               <a
                 className="em card-hover"
                 key={v.id}
-                href={`https://www.youtube.com/watch?v=${v.id}`}
+                href={v.href ?? `https://www.youtube.com/watch?v=${v.id}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -117,7 +138,7 @@ export default function EmissionsPage() {
                       <path fill="currentColor" d="M8 5v14l11-7z" />
                     </svg>
                   </div>
-                  <span className="em__dur">{v.meta}</span>
+                  {v.meta ? <span className="em__dur">{v.meta}</span> : null}
                 </div>
                 <div className="em__body">
                   <span className="em__kick">{v.kick}</span>

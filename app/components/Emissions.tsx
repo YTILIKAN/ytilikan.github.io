@@ -1,8 +1,22 @@
 import { SITE } from '@/lib/site';
+import {
+  formatDurationMinutes,
+  withCmsFallback,
+  youtubeIdFrom,
+  type PublicEmission,
+} from '@/lib/api';
 
 const CHANNEL = SITE.youtube.url;
 
-const videos = [
+type VideoCard = {
+  kick: string;
+  title: string;
+  meta: string;
+  id: string;
+  href?: string;
+};
+
+const FALLBACK_VIDEOS: VideoCard[] = [
   { kick: 'Formation', title: 'Formation : Vibe Coding avec l’IA', meta: '1:35:04', id: '4zQ-YN_SvlU' },
   {
     kick: 'Grand Débat Tech',
@@ -31,7 +45,22 @@ const videos = [
   },
 ];
 
-export default function Emissions() {
+function toVideoCard(item: PublicEmission): VideoCard | null {
+  const id = item.youtube_id ?? youtubeIdFrom(item.youtube_url);
+  if (!id && !item.youtube_url) return null;
+  return {
+    kick: item.format || 'Émission',
+    title: item.title,
+    meta: formatDurationMinutes(item.duration_minutes) || '',
+    id: id || String(item.id),
+    href: item.youtube_url || (id ? `https://www.youtube.com/watch?v=${id}` : undefined),
+  };
+}
+
+export default function Emissions({ items }: { items?: PublicEmission[] }) {
+  const mapped = (items ?? []).map(toVideoCard).filter((v): v is VideoCard => v != null);
+  const videos = withCmsFallback(mapped, FALLBACK_VIDEOS);
+
   return (
     <section className="section" id="emissions">
       <div className="wrap">
@@ -49,7 +78,7 @@ export default function Emissions() {
             <a
               className="em card-hover"
               key={v.id}
-              href={`https://www.youtube.com/watch?v=${v.id}`}
+              href={v.href ?? `https://www.youtube.com/watch?v=${v.id}`}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -68,7 +97,7 @@ export default function Emissions() {
                     <path fill="currentColor" d="M8 5v14l11-7z" />
                   </svg>
                 </div>
-                <span className="em__dur">{v.meta}</span>
+                {v.meta ? <span className="em__dur">{v.meta}</span> : null}
               </div>
               <div className="em__body">
                 <span className="em__kick">{v.kick}</span>

@@ -1,6 +1,12 @@
 import type { Metadata } from 'next';
 import PageShell from '@/app/components/PageShell';
 import PageHero from '@/app/components/PageHero';
+import {
+  fetchPublicTeam,
+  teamInitials,
+  teamPhotoUrl,
+  withCmsFallback,
+} from '@/lib/api';
 
 export const metadata: Metadata = {
   title: "Équipe · Y'TILIKAN",
@@ -9,7 +15,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/equipe' },
 };
 
-const membres: {
+const FALLBACK_MEMBRES: {
   name: string;
   role: string;
   body: string;
@@ -90,16 +96,21 @@ const membres: {
   },
 ];
 
-function initials(name: string): string {
-  return name
-    .split(' ')
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((w) => w[0])
-    .join('');
-}
-
-export default function EquipePage() {
+export default async function EquipePage() {
+  const cms = await fetchPublicTeam();
+  const membres = withCmsFallback(
+    cms.map((m) => ({
+      name: m.name,
+      role: m.role || '',
+      body: m.bio || '',
+      detail: m.bio || '',
+      tag: m.tag || '',
+      photo: teamPhotoUrl(m),
+      linkedin: m.linkedin_url || '#',
+      initials: teamInitials(m),
+    })),
+    FALLBACK_MEMBRES.map((m) => ({ ...m, initials: teamInitials(m) })),
+  );
   return (
     <PageShell active="equipe">
       <PageHero
@@ -126,7 +137,7 @@ export default function EquipePage() {
                     />
                   ) : (
                     <div className="tm__ph" aria-hidden="true">
-                      <span className="tm__initials">{initials(m.name)}</span>
+                      <span className="tm__initials">{m.initials}</span>
                     </div>
                   )}
                   <span className="tm__tag">{m.tag}</span>

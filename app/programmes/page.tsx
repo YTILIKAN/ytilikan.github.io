@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import PageShell from '@/app/components/PageShell';
 import PageHero from '@/app/components/PageHero';
 import { SITE } from '@/lib/site';
+import { fetchPublicProgrammes, withCmsFallback } from '@/lib/api';
 
 export const metadata: Metadata = {
   title: "Programmes · Y'TILIKAN",
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/programmes' },
 };
 
-const programmes = [
+const FALLBACK_PROGRAMMES = [
   {
     kick: 'Émission principale',
     title: "Y'TILIKAN",
@@ -40,7 +41,19 @@ const programmes = [
   },
 ];
 
-export default function ProgrammesPage() {
+export default async function ProgrammesPage() {
+  const cms = await fetchPublicProgrammes();
+  const programmes = withCmsFallback(
+    cms.map((p) => ({
+      kick: p.kick || 'Programme',
+      title: p.title,
+      duration: p.duration || '',
+      body: p.body || '',
+      points: p.points,
+      detail: p.body || '',
+    })),
+    FALLBACK_PROGRAMMES,
+  );
   return (
     <PageShell active="programmes">
       <PageHero

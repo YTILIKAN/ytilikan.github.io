@@ -1,4 +1,6 @@
-const programmes = [
+import { withCmsFallback, type PublicProgramme } from '@/lib/api';
+
+const FALLBACK_PROGRAMMES = [
   {
     kick: 'Émission principale',
     title: "Y'TILIKAN",
@@ -25,7 +27,23 @@ const programmes = [
   },
 ];
 
-export default function Programmes() {
+function toCard(item: PublicProgramme) {
+  return {
+    kick: item.kick || 'Programme',
+    title: item.title,
+    duration: item.duration || '',
+    body: item.body || '',
+    points: item.points,
+    soon: item.coming_soon,
+  };
+}
+
+export default function Programmes({ items }: { items?: PublicProgramme[] }) {
+  const programmes = withCmsFallback(
+    (items ?? []).map(toCard),
+    FALLBACK_PROGRAMMES,
+  );
+
   return (
     <section className="section" id="programmes">
       <div className="wrap">

@@ -1,7 +1,14 @@
+import {
+  teamInitials,
+  teamPhotoUrl,
+  withCmsFallback,
+  type PublicTeamMember,
+} from '@/lib/api';
+
 // Pour afficher une vraie photo : dépose le fichier dans /public/team/
 // puis renseigne le chemin dans `photo` (ex. '/team/brayan.jpg').
 // Tant que `photo` est null, la silhouette par défaut s'affiche.
-const membres: {
+const FALLBACK_MEMBRES: {
   name: string;
   role: string;
   body: string;
@@ -67,16 +74,24 @@ const membres: {
   },
 ];
 
-function initials(name: string): string {
-  return name
-    .split(' ')
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((w) => w[0])
-    .join('');
+function toCard(member: PublicTeamMember) {
+  return {
+    name: member.name,
+    role: member.role || '',
+    body: member.bio || '',
+    tag: member.tag || '',
+    photo: teamPhotoUrl(member),
+    linkedin: member.linkedin_url || '#',
+    initials: teamInitials(member),
+  };
 }
 
-export default function Equipe() {
+export default function Equipe({ members }: { members?: PublicTeamMember[] }) {
+  const list = withCmsFallback(
+    (members ?? []).map(toCard),
+    FALLBACK_MEMBRES.map((m) => ({ ...m, initials: teamInitials(m) })),
+  );
+
   return (
     <section className="section team" id="equipe">
       <div className="wrap">
@@ -89,7 +104,7 @@ export default function Equipe() {
         </div>
 
         <div className="tm-grid reveal">
-          {membres.map((m) => (
+          {list.map((m) => (
             <article className="tm card-hover" key={m.name}>
               <div className="tm__media">
                 {m.photo ? (
@@ -97,10 +112,10 @@ export default function Equipe() {
                   <img className="tm__img" src={m.photo} alt={m.name} loading="lazy" width={400} height={400} />
                 ) : (
                   <div className="tm__ph" aria-hidden="true">
-                    <span className="tm__initials">{initials(m.name)}</span>
+                    <span className="tm__initials">{m.initials}</span>
                   </div>
                 )}
-                <span className="tm__tag">{m.tag}</span>
+                {m.tag ? <span className="tm__tag">{m.tag}</span> : null}
               </div>
               <div className="tm__info">
                 <h3 className="tm__name">{m.name}</h3>
