@@ -1,8 +1,16 @@
 import { SITE } from '@/lib/site';
+import { preferCmsList, type PublicEmission } from '@/lib/api';
 
 const CHANNEL = SITE.youtube.url;
 
-const videos = [
+export type EmissionCard = {
+  kick: string;
+  title: string;
+  meta: string;
+  id: string;
+};
+
+const FALLBACK_VIDEOS: EmissionCard[] = [
   { kick: 'Formation', title: 'Formation : Vibe Coding avec l’IA', meta: '1:35:04', id: '4zQ-YN_SvlU' },
   {
     kick: 'Grand Débat Tech',
@@ -31,7 +39,23 @@ const videos = [
   },
 ];
 
-export default function Emissions() {
+export function toEmissionCards(items: PublicEmission[]): EmissionCard[] {
+  return items
+    .map((item) => ({
+      kick: item.format || 'Émission',
+      title: item.title,
+      meta: item.duration || '',
+      id: item.youtube_id || '',
+    }))
+    .filter((item) => item.id);
+}
+
+export function resolveEmissions(items?: PublicEmission[]): EmissionCard[] {
+  return preferCmsList(toEmissionCards(items ?? []), FALLBACK_VIDEOS);
+}
+
+export default function Emissions({ items }: { items?: PublicEmission[] }) {
+  const videos = resolveEmissions(items);
   return (
     <section className="section" id="emissions">
       <div className="wrap">
@@ -68,7 +92,7 @@ export default function Emissions() {
                     <path fill="currentColor" d="M8 5v14l11-7z" />
                   </svg>
                 </div>
-                <span className="em__dur">{v.meta}</span>
+                {v.meta ? <span className="em__dur">{v.meta}</span> : null}
               </div>
               <div className="em__body">
                 <span className="em__kick">{v.kick}</span>

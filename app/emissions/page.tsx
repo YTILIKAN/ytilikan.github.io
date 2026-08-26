@@ -1,7 +1,11 @@
 import type { Metadata } from 'next';
 import PageShell from '@/app/components/PageShell';
 import PageHero from '@/app/components/PageHero';
+import { resolveEmissions } from '@/app/components/Emissions';
 import { SITE } from '@/lib/site';
+import { fetchPublicEmissions } from '@/lib/api';
+
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "Émissions · Y'TILIKAN",
@@ -27,36 +31,8 @@ const formats = [
   },
 ];
 
-const videos = [
-  { kick: 'Formation', title: "Formation : Vibe Coding avec l'IA", meta: '1:35:04', id: '4zQ-YN_SvlU' },
-  {
-    kick: 'Grand Débat Tech',
-    title: "Faut-il craindre l'intelligence artificielle en milieu scolaire ?",
-    meta: '1:16:07',
-    id: 'nu59ufftqZ4',
-  },
-  { kick: 'Formation', title: "Augmenter sa productivité avec l'IA", meta: '1:08:22', id: 'i_7SlR1bUEk' },
-  {
-    kick: 'Grand Débat Tech',
-    title: "L'IA va-t-elle détruire nos emplois ou créer de nouvelles opportunités ?",
-    meta: '35:00',
-    id: 'hbLpDjowqDo',
-  },
-  {
-    kick: 'Analyse IA',
-    title: 'Présidentielle 2025 : ce que pensent vraiment les Camerounais (Analyse IA exclusive)',
-    meta: '8:47',
-    id: 'wLXOB2W-s6Y',
-  },
-  {
-    kick: 'Formation',
-    title: "Apprendre à coder avec l'IA ? Voici la formation Vibe Coding",
-    meta: '1:34',
-    id: 'hVGZZT45Qxs',
-  },
-];
-
-export default function EmissionsPage() {
+export default async function EmissionsPage() {
+  const videos = resolveEmissions(await fetchPublicEmissions());
   return (
     <PageShell active="emissions">
       <PageHero
@@ -117,7 +93,7 @@ export default function EmissionsPage() {
                       <path fill="currentColor" d="M8 5v14l11-7z" />
                     </svg>
                   </div>
-                  <span className="em__dur">{v.meta}</span>
+                  {v.meta ? <span className="em__dur">{v.meta}</span> : null}
                 </div>
                 <div className="em__body">
                   <span className="em__kick">{v.kick}</span>

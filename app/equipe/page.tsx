@@ -1,6 +1,10 @@
 import type { Metadata } from 'next';
 import PageShell from '@/app/components/PageShell';
 import PageHero from '@/app/components/PageHero';
+import { resolveTeam } from '@/app/components/Equipe';
+import { fetchPublicTeam } from '@/lib/api';
+
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: "Équipe · Y'TILIKAN",
@@ -9,97 +13,8 @@ export const metadata: Metadata = {
   alternates: { canonical: '/equipe' },
 };
 
-const membres: {
-  name: string;
-  role: string;
-  body: string;
-  detail: string;
-  tag: string;
-  photo: string | null;
-  linkedin: string;
-}[] = [
-  {
-    name: 'Hamel Brayan',
-    role: 'Opérations & éditorial',
-    body: 'Anime les émissions comme modérateur, supervise la ligne éditoriale et coordonne les équipes.',
-    detail:
-      "Garant du rythme du plateau et de la cohérence éditoriale. Il s'assure que chaque émission sert la mission : clarifier la tech pour tous.",
-    tag: 'Modérateur',
-    photo: '/team/hamel-brayan.png',
-    linkedin: '#',
-  },
-  {
-    name: 'Michel Azarias',
-    role: 'Responsable technique',
-    body: 'Supervise la technique des tournages : image, son, lumière. Intervenant permanent, expertise terrain.',
-    detail:
-      "De la captation à la qualité d'écoute : il rend possible le plateau. Aussi contributeur technique sur les projets open-source.",
-    tag: 'Production',
-    photo: '/team/michel-azarias.png',
-    linkedin: '#',
-  },
-  {
-    name: 'Christian NEBOT',
-    role: 'Responsable pédagogique',
-    body: 'Garant de la validité scientifique et technique des contenus, élabore la ligne de formation tech.',
-    detail:
-      "Conçoit les parcours de formation et veille à la rigueur des contenus. Lead sur AfriBench et Dira Browser.",
-    tag: 'Formation',
-    photo: '/team/christian-nebot.png',
-    linkedin: '#',
-  },
-  {
-    name: 'Stelle Matha',
-    role: 'Communication & journalisme',
-    body: 'Prépare et présente la revue de presse, assure la veille tech et gère les réseaux sociaux.',
-    detail:
-      "La voix de l'actualité tech sur le plateau. Lead sur AfroLang-Library : données et langues africaines.",
-    tag: 'Médias',
-    photo: '/team/stelle-matha.png',
-    linkedin: '#',
-  },
-  {
-    name: 'Honorine Guehara',
-    role: 'Relations extérieures',
-    body: 'Coordonne les intervenants, gère les relations partenaires et la communication externe.',
-    detail:
-      "Le lien avec les invités, les écoles et les partenaires. Elle ouvre les portes pour que la mission rayonne au-delà du plateau.",
-    tag: 'Partenariats',
-    photo: '/team/honorine-guehara.jpg',
-    linkedin: '#',
-  },
-  {
-    name: 'Balla Moussa',
-    role: 'Compétitions & hackathons',
-    body: 'Recherche et coordonne nos participations aux challenges externes, et organisera nos hackathons internes à venir.',
-    detail:
-      "Il repère les challenges externes pertinents, coordonne la participation de l'équipe, et prépare les hackathons internes à venir.",
-    tag: 'Compétitions',
-    photo: '/team/balla-moussa.png',
-    linkedin: '#',
-  },
-  {
-    name: 'Hilary Madjou',
-    role: 'Team Building',
-    body: "Pilote le team building : cohésion de l'équipe, rituels collectifs et dynamique de groupe.",
-    detail:
-      "Elle tisse le lien entre les membres : moments partagés, énergie collective et une équipe qui avance ensemble.",
-    tag: 'Team Building',
-    photo: '/team/hilary-madjou.jpg',
-    linkedin: '#',
-  },
-];
-
-function initials(name: string): string {
-  return name
-    .split(' ')
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((w) => w[0])
-    .join('');
-}
-
-export default function EquipePage() {
+export default async function EquipePage() {
+  const membres = resolveTeam(await fetchPublicTeam());
   return (
     <PageShell active="equipe">
       <PageHero
@@ -126,7 +41,7 @@ export default function EquipePage() {
                     />
                   ) : (
                     <div className="tm__ph" aria-hidden="true">
-                      <span className="tm__initials">{initials(m.name)}</span>
+                      <span className="tm__initials">{m.initials}</span>
                     </div>
                   )}
                   <span className="tm__tag">{m.tag}</span>

@@ -1,4 +1,8 @@
-const faqs = [
+import { preferCmsList, type PublicFaqItem } from '@/lib/api';
+
+export type FaqCard = { q: string; a: string };
+
+const FALLBACK_FAQS: FaqCard[] = [
   {
     q: 'Est-ce vraiment gratuit ?',
     a: 'Oui, entièrement. Émissions, formations et outils, sans paiement ni abonnement.',
@@ -25,7 +29,16 @@ const faqs = [
   },
 ];
 
-export default function FAQ() {
+export function toFaqCards(items: PublicFaqItem[]): FaqCard[] {
+  return items.map((item) => ({ q: item.question, a: item.answer }));
+}
+
+export function resolveFaqs(items?: PublicFaqItem[]): FaqCard[] {
+  return preferCmsList(toFaqCards(items ?? []), FALLBACK_FAQS);
+}
+
+export default function FAQ({ items }: { items?: PublicFaqItem[] }) {
+  const faqs = resolveFaqs(items);
   return (
     <section className="section faq" id="faq" aria-labelledby="faq-title">
       <div className="wrap">
