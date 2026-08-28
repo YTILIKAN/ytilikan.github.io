@@ -28,9 +28,14 @@ Le projet est prêt pour [Vercel](https://vercel.com), qui détecte Next.js auto
 2. Sur Vercel : **New Project → Import** le dépôt.
 3. Framework Preset : **Next.js** (auto-détecté), puis **Deploy**.
 
-Variable d'environnement optionnelle :
+Variables d'environnement :
 
-- `NEXT_PUBLIC_SITE_URL` — URL canonique du site (ex. `https://ytilikan.com`),
+- `NEXT_PUBLIC_API_URL` — API communautaire (défaut : `https://community-api.ytilikan.org`).
+  La landing **lit** `GET /api/v1/public/site` (émissions, programmes, équipe, FAQ)
+  ainsi que `/public/projects` et `/public/events`. Le CMS écrit en PostgreSQL ;
+  un enregistrement éditeur apparaît après la revalidation ISR (5 minutes),
+  sans redéployer. Si l’API est vide ou indisponible, le contenu en dur sert de filet.
+- `NEXT_PUBLIC_SITE_URL` — URL canonique du site (ex. `https://www.ytilikan.org`),
   utilisée pour les balises SEO / Open Graph. Valeur par défaut : `https://ytilikan-site.vercel.app`.
 
 ## Assets images

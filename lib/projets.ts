@@ -14,6 +14,57 @@ export type Projet = {
   site: string | null;
 };
 
+function compactKey(value: string): string {
+  return value
+    .normalize('NFD')
+    .replace(/\p{M}/gu, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '');
+}
+
+function findFallbackProjet(api: ShowcaseProject): Projet | undefined {
+  const slugKey = compactKey(api.slug);
+  const nameKey = compactKey(api.title);
+  return PROJETS.find((p) => {
+    const pSlug = compactKey(p.slug);
+    const pName = compactKey(p.name);
+    return (
+      pSlug === slugKey ||
+      pName === nameKey ||
+      pSlug.startsWith(slugKey) ||
+      slugKey.startsWith(pSlug) ||
+      pName.startsWith(nameKey) ||
+      nameKey.startsWith(pName)
+    );
+  });
+}
+
+/** Enrichit les projets vitrine API avec le détail local (stack, highlights). */
+export function mergeShowcaseProjects(apiProjects: ShowcaseProject[]): Projet[] {
+  if (!apiProjects.length) return PROJETS;
+  return apiProjects.map((p) => {
+    const fallback = findFallbackProjet(p);
+    const members =
+      p.members
+        ?.map((m) => m.display_name || m.pseudo || '')
+        .filter(Boolean)
+        .join(' · ') || '';
+    return {
+      slug: fallback?.slug || p.slug,
+      name: p.title,
+      tag: p.category || fallback?.tag || 'Projet',
+      status: fallback?.status || 'Open-source',
+      desc: p.public_summary || fallback?.desc || p.impact || '',
+      detail: fallback?.detail || p.impact || p.public_summary || '',
+      highlights: fallback?.highlights ?? [],
+      stack: fallback?.stack ?? [],
+      authors: members || fallback?.authors || '',
+      github: p.github_url || fallback?.github || '#',
+      site: fallback?.site ?? null,
+    };
+  });
+}
+
 export const PROJETS: Projet[] = [
   {
     slug: 'afribench',
@@ -88,54 +139,3 @@ export const PROJETS: Projet[] = [
     site: null,
   },
 ];
-
-/**
- * Fusionne les projets vitrine API avec les fiches locales.
- * Un nouveau projet `showcased` apparaît tout seul ; les fiches
- * déjà rédigées gardent highlights / stack si le slug correspond.
- */
-export function mergeShowcaseProjects(apiProjects: ShowcaseProject[]): Projet[] {
-  if (!apiProjects.length) return PROJETS;
-
-  return apiProjects.map((project) => {
-    const extra = PROJETS.find(
-      (local) =>
-        local.slug === project.slug ||
-        local.name.toLowerCase() === project.title.toLowerCase(),
-    );
-    const authors =
-      project.members
-        ?.map((member) => member.display_name || member.pseudo || '')
-        .filter(Boolean)
-        .join(' · ') || '';
-    const demo = project.deliverables?.find(
-      (item) => item.kind === 'demo' || item.kind === 'site' || /site|demo/i.test(item.label),
-    );
-
-    if (extra) {
-      return {
-        ...extra,
-        name: project.title || extra.name,
-        desc: project.public_summary || extra.desc,
-        detail: extra.detail,
-        github: project.github_url || extra.github,
-        authors: authors || extra.authors,
-        site: extra.site ?? demo?.url ?? null,
-      };
-    }
-
-    return {
-      slug: project.slug,
-      name: project.title,
-      tag: project.category || 'Projet',
-      status: project.completed_at ? 'Open-source' : 'En cours',
-      desc: project.public_summary || project.impact || '',
-      detail: project.impact || project.public_summary || '',
-      highlights: project.deliverables?.map((item) => item.label) ?? [],
-      stack: [],
-      authors,
-      github: project.github_url || '#',
-      site: demo?.url ?? null,
-    };
-  });
-}
