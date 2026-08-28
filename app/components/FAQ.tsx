@@ -1,6 +1,7 @@
-import { withCmsFallback, type PublicFaqItem } from '@/lib/api';
+import type { SiteFaqItem } from '@/lib/api';
 
-const FALLBACK_FAQS = [
+// Filet : contenu affiché tant que l'API ne renvoie rien.
+const fallbackFaqs = [
   {
     q: 'Est-ce vraiment gratuit ?',
     a: 'Oui, entièrement. Émissions, formations et outils, sans paiement ni abonnement.',
@@ -27,11 +28,10 @@ const FALLBACK_FAQS = [
   },
 ];
 
-export default function FAQ({ items }: { items?: PublicFaqItem[] }) {
-  const faqs = withCmsFallback(
-    (items ?? []).map((item) => ({ q: item.question, a: item.answer })),
-    FALLBACK_FAQS,
-  );
+export default function FAQ({ items }: { items?: SiteFaqItem[] }) {
+  const faqs = items && items.length > 0
+    ? items.map((i) => ({ q: i.question, a: i.answer }))
+    : fallbackFaqs;
 
   return (
     <section className="section faq" id="faq" aria-labelledby="faq-title">

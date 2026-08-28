@@ -7,34 +7,20 @@ import Stats from './components/Stats';
 import Marquee from './components/Marquee';
 import Emissions from './components/Emissions';
 import Programmes from './components/Programmes';
-import Projets from './components/Projets';
 import Evenements from './components/Evenements';
+import Projets from './components/Projets';
 import Equipe from './components/Equipe';
 import FAQ from './components/FAQ';
 import Contact from './components/Contact';
 import ClientScripts from './components/ClientScripts';
-import {
-  EMPTY_SITE,
-  fetchPublicEvents,
-  fetchPublicSite,
-  fetchShowcaseProjects,
-} from '@/lib/api';
-import type { PublicEvent, PublicSite, ShowcaseProject } from '@/lib/api';
+import { fetchPublicSite, fetchShowcaseProjects, fetchPublicEvents } from '@/lib/api';
 
 export default async function Home() {
-  let site: PublicSite = EMPTY_SITE;
-  let projects: ShowcaseProject[] = [];
-  let events: PublicEvent[] = [];
-
-  try {
-    [site, projects, events] = await Promise.all([
-      fetchPublicSite(),
-      fetchShowcaseProjects(),
-      fetchPublicEvents(),
-    ]);
-  } catch {
-    // Fallback sur donnees hardcodees dans les composants
-  }
+  const [site, projects, events] = await Promise.all([
+    fetchPublicSite(),
+    fetchShowcaseProjects(),
+    fetchPublicEvents(),
+  ]);
 
   return (
     <>

@@ -1,6 +1,7 @@
-import { withCmsFallback, type PublicProgramme } from '@/lib/api';
+import type { SiteProgramme } from '@/lib/api';
 
-const FALLBACK_PROGRAMMES = [
+// Filet : contenu affiché tant que l'API ne renvoie rien.
+const fallbackProgrammes = [
   {
     kick: 'Émission principale',
     title: "Y'TILIKAN",
@@ -27,22 +28,17 @@ const FALLBACK_PROGRAMMES = [
   },
 ];
 
-function toCard(item: PublicProgramme) {
-  return {
-    kick: item.kick || 'Programme',
-    title: item.title,
-    duration: item.duration || '',
-    body: item.body || '',
-    points: item.points,
-    soon: item.coming_soon,
-  };
-}
-
-export default function Programmes({ items }: { items?: PublicProgramme[] }) {
-  const programmes = withCmsFallback(
-    (items ?? []).map(toCard),
-    FALLBACK_PROGRAMMES,
-  );
+export default function Programmes({ items }: { items?: SiteProgramme[] }) {
+  const programmes = items && items.length > 0
+    ? items.map((p) => ({
+        kick: p.kick,
+        title: p.title,
+        duration: p.duration,
+        body: p.body,
+        points: p.points,
+        soon: p.coming_soon,
+      }))
+    : fallbackProgrammes;
 
   return (
     <section className="section" id="programmes">

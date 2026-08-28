@@ -3,7 +3,7 @@
 import type { PublicEvent } from '@/lib/api';
 
 function formatDate(iso: string | null, timezone: string): string {
-  if (!iso) return 'Date a confirmer';
+  if (!iso) return 'Date à confirmer';
   const d = new Date(iso);
   return d.toLocaleDateString('fr-FR', {
     weekday: 'long',
@@ -22,15 +22,15 @@ function typeLabel(type: string | null): string {
     case 'talk_membre': return 'Talk membre';
     case 'atelier': return 'Atelier';
     case 'meetup': return 'Meetup';
-    case 'conference': return 'Conference';
-    default: return 'Evenement';
+    case 'conference': return 'Conférence';
+    default: return 'Événement';
   }
 }
 
 function formatLabel(format: string | null): string {
   switch (format) {
     case 'en_ligne': return 'En ligne';
-    case 'presentiel': return 'Presentiel';
+    case 'presentiel': return 'Présentiel';
     case 'hybride': return 'Hybride';
     default: return '';
   }
@@ -43,10 +43,10 @@ export default function Evenements({ events }: { events: PublicEvent[] }) {
     <section className="section" id="evenements">
       <div className="wrap">
         <div className="section-head reveal">
-          <span className="eyebrow">Evenements a venir</span>
-          <h2 className="sec-title">Nos prochains evenements.</h2>
+          <span className="eyebrow">Événements à venir</span>
+          <h2 className="sec-title">Nos prochains événements.</h2>
           <p className="lead">
-            Webinaires, ateliers et conferences pour apprendre et echanger.
+            Webinaires, ateliers et conférences pour apprendre et échanger.
           </p>
         </div>
 

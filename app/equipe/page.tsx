@@ -1,12 +1,8 @@
 import type { Metadata } from 'next';
 import PageShell from '@/app/components/PageShell';
 import PageHero from '@/app/components/PageHero';
-import {
-  fetchPublicTeam,
-  teamInitials,
-  teamPhotoUrl,
-  withCmsFallback,
-} from '@/lib/api';
+import { fetchPublicSite } from '@/lib/api';
+import type { SiteTeamMember } from '@/lib/api';
 
 export const metadata: Metadata = {
   title: "Équipe · Y'TILIKAN",
@@ -15,7 +11,8 @@ export const metadata: Metadata = {
   alternates: { canonical: '/equipe' },
 };
 
-const FALLBACK_MEMBRES: {
+// Filet : contenu affiché tant que l'API ne renvoie rien.
+const fallbackMembres: {
   name: string;
   role: string;
   body: string;
@@ -96,21 +93,31 @@ const FALLBACK_MEMBRES: {
   },
 ];
 
+function initials(name: string): string {
+  return name
+    .split(' ')
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0])
+    .join('');
+}
+
+function mapMembers(members: SiteTeamMember[]) {
+  return members.map((m) => ({
+    name: m.name,
+    role: m.role,
+    body: m.bio,
+    detail: m.bio,
+    tag: m.tag,
+    photo: m.photo_url,
+    linkedin: m.linkedin_url || '#',
+  }));
+}
+
 export default async function EquipePage() {
-  const cms = await fetchPublicTeam();
-  const membres = withCmsFallback(
-    cms.map((m) => ({
-      name: m.name,
-      role: m.role || '',
-      body: m.bio || '',
-      detail: m.bio || '',
-      tag: m.tag || '',
-      photo: teamPhotoUrl(m),
-      linkedin: m.linkedin_url || '#',
-      initials: teamInitials(m),
-    })),
-    FALLBACK_MEMBRES.map((m) => ({ ...m, initials: teamInitials(m) })),
-  );
+  const site = await fetchPublicSite();
+  const membres = site.team.length > 0 ? mapMembers(site.team) : fallbackMembres;
+
   return (
     <PageShell active="equipe">
       <PageHero
@@ -137,7 +144,7 @@ export default async function EquipePage() {
                     />
                   ) : (
                     <div className="tm__ph" aria-hidden="true">
-                      <span className="tm__initials">{m.initials}</span>
+                      <span className="tm__initials">{initials(m.name)}</span>
                     </div>
                   )}
                   <span className="tm__tag">{m.tag}</span>

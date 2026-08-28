@@ -1,14 +1,9 @@
-import {
-  teamInitials,
-  teamPhotoUrl,
-  withCmsFallback,
-  type PublicTeamMember,
-} from '@/lib/api';
+import type { SiteTeamMember } from '@/lib/api';
 
+// Filet : contenu affiché tant que l'API ne renvoie rien.
 // Pour afficher une vraie photo : dépose le fichier dans /public/team/
 // puis renseigne le chemin dans `photo` (ex. '/team/brayan.jpg').
-// Tant que `photo` est null, la silhouette par défaut s'affiche.
-const FALLBACK_MEMBRES: {
+const fallbackMembres: {
   name: string;
   role: string;
   body: string;
@@ -74,23 +69,26 @@ const FALLBACK_MEMBRES: {
   },
 ];
 
-function toCard(member: PublicTeamMember) {
-  return {
-    name: member.name,
-    role: member.role || '',
-    body: member.bio || '',
-    tag: member.tag || '',
-    photo: teamPhotoUrl(member),
-    linkedin: member.linkedin_url || '#',
-    initials: teamInitials(member),
-  };
+function initials(name: string): string {
+  return name
+    .split(' ')
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0])
+    .join('');
 }
 
-export default function Equipe({ members }: { members?: PublicTeamMember[] }) {
-  const list = withCmsFallback(
-    (members ?? []).map(toCard),
-    FALLBACK_MEMBRES.map((m) => ({ ...m, initials: teamInitials(m) })),
-  );
+export default function Equipe({ members }: { members?: SiteTeamMember[] }) {
+  const membres = members && members.length > 0
+    ? members.map((m) => ({
+        name: m.name,
+        role: m.role,
+        body: m.bio,
+        tag: m.tag,
+        photo: m.photo_url,
+        linkedin: m.linkedin_url || '#',
+      }))
+    : fallbackMembres;
 
   return (
     <section className="section team" id="equipe">
@@ -104,7 +102,7 @@ export default function Equipe({ members }: { members?: PublicTeamMember[] }) {
         </div>
 
         <div className="tm-grid reveal">
-          {list.map((m) => (
+          {membres.map((m) => (
             <article className="tm card-hover" key={m.name}>
               <div className="tm__media">
                 {m.photo ? (
@@ -112,10 +110,10 @@ export default function Equipe({ members }: { members?: PublicTeamMember[] }) {
                   <img className="tm__img" src={m.photo} alt={m.name} loading="lazy" width={400} height={400} />
                 ) : (
                   <div className="tm__ph" aria-hidden="true">
-                    <span className="tm__initials">{m.initials}</span>
+                    <span className="tm__initials">{initials(m.name)}</span>
                   </div>
                 )}
-                {m.tag ? <span className="tm__tag">{m.tag}</span> : null}
+                <span className="tm__tag">{m.tag}</span>
               </div>
               <div className="tm__info">
                 <h3 className="tm__name">{m.name}</h3>

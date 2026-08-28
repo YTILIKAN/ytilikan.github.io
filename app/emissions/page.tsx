@@ -2,12 +2,8 @@ import type { Metadata } from 'next';
 import PageShell from '@/app/components/PageShell';
 import PageHero from '@/app/components/PageHero';
 import { SITE } from '@/lib/site';
-import {
-  fetchPublicEmissions,
-  formatDurationMinutes,
-  withCmsFallback,
-  youtubeIdFrom,
-} from '@/lib/api';
+import { fetchPublicSite, formatDuration, extractYoutubeId } from '@/lib/api';
+import type { SiteEmission } from '@/lib/api';
 
 export const metadata: Metadata = {
   title: "Émissions · Y'TILIKAN",
@@ -33,7 +29,8 @@ const formats = [
   },
 ];
 
-const FALLBACK_VIDEOS: { kick: string; title: string; meta: string; id: string; href?: string }[] = [
+// Filet : contenu affiché tant que l'API ne renvoie rien.
+const fallbackVideos = [
   { kick: 'Formation', title: "Formation : Vibe Coding avec l'IA", meta: '1:35:04', id: '4zQ-YN_SvlU' },
   {
     kick: 'Grand Débat Tech',
@@ -62,22 +59,21 @@ const FALLBACK_VIDEOS: { kick: string; title: string; meta: string; id: string; 
   },
 ];
 
+function mapEmissions(emissions: SiteEmission[]) {
+  return emissions
+    .filter((e) => extractYoutubeId(e.youtube_url) || e.youtube_id)
+    .map((e) => ({
+      kick: e.format,
+      title: e.title,
+      meta: formatDuration(e.duration_minutes),
+      id: e.youtube_id || extractYoutubeId(e.youtube_url) || '',
+    }));
+}
+
 export default async function EmissionsPage() {
-  const cmsEmissions = await fetchPublicEmissions();
-  const mapped = cmsEmissions.flatMap((item) => {
-    const id = item.youtube_id ?? youtubeIdFrom(item.youtube_url);
-    if (!id && !item.youtube_url) return [];
-    return [
-      {
-        kick: item.format || 'Émission',
-        title: item.title,
-        meta: formatDurationMinutes(item.duration_minutes) || '',
-        id: id || String(item.id),
-        href: item.youtube_url || (id ? `https://www.youtube.com/watch?v=${id}` : undefined),
-      },
-    ];
-  });
-  const videos = withCmsFallback(mapped, FALLBACK_VIDEOS);
+  const site = await fetchPublicSite();
+  const videos = site.emissions.length > 0 ? mapEmissions(site.emissions) : fallbackVideos;
+
   return (
     <PageShell active="emissions">
       <PageHero
@@ -119,7 +115,7 @@ export default async function EmissionsPage() {
               <a
                 className="em card-hover"
                 key={v.id}
-                href={v.href ?? `https://www.youtube.com/watch?v=${v.id}`}
+                href={`https://www.youtube.com/watch?v=${v.id}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -138,7 +134,7 @@ export default async function EmissionsPage() {
                       <path fill="currentColor" d="M8 5v14l11-7z" />
                     </svg>
                   </div>
-                  {v.meta ? <span className="em__dur">{v.meta}</span> : null}
+                  <span className="em__dur">{v.meta}</span>
                 </div>
                 <div className="em__body">
                   <span className="em__kick">{v.kick}</span>
