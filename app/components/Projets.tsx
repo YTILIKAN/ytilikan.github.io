@@ -1,34 +1,14 @@
 'use client';
 
-import { PROJETS } from '@/lib/projets';
+import { mergeShowcaseProjects } from '@/lib/projets';
 import type { ShowcaseProject } from '@/lib/api';
 
 interface Props {
   apiProjects?: ShowcaseProject[];
 }
 
-/** Adapte un projet API au format d'affichage. */
-function adaptProject(p: ShowcaseProject) {
-  const members = p.members?.map((m) => m.display_name || m.pseudo || '').filter(Boolean).join(' · ') || '';
-  return {
-    slug: p.slug,
-    name: p.title,
-    tag: p.category || 'Projet',
-    status: p.completed_at ? 'Complete' : 'Open-source',
-    desc: p.public_summary || p.impact || '',
-    highlights: [] as string[],
-    stack: [] as string[],
-    authors: members,
-    github: p.github_url || '#',
-    site: null as string | null,
-  };
-}
-
 export default function Projets({ apiProjects }: Props) {
-  // Utilise les donnees API si disponibles, sinon fallback hardcode
-  const source = (apiProjects && apiProjects.length > 0)
-    ? apiProjects.map(adaptProject)
-    : PROJETS;
+  const source = mergeShowcaseProjects(apiProjects ?? []);
 
   return (
     <section className="section" id="projets">

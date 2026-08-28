@@ -1,3 +1,5 @@
+import type { ShowcaseProject } from '@/lib/api';
+
 export type Projet = {
   slug: string;
   name: string;
@@ -86,3 +88,54 @@ export const PROJETS: Projet[] = [
     site: null,
   },
 ];
+
+/**
+ * Fusionne les projets vitrine API avec les fiches locales.
+ * Un nouveau projet `showcased` apparaît tout seul ; les fiches
+ * déjà rédigées gardent highlights / stack si le slug correspond.
+ */
+export function mergeShowcaseProjects(apiProjects: ShowcaseProject[]): Projet[] {
+  if (!apiProjects.length) return PROJETS;
+
+  return apiProjects.map((project) => {
+    const extra = PROJETS.find(
+      (local) =>
+        local.slug === project.slug ||
+        local.name.toLowerCase() === project.title.toLowerCase(),
+    );
+    const authors =
+      project.members
+        ?.map((member) => member.display_name || member.pseudo || '')
+        .filter(Boolean)
+        .join(' · ') || '';
+    const demo = project.deliverables?.find(
+      (item) => item.kind === 'demo' || item.kind === 'site' || /site|demo/i.test(item.label),
+    );
+
+    if (extra) {
+      return {
+        ...extra,
+        name: project.title || extra.name,
+        desc: project.public_summary || extra.desc,
+        detail: extra.detail,
+        github: project.github_url || extra.github,
+        authors: authors || extra.authors,
+        site: extra.site ?? demo?.url ?? null,
+      };
+    }
+
+    return {
+      slug: project.slug,
+      name: project.title,
+      tag: project.category || 'Projet',
+      status: project.completed_at ? 'Open-source' : 'En cours',
+      desc: project.public_summary || project.impact || '',
+      detail: project.impact || project.public_summary || '',
+      highlights: project.deliverables?.map((item) => item.label) ?? [],
+      stack: [],
+      authors,
+      github: project.github_url || '#',
+      site: demo?.url ?? null,
+    };
+  });
+}

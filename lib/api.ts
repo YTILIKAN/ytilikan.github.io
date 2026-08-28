@@ -31,6 +31,11 @@ export type ShowcaseProject = {
     avatar_url: string | null;
     role_in_project: string;
   }[];
+  deliverables?: {
+    kind: string;
+    label: string;
+    url: string;
+  }[];
 };
 
 export type PublicEvent = {
