@@ -1,11 +1,9 @@
 import type { Metadata } from 'next';
 import PageShell from '@/app/components/PageShell';
 import PageHero from '@/app/components/PageHero';
-import { resolveProgrammes } from '@/app/components/Programmes';
 import { SITE } from '@/lib/site';
-import { fetchPublicProgrammes } from '@/lib/api';
-
-export const revalidate = 300;
+import { fetchPublicSite } from '@/lib/api';
+import type { SiteProgramme } from '@/lib/api';
 
 export const metadata: Metadata = {
   title: "Programmes · Y'TILIKAN",
@@ -14,8 +12,52 @@ export const metadata: Metadata = {
   alternates: { canonical: '/programmes' },
 };
 
+// Filet : contenu affiché tant que l'API ne renvoie rien.
+const fallbackProgrammes = [
+  {
+    kick: 'Émission principale',
+    title: "Y'TILIKAN",
+    duration: '≈ 1 heure',
+    body: "L'émission phare. Format structuré : introduction du thème et des invités, astuce tech du jour, revue de l'actualité, Grand Débat Tech, et mot de la fin.",
+    points: ['Astuce tech du jour', "Revue de l'actualité", 'Grand Débat Tech'],
+    detail:
+      "Un rendez-vous pour comprendre ce que la tech change dans nos vies, avec des invités du terrain. Le plateau mélange pédagogie et débat : on part d'un sujet concret, on l'explique, puis on le discute.",
+  },
+  {
+    kick: 'Pédagogie',
+    title: 'Formation Tech',
+    duration: '5 à 15 min',
+    body: 'Courtes vidéos pour apprendre outils, concepts et pratiques : IA, programmation, cybersécurité, cloud, et outils collaboratifs.',
+    points: ['IA & Python', 'Cybersécurité', 'Cloud & productivité'],
+    detail:
+      "Des capsules pour apprendre vite, sans se perdre. Chaque vidéo vise un geste utile : configurer un outil, comprendre un concept, ou appliquer une méthode. Idéal pour démarrer ou consolider.",
+  },
+  {
+    kick: 'Accompagnement',
+    title: 'Mentorat',
+    duration: 'Programme continu',
+    body: 'Un accompagnement personnalisé : des mentors expérimentés guident étudiants et jeunes talents dans leur montée en compétences tech.',
+    points: ['Binôme mentor et mentoré', 'Objectifs concrets', 'Suivi dans la durée'],
+    detail:
+      "Au-delà des vidéos : un suivi humain. Objectifs définis ensemble, échanges réguliers, et progression mesurable. Pour candidater ou proposer ton expertise de mentor, écris-nous.",
+  },
+];
+
+function mapProgrammes(programmes: SiteProgramme[]) {
+  return programmes.map((p) => ({
+    kick: p.kick,
+    title: p.title,
+    duration: p.duration,
+    body: p.body,
+    points: p.points,
+    detail: p.body,
+  }));
+}
+
 export default async function ProgrammesPage() {
-  const programmes = resolveProgrammes(await fetchPublicProgrammes());
+  const site = await fetchPublicSite();
+  const programmes = site.programmes.length > 0 ? mapProgrammes(site.programmes) : fallbackProgrammes;
+
   return (
     <PageShell active="programmes">
       <PageHero
@@ -34,24 +76,19 @@ export default async function ProgrammesPage() {
                   <span className="pcard__kick">{p.kick}</span>
                   <span className="pcard__dur">{p.duration}</span>
                 </div>
-                <h2 className="prog-detail__title">
-                  {p.title}
-                  {p.soon && <span className="pcard__badge">Bientôt</span>}
-                </h2>
+                <h2 className="prog-detail__title">{p.title}</h2>
                 <p className="prog-detail__body">{p.detail}</p>
                 <p className="prog-detail__summary">{p.body}</p>
-                {p.points.length > 0 && (
-                  <ul className="pcard__points">
-                    {p.points.map((pt) => (
-                      <li key={pt}>
-                        <svg className="pcard__play" viewBox="0 0 24 24" aria-hidden="true">
-                          <use href="#play" />
-                        </svg>
-                        {pt}
-                      </li>
-                    ))}
-                  </ul>
-                )}
+                <ul className="pcard__points">
+                  {p.points.map((pt) => (
+                    <li key={pt}>
+                      <svg className="pcard__play" viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="#play" />
+                      </svg>
+                      {pt}
+                    </li>
+                  ))}
+                </ul>
               </article>
             ))}
           </div>

@@ -1,11 +1,9 @@
 import type { Metadata } from 'next';
 import PageShell from '@/app/components/PageShell';
 import PageHero from '@/app/components/PageHero';
-import { toFaqCards } from '@/app/components/FAQ';
 import { SITE } from '@/lib/site';
-import { fetchPublicFaq, preferCmsList } from '@/lib/api';
-
-export const revalidate = 300;
+import { fetchPublicSite } from '@/lib/api';
+import type { SiteFaqItem } from '@/lib/api';
 
 export const metadata: Metadata = {
   title: "FAQ · Y'TILIKAN",
@@ -14,7 +12,8 @@ export const metadata: Metadata = {
   alternates: { canonical: '/faq' },
 };
 
-const FALLBACK_FAQS = [
+// Filet : contenu affiché tant que l'API ne renvoie rien.
+const fallbackFaqs = [
   {
     q: 'Est-ce vraiment gratuit ?',
     a: 'Oui, entièrement. Émissions, formations et outils sont accessibles sans paiement ni abonnement. Notre modèle repose sur le partage, pas sur la vente.',
@@ -49,8 +48,14 @@ const FALLBACK_FAQS = [
   },
 ];
 
+function mapFaq(items: SiteFaqItem[]) {
+  return items.map((i) => ({ q: i.question, a: i.answer }));
+}
+
 export default async function FaqPage() {
-  const faqs = preferCmsList(toFaqCards(await fetchPublicFaq()), FALLBACK_FAQS);
+  const site = await fetchPublicSite();
+  const faqs = site.faq.length > 0 ? mapFaq(site.faq) : fallbackFaqs;
+
   return (
     <PageShell active="faq">
       <PageHero

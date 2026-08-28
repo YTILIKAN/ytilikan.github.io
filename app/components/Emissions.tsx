@@ -1,16 +1,10 @@
 import { SITE } from '@/lib/site';
-import { preferCmsList, type PublicEmission } from '@/lib/api';
+import type { SiteEmission } from '@/lib/api';
 
 const CHANNEL = SITE.youtube.url;
 
-export type EmissionCard = {
-  kick: string;
-  title: string;
-  meta: string;
-  id: string;
-};
-
-const FALLBACK_VIDEOS: EmissionCard[] = [
+// Filet : contenu affiché tant que l'API ne renvoie rien (CMS vide ou API indisponible).
+const fallbackVideos = [
   { kick: 'Formation', title: 'Formation : Vibe Coding avec l’IA', meta: '1:35:04', id: '4zQ-YN_SvlU' },
   {
     kick: 'Grand Débat Tech',
@@ -39,23 +33,31 @@ const FALLBACK_VIDEOS: EmissionCard[] = [
   },
 ];
 
-export function toEmissionCards(items: PublicEmission[]): EmissionCard[] {
-  return items
-    .map((item) => ({
-      kick: item.format || 'Émission',
-      title: item.title,
-      meta: item.duration || '',
-      id: item.youtube_id || '',
-    }))
-    .filter((item) => item.id);
+function formatDuration(min: number): string {
+  if (!min) return '';
+  const h = Math.floor(min / 60);
+  const m = min % 60;
+  if (h > 0) return `${h}:${String(m).padStart(2, '0')}:00`;
+  return `${m}:00`;
 }
 
-export function resolveEmissions(items?: PublicEmission[]): EmissionCard[] {
-  return preferCmsList(toEmissionCards(items ?? []), FALLBACK_VIDEOS);
+function extractYoutubeId(url: string): string | null {
+  const m = url.match(/(?:v=|youtu\.be\/|\/embed\/)([A-Za-z0-9_-]{6,})/);
+  return m ? m[1] : null;
 }
 
-export default function Emissions({ items }: { items?: PublicEmission[] }) {
-  const videos = resolveEmissions(items);
+export default function Emissions({ items }: { items?: SiteEmission[] }) {
+  const videos = items && items.length > 0
+    ? items
+        .filter((e) => extractYoutubeId(e.youtube_url) || e.youtube_id)
+        .map((e) => ({
+          kick: e.format,
+          title: e.title,
+          meta: formatDuration(e.duration_minutes),
+          id: e.youtube_id || extractYoutubeId(e.youtube_url) || '',
+        }))
+    : fallbackVideos;
+
   return (
     <section className="section" id="emissions">
       <div className="wrap">
@@ -92,7 +94,7 @@ export default function Emissions({ items }: { items?: PublicEmission[] }) {
                     <path fill="currentColor" d="M8 5v14l11-7z" />
                   </svg>
                 </div>
-                {v.meta ? <span className="em__dur">{v.meta}</span> : null}
+                <span className="em__dur">{v.meta}</span>
               </div>
               <div className="em__body">
                 <span className="em__kick">{v.kick}</span>
